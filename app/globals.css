@@ -1,0 +1,403 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 0 0% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --popover: 0 0% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 145 75% 19%; /* Green */
+  --primary-foreground: 0 0% 98%;
+  --secondary: 45 74% 52%; /* Gold */
+  --secondary-foreground: 0 0% 9%;
+  --muted: 0 0% 14.9%;
+  --muted-foreground: 0 0% 63.9%;
+  --accent: 45 74% 52%; /* Gold */
+  --accent-foreground: 0 0% 9%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 14.9%;
+  --input: 0 0% 14.9%;
+  --ring: 45 74% 52%; /* Gold */
+  --gold-500: #D4AF37; /* Added gold-500 variable for direct reference */
+
+  /* Font families */
+  --font-main: 'Roboto Condensed', sans-serif;
+  --font-heading: 'Oswald', sans-serif;
+  --font-hero: 'Rubik Mono One', sans-serif;
+  --font-iconic: 'Permanent Marker', cursive;
+  
+  /* Scroll behavior */
+  scroll-behavior: smooth;
+}
+
+.dark {
+  --background: 0 0% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 0 0% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --popover: 0 0% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 145 75% 19%; /* Green */
+  --primary-foreground: 0 0% 98%;
+  --secondary: 45 74% 52%; /* Gold */
+  --secondary-foreground: 0 0% 9%;
+  --muted: 0 0% 14.9%;
+  --muted-foreground: 0 0% 63.9%;
+  --accent: 45 74% 52%; /* Gold */
+  --accent-foreground: 0 0% 9%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 14.9%;
+  --input: 0 0% 14.9%;
+  --ring: 45 74% 52%; /* Gold */
+  --gold-500: #D4AF37; /* Added gold-500 variable for direct reference */
+}
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-main antialiased;
+    font-family: var(--font-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    @apply tracking-tight font-bold uppercase;
+    letter-spacing: 0.03em;
+  }
+  
+  /* Hero section specific text style */
+  .hero-text {
+    font-family: var(--font-hero);
+    @apply tracking-wider uppercase;
+    letter-spacing: 0.05em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Iconic hero text style */
+  .iconic-text {
+    font-family: var(--font-iconic);
+    @apply tracking-wide;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+  }
+
+  /* Section headings with hip-hop style */
+  .section-heading {
+    font-family: var(--font-heading);
+    @apply tracking-wide uppercase font-bold;
+    letter-spacing: 0.08em;
+  }
+}
+
+/* Hip-hop style utility classes */
+.text-stroke {
+  -webkit-text-stroke: 1px var(--gold-500);
+  text-stroke: 1px var(--gold-500);
+  color: transparent;
+}
+
+.text-graffiti {
+  font-family: var(--font-heading);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transform: skew(-5deg);
+}
+
+/* Responsive typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply tracking-tight font-bold;
+}
+
+/* Smooth transitions */
+a,
+button {
+  @apply transition-all duration-300;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-black;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-green-900 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gold-500;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes photoshootFlash {
+  0% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 1;
+    filter: brightness(2.5);
+  }
+  20% {
+    opacity: 0.8;
+    filter: brightness(1);
+  }
+  25% {
+    opacity: 1;
+    filter: brightness(1.5);
+  }
+  30% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.flash-transition {
+  animation: photoshootFlash 0.6s ease-out;
+  position: relative;
+}
+
+.flash-transition::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: white;
+  opacity: 0;
+  z-index: 5;
+  animation: flashOverlay 0.6s ease-out;
+  pointer-events: none;
+}
+
+@keyframes flashOverlay {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  20% {
+    opacity: 0.1;
+  }
+  25% {
+    opacity: 0.4;
+  }
+  30% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s ease forwards;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.8s ease forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.8s ease forwards;
+}
+
+/* Animation delays */
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-400 {
+  animation-delay: 400ms;
+}
+
+.delay-500 {
+  animation-delay: 500ms;
+}
+
+/* Scroll reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal-left.active,
+.reveal-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.delay-100 {
+  transition-delay: 100ms;
+}
+
+.delay-200 {
+  transition-delay: 200ms;
+}
+
+.delay-300 {
+  transition-delay: 300ms;
+}
+
+.delay-400 {
+  transition-delay: 400ms;
+}
+
+.delay-500 {
+  transition-delay: 500ms;
+}
+
+/* Mobile optimization for smooth scrolling */
+@media (max-width: 640px) {
+  .reveal,
+  .reveal-left,
+  .reveal-right {
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+}
+
+/* Enhanced flash effects for gallery */
+@keyframes enhanced-flash {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  75% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.gallery-flash {
+  position: absolute;
+  inset: 0;
+  background-color: black;
+  z-index: 50;
+  opacity: 0;
+  pointer-events: none;
+  animation: enhanced-flash 0.6s ease-out;
+}
+
+.gallery-image-enter {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.gallery-image-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 500ms, transform 500ms;
+}
+
+.gallery-image-exit {
+  opacity: 1;
+}
+
+.gallery-image-exit-active {
+  opacity: 0;
+  transition: opacity 500ms;
+}

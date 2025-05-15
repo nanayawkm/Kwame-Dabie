@@ -1,0 +1,13 @@
+Change white font on navbar to gold
+change stream links to yellow
+add stream links to links
+for gallery page, make a carousel of images
+1. Change texts in footer page to gold and white when hovered
+2. add respective links to icons in footer from @https://linktr.ee/kwamedabie 
+3. Under contact put only dabietunes@gmail.com
+4.In navbar, remove video and news.
+5. Home and dabie logo should take you to hero section of page
+6.Music should take you to 'latest music section"
+7. about should take you to "about kwame dabie" section.
+8. In footer, remove legal section and place contact there leaving quick links in the middle.  cols-4
+9.Replace join the vibe section with links and icons of social media accounts.
