@@ -268,6 +268,12 @@ export default function GalleryCarousel() {
                 }`}
                 sizes="(max-width: 768px) 100vw, 80vw"
                 priority={index === currentIndex}
+                onError={(e) => {
+                  // Handle image load errors
+                  console.error(`Failed to load image: ${image.src}`);
+                  // Replace with a fallback or placeholder if needed
+                  e.currentTarget.style.display = 'none';
+                }}
               />
             </div>
           </div>
