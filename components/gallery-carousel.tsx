@@ -143,36 +143,63 @@ export default function GalleryCarousel() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [flashActive, setFlashActive] = useState(false);
   const galleryRef = useRef<HTMLDivElement>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const flashElements = useRef<HTMLDivElement[]>([]);
   
   // Shuffle images on initial load
   useEffect(() => {
-    setImages(shuffleArray(galleryImages));
+    // Using a smaller set of images for mobile to prevent crashes
+    const isMobile = window.innerWidth < 768;
+    const imagesToUse = isMobile ? galleryImages.slice(0, 12) : galleryImages;
+    setImages(shuffleArray(imagesToUse));
+    setIsLoaded(true);
   }, []);
   
-  // Auto-advance slides
+  // Clean up flash elements when component unmounts
   useEffect(() => {
+    return () => {
+      flashElements.current.forEach(element => {
+        if (element && element.parentNode) {
+          element.parentNode.removeChild(element);
+        }
+      });
+    };
+  }, []);
+  
+  // Auto-advance slides with a cleaner implementation
+  useEffect(() => {
+    if (images.length === 0) return;
+    
     const interval = setInterval(() => {
-      nextSlide();
+      if (!isTransitioning) {
+        nextSlide();
+      }
     }, 5000);
     
     return () => clearInterval(interval);
-  }, [currentIndex]);
+  }, [currentIndex, isTransitioning, images.length]);
 
   const triggerFlashEffect = useCallback(() => {
     setFlashActive(true);
     
-    // Create and append the flash element for enhanced effect
+    // Create and append the flash element for enhanced effect, with a more cautious approach
     if (galleryRef.current) {
-      const flashElement = document.createElement('div');
-      flashElement.className = 'gallery-flash';
-      galleryRef.current.appendChild(flashElement);
-      
-      // Remove the element after animation completes
-      setTimeout(() => {
-        if (flashElement.parentNode) {
-          flashElement.parentNode.removeChild(flashElement);
-        }
-      }, 600);
+      try {
+        const flashElement = document.createElement('div');
+        flashElement.className = 'gallery-flash';
+        galleryRef.current.appendChild(flashElement);
+        flashElements.current.push(flashElement);
+        
+        // Remove the element after animation completes
+        setTimeout(() => {
+          if (flashElement.parentNode) {
+            flashElement.parentNode.removeChild(flashElement);
+            flashElements.current = flashElements.current.filter(el => el !== flashElement);
+          }
+        }, 600);
+      } catch (error) {
+        console.error('Error creating flash effect:', error);
+      }
     }
     
     // Reset flash state after it completes
@@ -182,7 +209,7 @@ export default function GalleryCarousel() {
   }, [galleryRef]);
 
   const nextSlide = useCallback(() => {
-    if (isTransitioning) return;
+    if (isTransitioning || images.length === 0) return;
     
     setIsTransitioning(true);
     triggerFlashEffect();
@@ -199,7 +226,7 @@ export default function GalleryCarousel() {
   }, [isTransitioning, images.length, triggerFlashEffect]);
 
   const prevSlide = useCallback(() => {
-    if (isTransitioning) return;
+    if (isTransitioning || images.length === 0) return;
     
     setIsTransitioning(true);
     triggerFlashEffect();
@@ -215,7 +242,7 @@ export default function GalleryCarousel() {
   }, [isTransitioning, images.length, triggerFlashEffect]);
 
   const goToSlide = useCallback((index: number) => {
-    if (isTransitioning || index === currentIndex) return;
+    if (isTransitioning || index === currentIndex || images.length === 0) return;
     
     setIsTransitioning(true);
     triggerFlashEffect();
@@ -228,10 +255,10 @@ export default function GalleryCarousel() {
     setTimeout(() => {
       setIsTransitioning(false);
     }, 600);
-  }, [isTransitioning, currentIndex, triggerFlashEffect]);
+  }, [isTransitioning, currentIndex, triggerFlashEffect, images.length]);
 
   // If images haven't loaded yet, return a loading state
-  if (images.length === 0) {
+  if (!isLoaded || images.length === 0) {
     return <div className="flex items-center justify-center h-60 w-full">
       <div className="animate-pulse text-gold-500">Loading gallery...</div>
     </div>;
@@ -274,6 +301,8 @@ export default function GalleryCarousel() {
                   // Replace with a fallback or placeholder if needed
                   e.currentTarget.style.display = 'none';
                 }}
+                loading={index === currentIndex ? "eager" : "lazy"}
+                quality={window.innerWidth < 768 ? 75 : 90}
               />
             </div>
           </div>
@@ -305,11 +334,11 @@ export default function GalleryCarousel() {
       <div className="absolute bottom-4 left-0 right-0 flex justify-center items-center px-4 z-20">
         {/* Indicator dots and counter */}
         <div className="flex items-center space-x-2">
-          <span className="text-white/80 text-sm mr-1">{currentIndex + 1}</span>
+          <span className="text-white/80 text-sm mr-1">{images.length > 0 ? currentIndex + 1 : 0}</span>
           <div className="h-0.5 w-12 bg-white/40 rounded-full overflow-hidden">
             <div 
               className="h-full bg-gold-500 transition-all duration-300" 
-              style={{width: `${((currentIndex + 1) / images.length) * 100}%`}}
+              style={{width: images.length > 0 ? `${((currentIndex + 1) / images.length) * 100}%` : '0%'}}
             ></div>
           </div>
           <span className="text-white/80 text-sm ml-1">{images.length}</span>
