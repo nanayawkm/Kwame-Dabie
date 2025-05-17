@@ -11,3 +11,13 @@ for gallery page, make a carousel of images
 7. about should take you to "about kwame dabie" section.
 8. In footer, remove legal section and place contact there leaving quick links in the middle.  cols-4
 9.Replace join the vibe section with links and icons of social media accounts.
+
+
+Create album and EP Section under Latest Music.. SHould have carousel and listen now button with fanlink. 5 slides
+Cover arts for latest music section
+Add fan link More music  ()
+Ad Pop-up for News Letter Subscription  (Join the Vibe)
+Add Connect.gvo@gmail.com to contact
+Change Good Vibes only to gargantuanvibes only
+
+

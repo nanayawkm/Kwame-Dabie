@@ -253,7 +253,7 @@ export default function Home() {
                   className="object-contain object-left"
                 />
               </div>
-              <p className="text-gold-500 mb-4">Good Vibes Only</p>
+              <p className="text-gold-500 mb-4">Gargantuan Vibes Only</p>
               <div className="flex space-x-4">
                 <Link href="https://www.facebook.com/kwamedabie" target="_blank" rel="noopener noreferrer" className="text-gold-500 hover:text-white transition-colors duration-300">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -321,6 +321,7 @@ export default function Home() {
               <ul className="space-y-2">
                 <li className="text-gold-500 hover:text-white transition-colors duration-300">
                   <a href="mailto:dabietunes@gmail.com">dabietunes@gmail.com</a>
+                  <a href="mailto:connect.gvo@gmail.com">connect.gvo@gmail.com</a>
                 </li>
               </ul>
             </div>
