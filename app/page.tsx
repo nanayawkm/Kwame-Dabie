@@ -9,6 +9,7 @@ import GalleryCarousel from "@/components/gallery-carousel"
 import HeroSection from "@/components/hero-section"
 import ListenNowButton from "@/components/listen-now-button"
 import PreSaveButton from "@/components/pre-save-button"
+import QuubeLogo from "@/components/quube-logo"
 
 export default function Home() {
   return (
@@ -30,11 +31,11 @@ export default function Home() {
       <section id="music" className="w-full bg-black py-8 sm:py-12 md:py-16">
         <div className="container mx-auto px-4">
           {/* Upcoming Section */}
-          <div className="mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading text-gold-500 section-heading relative after:content-[''] after:absolute after:w-12 after:h-1 after:bg-gold-500 after:-bottom-3 after:left-0 md:after:left-1/2 md:after:-translate-x-1/2 mb-6 sm:mb-8 text-center">
+          <div className="mb-12 sm:mb-16 reveal">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading text-gold-500 section-heading relative after:content-[''] after:absolute after:w-12 after:h-1 after:bg-gold-500 after:-bottom-3 after:left-0 md:after:left-1/2 md:after:-translate-x-1/2 mb-6 sm:mb-8 text-center reveal-bottom">
               UPCOMING
             </h2>
-            <div className="max-w-md mx-auto px-4 sm:px-0">
+            <div className="max-w-md mx-auto px-4 sm:px-0 reveal-bottom delay-200">
               <div className="group bg-black/50 rounded-lg overflow-hidden border border-green-900/30 hover:border-gold-500 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.2)]">
                 <div className="relative aspect-square bg-black flex items-center justify-center p-4">
                   <Image 
@@ -147,11 +148,11 @@ export default function Home() {
           </div>
 
           {/* Albums and EPs Section */}
-          <div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading text-gold-500 section-heading relative after:content-[''] after:absolute after:w-12 after:h-1 after:bg-gold-500 after:-bottom-3 after:left-0 md:after:left-1/2 md:after:-translate-x-1/2 mb-6 sm:mb-8 text-center">
+          <div className="reveal">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading text-gold-500 section-heading relative after:content-[''] after:absolute after:w-12 after:h-1 after:bg-gold-500 after:-bottom-3 after:left-0 md:after:left-1/2 md:after:-translate-x-1/2 mb-6 sm:mb-8 text-center reveal-bottom">
               ALBUMS & EPs
             </h2>
-            <div className="max-w-5xl mx-auto px-4 sm:px-0">
+            <div className="max-w-5xl mx-auto px-4 sm:px-0 reveal-bottom delay-200">
               <CoverFlowCarousel />
             </div>
           </div>
@@ -367,15 +368,7 @@ export default function Home() {
                 className="flex items-center gap-2 hover:opacity-80 transition-opacity"
               >
                 <span className="text-gold-500 text-xs sm:text-sm">Web Design by Quube</span>
-                <div className="relative w-12 sm:w-14 h-4 sm:h-5">
-                  <Image
-                    src="/images/musicc/quube_logo_new.png"
-                    alt="Quube Logo"
-                    fill
-                    sizes="(max-width: 640px) 48px, 56px"
-                    className="object-contain object-left"
-                  />
-                </div>
+                <QuubeLogo />
               </a>
             </div>
           </div>
