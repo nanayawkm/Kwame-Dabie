@@ -7,19 +7,19 @@ import { Play } from "lucide-react"
 const albums = [
   {
     id: 1,
-    title: "Small Time",
-    artist: "",
-    cover: "/images/hero/Small Time - cover.jpg",
-    year: "",
-    link: "https://soundcloud.com/kwame-dabie/sets/small-time-ep"
-  },
-  {
-    id: 2,
-    title: "3:33",
+    title: "3:33 am",
     artist: "",
     cover: "/images/hero/333 cover.jpg",
     year: "",
     link: "https://fanlink.tv/333AMkwamedabie"
+  },
+  {
+    id: 2,
+    title: "The Purgatory Saga 2",
+    artist: "",
+    cover: "/images/hero/Purgatory Saga 2 cover.jpg",
+    year: "",
+    link: "https://fanlink.tv/thepurgatorysaga2"
   },
   {
     id: 3,
@@ -31,11 +31,11 @@ const albums = [
   },
   {
     id: 4,
-    title: "Purgatory Saga 2",
+    title: "Small Time",
     artist: "",
-    cover: "/images/hero/Purgatory Saga 2 cover.jpg",
+    cover: "/images/hero/Small Time - cover.jpg",
     year: "",
-    link: "https://fanlink.tv/thepurgatorysaga2"
+    link: "https://soundcloud.com/kwame-dabie/sets/small-time-ep"
   }
 ]
 

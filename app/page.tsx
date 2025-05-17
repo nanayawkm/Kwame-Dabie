@@ -21,7 +21,7 @@ export default function Home() {
       <HeroSection />
 
       {/* Streaming Platforms */}
-      <section className="w-full bg-black py-6 sm:py-8 border-t border-b border-green-900/30">
+      <section id="streaming-platforms" className="w-full bg-black py-6 sm:py-8 border-t border-b border-green-900/30">
         <div className="container mx-auto px-4">
           <StreamingPlatforms />
         </div>
@@ -71,33 +71,6 @@ export default function Home() {
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
               <a 
-                href="https://fanlink.tv/gas-kwamedabie-joey"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative overflow-hidden rounded-xl bg-black/50 border border-green-900/30 hover:border-gold-500/50 transition-all duration-300"
-              >
-                <div className="aspect-square relative">
-                  <Image
-                    src="/images/musicc/Gas - Cover.JPG"
-                    alt="Gas"
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-contain transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <button className="bg-gold-500 text-black rounded-full p-3 sm:p-4 transform scale-0 group-hover:scale-100 transition-transform duration-300 hover:bg-gold-400">
-                      <Play className="w-6 h-6 sm:w-8 sm:h-8" />
-                    </button>
-                  </div>
-                </div>
-                <div className="p-4 sm:p-6">
-                  <h3 className="text-lg sm:text-xl font-bold text-gold-500 mb-2">Gas</h3>
-                  <p className="text-gold-400 text-sm sm:text-base">Latest single</p>
-                </div>
-              </a>
-
-              <a 
                 href="https://fanlink.tv/kwamedabie-troubles"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -120,6 +93,33 @@ export default function Home() {
                 </div>
                 <div className="p-4 sm:p-6">
                   <h3 className="text-lg sm:text-xl font-bold text-gold-500 mb-2">Troubles</h3>
+                  <p className="text-gold-400 text-sm sm:text-base">Latest single</p>
+                </div>
+              </a>
+
+              <a 
+                href="https://fanlink.tv/gas-kwamedabie-joey"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative overflow-hidden rounded-xl bg-black/50 border border-green-900/30 hover:border-gold-500/50 transition-all duration-300"
+              >
+                <div className="aspect-square relative">
+                  <Image
+                    src="/images/musicc/Gas - Cover.JPG"
+                    alt="Gas"
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-contain transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <button className="bg-gold-500 text-black rounded-full p-3 sm:p-4 transform scale-0 group-hover:scale-100 transition-transform duration-300 hover:bg-gold-400">
+                      <Play className="w-6 h-6 sm:w-8 sm:h-8" />
+                    </button>
+                  </div>
+                </div>
+                <div className="p-4 sm:p-6">
+                  <h3 className="text-lg sm:text-xl font-bold text-gold-500 mb-2">Gas</h3>
                   <p className="text-gold-400 text-sm sm:text-base">Latest single</p>
                 </div>
               </a>
