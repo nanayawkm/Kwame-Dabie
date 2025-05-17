@@ -7,46 +7,36 @@ import { Play } from "lucide-react"
 const albums = [
   {
     id: 1,
-    title: "Good Vibes Only",
-    artist: "Kwame Dabie",
-    cover: "https://i.ibb.co/JkL8Y6L/kwame1.jpg",
-    year: "2025",
+    title: "Small Time",
+    artist: "",
+    cover: "/images/hero/Small Time - cover.jpg",
+    year: "",
+    link: "https://soundcloud.com/kwame-dabie/sets/small-time-ep"
   },
   {
     id: 2,
-    title: "African Rhythm",
-    artist: "Kwame Dabie",
-    cover: "https://i.ibb.co/0jZ8Y6L/kwame2.jpg",
-    year: "2024",
+    title: "3:33",
+    artist: "",
+    cover: "/images/hero/333 cover.jpg",
+    year: "",
+    link: "https://fanlink.tv/333AMkwamedabie"
   },
   {
     id: 3,
-    title: "Elevation",
-    artist: "Kwame Dabie",
-    cover: "https://i.ibb.co/0M8L6Yt/kwame3.jpg",
-    year: "2023",
+    title: "The Purgatory Saga",
+    artist: "",
+    cover: "/images/hero/The Purgatory Saga - cover.jpg",
+    year: "",
+    link: "https://audiomack.com/kwamedabie/album/the-purgatory-saga-2?share-user-id=2493638"
   },
   {
     id: 4,
-    title: "Sunset Dreams",
-    artist: "Kwame Dabie",
-    cover: "https://i.ibb.co/JkL8Y6L/kwame1.jpg",
-    year: "2024",
-  },
-  {
-    id: 5,
-    title: "Midnight Groove",
-    artist: "Kwame Dabie",
-    cover: "https://i.ibb.co/0jZ8Y6L/kwame2.jpg",
-    year: "2023",
-  },
-  {
-    id: 6,
-    title: "Dawn of Light",
-    artist: "Kwame Dabie",
-    cover: "https://i.ibb.co/0M8L6Yt/kwame3.jpg",
-    year: "2024",
-  },
+    title: "Purgatory Saga 2",
+    artist: "",
+    cover: "/images/hero/Purgatory Saga 2 cover.jpg",
+    year: "",
+    link: "https://fanlink.tv/thepurgatorysaga2"
+  }
 ]
 
 export default function CoverFlowCarousel() {
@@ -130,7 +120,9 @@ export default function CoverFlowCarousel() {
             key={album.id}
             className={`absolute transition-all duration-700 ease-in-out ${getCardStyle(index)}`}
             onClick={() => {
-              if (index !== currentIndex) {
+              if (index === currentIndex) {
+                window.open(album.link, "_blank")
+              } else {
                 setCurrentIndex(index)
               }
             }}
@@ -152,7 +144,6 @@ export default function CoverFlowCarousel() {
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                   <h3 className="text-xl font-bold">{album.title}</h3>
-                  <p className="text-sm text-gray-300 mt-1">{album.artist} • {album.year}</p>
                 </div>
               </div>
             </div>

@@ -8,6 +8,7 @@ import CoverFlowCarousel from "@/components/cover-flow-carousel"
 import GalleryCarousel from "@/components/gallery-carousel"
 import HeroSection from "@/components/hero-section"
 import ListenNowButton from "@/components/listen-now-button"
+import PreSaveButton from "@/components/pre-save-button"
 
 export default function Home() {
   return (
@@ -19,126 +20,153 @@ export default function Home() {
       <HeroSection />
 
       {/* Streaming Platforms */}
-      <section className="w-full bg-black py-8 border-t border-b border-green-900/30">
+      <section className="w-full bg-black py-6 sm:py-8 border-t border-b border-green-900/30">
         <div className="container mx-auto px-4">
           <StreamingPlatforms />
         </div>
       </section>
 
       {/* Music Section */}
-      <section id="music" className="w-full bg-gradient-to-b from-green-900/80 to-black py-12 sm:py-16">
+      <section id="music" className="w-full bg-black py-8 sm:py-12 md:py-16">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center md:items-start justify-between mb-8 sm:mb-12 reveal">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading text-gold-500 section-heading relative after:content-[''] after:absolute after:w-12 after:h-1 after:bg-gold-500 after:-bottom-3 after:left-0 md:after:left-1/2 md:after:-translate-x-1/2 mb-8 md:mb-0">
-              LATEST MUSIC
+          {/* Upcoming Section */}
+          <div className="mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading text-gold-500 section-heading relative after:content-[''] after:absolute after:w-12 after:h-1 after:bg-gold-500 after:-bottom-3 after:left-0 md:after:left-1/2 md:after:-translate-x-1/2 mb-6 sm:mb-8 text-center">
+              UPCOMING
             </h2>
-            <Link href="https://linktr.ee/kwamedabie" target="_blank" rel="noopener noreferrer" className="text-gold-500 hover:text-gold-400 flex items-center group">
-              <span className="mr-2 text-sm uppercase tracking-wider">View All</span>
-              <ExternalLink className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </Link>
+            <div className="max-w-md mx-auto px-4 sm:px-0">
+              <div className="group bg-black/50 rounded-lg overflow-hidden border border-green-900/30 hover:border-gold-500 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.2)]">
+                <div className="relative aspect-square bg-black flex items-center justify-center p-4">
+                  <Image 
+                    src="/images/upcoming/WWW - cover.JPG" 
+                    alt="WWW - Upcoming Release" 
+                    width={400}
+                    height={400}
+                    className="object-contain group-hover:scale-110 transition-transform duration-500 max-h-full max-w-full"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <PreSaveButton />
+                  </div>
+                </div>
+                <div className="p-4 text-center">
+                  <h3 className="text-white font-heading text-lg sm:text-xl group-hover:text-gold-500 transition-colors duration-300">WWW</h3>
+                  <p className="text-gray-400 text-sm mt-1 group-hover:text-gold-400 transition-colors duration-300">Coming Soon</p>
+                </div>
+              </div>
+            </div>
           </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
-            <a href="https://music.apple.com/album/gas-single/1723467664" target="_blank" rel="noopener noreferrer" 
-              className="group bg-black/50 rounded-lg overflow-hidden border border-green-900/30 hover:border-gold-500 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.2)] reveal delay-100">
-              <div className="relative aspect-square bg-black flex items-center justify-center p-4">
-                <Image 
-                  src="/images/gallery/GVO png .png" 
-                  alt="GAS - Single" 
-                  width={200}
-                  height={200}
-                  className="object-contain group-hover:scale-110 transition-transform duration-500 max-h-full max-w-full"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <button className="bg-gold-500 text-black rounded-full p-3 transform scale-0 group-hover:scale-100 transition-transform duration-300 hover:bg-gold-400">
-                    <Play className="w-6 h-6" />
-                  </button>
-                </div>
-              </div>
-              <div className="p-4">
-                <h3 className="text-white font-heading text-xl group-hover:text-gold-500 transition-colors duration-300">GAS</h3>
-                <p className="text-gray-400 text-sm mt-1 group-hover:text-gold-400 transition-colors duration-300">Single • 2024</p>
-              </div>
-            </a>
+
+          {/* Latest Music Section */}
+          <div className="mb-12 sm:mb-16">
+            <div className="flex flex-col md:flex-row items-center md:items-start justify-between mb-6 sm:mb-8 reveal">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading text-gold-500 section-heading relative after:content-[''] after:absolute after:w-12 after:h-1 after:bg-gold-500 after:-bottom-3 after:left-0 md:after:left-1/2 md:after:-translate-x-1/2 mb-6 md:mb-0">
+                LATEST MUSIC
+              </h2>
+              <Link href="https://linktr.ee/kwamedabie" target="_blank" rel="noopener noreferrer" className="text-gold-500 hover:text-gold-400 flex items-center group">
+                <span className="mr-2 text-sm uppercase tracking-wider">View All</span>
+                <ExternalLink className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
             
-            <a href="https://music.apple.com/album/troubles-single/1726613122" target="_blank" rel="noopener noreferrer" 
-              className="group bg-black/50 rounded-lg overflow-hidden border border-green-900/30 hover:border-gold-500 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.2)] reveal delay-200">
-              <div className="relative aspect-square bg-black flex items-center justify-center p-4">
-                <Image 
-                  src="/images/gallery/GVO png .png" 
-                  alt="Troubles - Single" 
-                  width={200}
-                  height={200}
-                  className="object-contain group-hover:scale-110 transition-transform duration-500 max-h-full max-w-full"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <button className="bg-gold-500 text-black rounded-full p-3 transform scale-0 group-hover:scale-100 transition-transform duration-300 hover:bg-gold-400">
-                    <Play className="w-6 h-6" />
-                  </button>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+              <a 
+                href="https://fanlink.tv/gas-kwamedabie-joey"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative overflow-hidden rounded-xl bg-black/50 border border-green-900/30 hover:border-gold-500/50 transition-all duration-300"
+              >
+                <div className="aspect-square relative">
+                  <Image
+                    src="/images/musicc/Gas - Cover.JPG"
+                    alt="Gas"
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-contain transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <button className="bg-gold-500 text-black rounded-full p-3 sm:p-4 transform scale-0 group-hover:scale-100 transition-transform duration-300 hover:bg-gold-400">
+                      <Play className="w-6 h-6 sm:w-8 sm:h-8" />
+                    </button>
+                  </div>
                 </div>
-              </div>
-              <div className="p-4">
-                <h3 className="text-white font-heading text-xl group-hover:text-gold-500 transition-colors duration-300">TROUBLES</h3>
-                <p className="text-gray-400 text-sm mt-1 group-hover:text-gold-400 transition-colors duration-300">Single • 2025</p>
-              </div>
-            </a>
-            
-            <a href="https://music.apple.com/album/gvo-ep/1675981908" target="_blank" rel="noopener noreferrer" 
-              className="group bg-black/50 rounded-lg overflow-hidden border border-green-900/30 hover:border-gold-500 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.2)] reveal delay-300">
-              <div className="relative aspect-square bg-black flex items-center justify-center p-4">
-                <Image 
-                  src="/images/gallery/GVO png .png" 
-                  alt="GVO - EP" 
-                  width={200}
-                  height={200} 
-                  className="object-contain group-hover:scale-110 transition-transform duration-500 max-h-full max-w-full"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <button className="bg-gold-500 text-black rounded-full p-3 transform scale-0 group-hover:scale-100 transition-transform duration-300 hover:bg-gold-400">
-                    <Play className="w-6 h-6" />
-                  </button>
+                <div className="p-4 sm:p-6">
+                  <h3 className="text-lg sm:text-xl font-bold text-gold-500 mb-2">Gas</h3>
+                  <p className="text-gold-400 text-sm sm:text-base">Latest single</p>
                 </div>
-              </div>
-              <div className="p-4">
-                <h3 className="text-white font-heading text-xl group-hover:text-gold-500 transition-colors duration-300">GVO</h3>
-                <p className="text-gray-400 text-sm mt-1 group-hover:text-gold-400 transition-colors duration-300">EP • 2023</p>
-              </div>
-            </a>
-            
-            <a href="https://music.apple.com/artist/kwame-dabie/1330190976" target="_blank" rel="noopener noreferrer" 
-              className="group bg-black/50 rounded-lg overflow-hidden border border-green-900/30 hover:border-gold-500 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.2)] reveal delay-400">
-              <div className="relative aspect-square bg-black flex items-center justify-center p-4">
-                <Image 
-                  src="/images/gallery/GVO png .png" 
-                  alt="More Music" 
-                  width={200}
-                  height={200}
-                  className="object-contain group-hover:scale-110 transition-transform duration-500 max-h-full max-w-full"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <button className="bg-gold-500 text-black rounded-full p-3 transform scale-0 group-hover:scale-100 transition-transform duration-300 hover:bg-gold-400">
-                    <Play className="w-6 h-6" />
-                  </button>
+              </a>
+
+              <a 
+                href="https://fanlink.tv/kwamedabie-troubles"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative overflow-hidden rounded-xl bg-black/50 border border-green-900/30 hover:border-gold-500/50 transition-all duration-300"
+              >
+                <div className="aspect-square relative">
+                  <Image
+                    src="/images/musicc/Troubles Cover.JPG"
+                    alt="Troubles"
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-contain transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <button className="bg-gold-500 text-black rounded-full p-3 sm:p-4 transform scale-0 group-hover:scale-100 transition-transform duration-300 hover:bg-gold-400">
+                      <Play className="w-6 h-6 sm:w-8 sm:h-8" />
+                    </button>
+                  </div>
                 </div>
-              </div>
-              <div className="p-4">
-                <h3 className="text-white font-heading text-xl group-hover:text-gold-500 transition-colors duration-300">MORE MUSIC</h3>
-                <p className="text-gray-400 text-sm mt-1 group-hover:text-gold-400 transition-colors duration-300">View All</p>
-              </div>
-            </a>
+                <div className="p-4 sm:p-6">
+                  <h3 className="text-lg sm:text-xl font-bold text-gold-500 mb-2">Troubles</h3>
+                  <p className="text-gold-400 text-sm sm:text-base">Latest single</p>
+                </div>
+              </a>
+
+              {/* More Music Card */}
+              <a
+                href="https://linktr.ee/kwamedabie"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative overflow-hidden rounded-xl bg-black/50 border border-green-900/30 hover:border-gold-500/50 transition-all duration-300 flex flex-col items-center justify-center"
+              >
+                <div className="flex flex-col items-center justify-center h-full p-8">
+                  <div className="relative w-24 h-24 mb-4">
+                    <Image
+                      src="/images/gallery/GVO png .png"
+                      alt="GVO Logo"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-gold-500 transition-colors duration-300">More Music</h3>
+                  <p className="text-gray-400 text-center">Discover all releases, singles, and more!</p>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          {/* Albums and EPs Section */}
+          <div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading text-gold-500 section-heading relative after:content-[''] after:absolute after:w-12 after:h-1 after:bg-gold-500 after:-bottom-3 after:left-0 md:after:left-1/2 md:after:-translate-x-1/2 mb-6 sm:mb-8 text-center">
+              ALBUMS & EPs
+            </h2>
+            <div className="max-w-5xl mx-auto px-4 sm:px-0">
+              <CoverFlowCarousel />
+            </div>
           </div>
         </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="w-full bg-black py-12 sm:py-16">
+      <section id="about" className="w-full bg-black py-8 sm:py-12 md:py-16">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+          <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-12">
             <div className="lg:w-1/2 reveal-left">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading text-gold-500 section-heading relative after:content-[''] after:absolute after:w-12 after:h-1 after:bg-gold-500 after:-bottom-3 after:left-0 mb-8">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading text-gold-500 section-heading relative after:content-[''] after:absolute after:w-12 after:h-1 after:bg-gold-500 after:-bottom-3 after:left-0 mb-6 sm:mb-8">
                 ABOUT KWAME DABIE
               </h2>
-              <div className="space-y-4 text-gray-300 font-main">
+              <div className="space-y-3 sm:space-y-4 text-gray-300 font-main text-sm sm:text-base">
                 <p>
                   Kwame Dabie is an emerging powerhouse in Ghana's hip-hop landscape, representing Tema 
                   with a distinctive blend of raw energy and lyrical finesse. His music seamlessly weaves English, 
@@ -178,22 +206,22 @@ export default function Home() {
       </section>
 
       {/* Gallery Section */}
-      <section id="gallery" className="w-full bg-gradient-to-b from-black to-green-900/30 py-12 sm:py-16">
+      <section id="gallery" className="w-full bg-gradient-to-b from-black to-green-900/30 py-8 sm:py-12 md:py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading text-gold-500 section-heading relative after:content-[''] after:absolute after:w-12 after:h-1 after:bg-gold-500 after:-bottom-3 after:left-0 md:after:left-1/2 md:after:-translate-x-1/2 mb-12 text-center reveal">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading text-gold-500 section-heading relative after:content-[''] after:absolute after:w-12 after:h-1 after:bg-gold-500 after:-bottom-3 after:left-0 md:after:left-1/2 md:after:-translate-x-1/2 mb-8 sm:mb-12 text-center reveal">
             GALLERY
           </h2>
-          <div className="max-w-5xl mx-auto reveal delay-300">
+          <div className="max-w-5xl mx-auto px-4 sm:px-0 reveal delay-300">
             <GalleryCarousel />
           </div>
         </div>
       </section>
 
       {/* Social Media Section */}
-      <section className="w-full bg-green-900/30 py-16">
+      <section className="w-full bg-green-900/30 py-8 sm:py-12 md:py-16">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-heading text-gold-500 mb-8 text-graffiti reveal">CONNECT WITH ME</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading text-gold-500 mb-6 sm:mb-8 text-graffiti reveal">CONNECT WITH ME</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto">
             <a 
               href="https://www.instagram.com/kwamedabie" 
               target="_blank" 
@@ -241,11 +269,11 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="w-full bg-black py-12 border-t border-green-900/30 font-main">
-        <div className="px-6 sm:px-8 md:px-12 lg:px-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+      <footer className="w-full bg-black py-8 sm:py-12 border-t border-green-900/30 font-main">
+        <div className="px-4 sm:px-6 md:px-8 lg:px-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12">
             <div>
-              <div className="relative h-20 w-80 sm:h-24 sm:w-96 mb-8">
+              <div className="relative h-16 sm:h-20 w-64 sm:w-80 mb-6 sm:mb-8">
                 <Image
                   src="/images/gallery/Dabie Logo png White.PNG"
                   alt="Kwame Dabie Logo"
@@ -253,7 +281,7 @@ export default function Home() {
                   className="object-contain object-left"
                 />
               </div>
-              <p className="text-gold-500 mb-4">Gargantuan Vibes Only</p>
+              <p className="text-gold-500 mb-4 text-sm sm:text-base">Gargantuan Vibes Only</p>
               <div className="flex space-x-4">
                 <Link href="https://www.facebook.com/kwamedabie" target="_blank" rel="noopener noreferrer" className="text-gold-500 hover:text-white transition-colors duration-300">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -329,8 +357,27 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="border-t border-green-900/30 pt-8 text-center">
-            <p className="text-gold-500 text-sm">© 2025 Kwame Dabie. All rights reserved.</p>
+          <div className="border-t border-green-900/30 pt-6 sm:pt-8 text-center">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+              <p className="text-gold-500 text-xs sm:text-sm">© 2025 Kwame Dabie. All rights reserved.</p>
+              <a 
+                href="https://www.quubetech.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+              >
+                <span className="text-gold-500 text-xs sm:text-sm">Web Design by Quube</span>
+                <div className="relative w-12 sm:w-14 h-4 sm:h-5">
+                  <Image
+                    src="/images/musicc/quube_logo_new.png"
+                    alt="Quube Logo"
+                    fill
+                    sizes="(max-width: 640px) 48px, 56px"
+                    className="object-contain object-left"
+                  />
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </footer>
