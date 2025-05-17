@@ -18,7 +18,13 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <HeroSection />
+      <HeroSection 
+        title="KWAME DABIE"
+        subtitle="Ghanaian Artist"
+        description="Kwame Dabie is a Ghanaian artist who has been making waves in the music industry with his unique blend of Afrobeat, Highlife, and Hip-Hop. His music is a reflection of his life experiences and the rich cultural heritage of Ghana."
+        image="/images/hero/hero.jpg"
+        buttonText="Listen Now"
+      />
 
       {/* Streaming Platforms */}
       <section id="streaming-platforms" className="w-full bg-black py-6 sm:py-8 border-t border-b border-green-900/30">
@@ -284,7 +290,7 @@ export default function Home() {
               </div>
               <p className="text-gold-500 mb-4 text-sm sm:text-base">Gargantuan Vibes Only</p>
               <div className="flex space-x-4">
-                <Link href="https://www.facebook.com/kwamedabie" target="_blank" rel="noopener noreferrer" className="text-gold-500 hover:text-white transition-colors duration-300">
+                <Link href="https://www.facebook.com/kwamefuccindabie" target="_blank" rel="noopener noreferrer" className="text-gold-500 hover:text-white transition-colors duration-300">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path
                       fillRule="evenodd"
@@ -367,8 +373,14 @@ export default function Home() {
                 rel="noopener noreferrer" 
                 className="flex items-center gap-2 hover:opacity-80 transition-opacity"
               >
-                <span className="text-gold-500 text-xs sm:text-sm">Web Design by Quube</span>
-                <QuubeLogo />
+                <span className="text-gold-500 text-xs sm:text-sm">Designed and Developed by Quube</span>
+                <Image
+                  src="/images/musicc/Quube_logo_new.PNG"
+                  alt="Quube Logo"
+                  width={40}
+                  height={40}
+                  className="object-contain"
+                />
               </a>
             </div>
           </div>
