@@ -322,7 +322,7 @@ export default function Home() {
                 <li className="text-gold-500 hover:text-white transition-colors duration-300">
                   <a href="mailto:dabietunes@gmail.com">dabietunes@gmail.com</a>
                 </li>
-                <li>
+                <li className="text-gold-500 hover:text-white transition-colors duration-300">
                 <a href="mailto:connect.gvo@gmail.com">connect.gvo@gmail.com</a>
                 </li>
               </ul>
