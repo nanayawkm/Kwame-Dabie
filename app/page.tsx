@@ -69,10 +69,6 @@ export default function Home() {
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading text-gold-500 section-heading relative after:content-[''] after:absolute after:w-12 after:h-1 after:bg-gold-500 after:-bottom-3 after:left-0 md:after:left-1/2 md:after:-translate-x-1/2 mb-6 md:mb-0">
                 LATEST MUSIC
               </h2>
-              <Link href="https://linktr.ee/kwamedabie" target="_blank" rel="noopener noreferrer" className="text-gold-500 hover:text-gold-400 flex items-center group">
-                <span className="mr-2 text-sm uppercase tracking-wider">View All</span>
-                <ExternalLink className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </Link>
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
