@@ -17,11 +17,15 @@ export default function Navbar() {
       } else {
         setScrolled(false)
       }
+      // Close mobile menu when scrolling
+      if (isOpen) {
+        setIsOpen(false)
+      }
     }
 
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  }, [isOpen])
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
@@ -98,8 +102,8 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <div
         className={cn(
-          "fixed inset-0 bg-black bg-opacity-95 z-50 flex flex-col items-center justify-center transition-opacity duration-300 md:hidden",
-          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none",
+          "fixed inset-0 bg-black bg-opacity-95 z-50 flex flex-col items-center justify-center transition-all duration-300 md:hidden",
+          isOpen ? "opacity-100 pointer-events-auto translate-x-0" : "opacity-0 pointer-events-none translate-x-full",
         )}
       >
         <button
