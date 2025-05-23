@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Block access to generator files and system files
+Disallow: /og-image-generator.html
+Disallow: /.next/
+Disallow: /api/
+
+# Allow all images
+Allow: /images/
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.png
+Allow: /*.gif
+Allow: /*.webp
+
+# Sitemap location
+Sitemap: https://kwamedabie.com/sitemap.xml
+
+# Crawl delay (optional, adjust as needed)
+Crawl-delay: 1 
