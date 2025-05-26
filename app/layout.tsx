@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import ScrollAnimationsProvider from "@/components/scroll-animations-provider"
 import type { Metadata } from "next"
 import { Analytics } from "@vercel/analytics/next"
+import Script from "next/script"
 
 const mainFont = Roboto_Condensed({ 
   subsets: ["latin"],
@@ -38,6 +39,18 @@ export const metadata: Metadata = {
   creator: "Kwame Dabie",
   publisher: "GVO - Gargantuan Vibes Only",
   
+  // Favicon and app icons
+  icons: {
+    icon: [
+      { url: '/favicon.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon.png', sizes: '16x16', type: 'image/png' }
+    ],
+    apple: [
+      { url: '/favicon.png', sizes: '180x180', type: 'image/png' }
+    ],
+    shortcut: '/favicon.png',
+  },
+  
   // Open Graph metadata
   openGraph: {
     title: "Kwame Dabie | Official Website - Ghanaian Hip-Hop Artist",
@@ -46,7 +59,7 @@ export const metadata: Metadata = {
     siteName: "Kwame Dabie Official",
     images: [
       {
-        url: "/images/gallery/Dabie Logo png White.PNG",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Kwame Dabie - Ghanaian Hip-Hop Artist",
@@ -87,9 +100,10 @@ export const metadata: Metadata = {
     },
   },
   
-  // Verification
+  // Verification (replace with actual codes when available)
   verification: {
-    google: "your-google-verification-code", // Replace with actual verification code
+    google: "google-site-verification=BWAOO46BsbD_Brpm80Dew4liMsNHnzap9MROF2CcE8U", // Get this from Google Search Console
+    // bing: "ADD_YOUR_BING_VERIFICATION_CODE_HERE", // Optional: Bing Webmaster Tools
   },
   
   // Category
@@ -155,6 +169,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="icon" href="/favicon.png" type="image/png" />
+        <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/favicon.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -163,11 +180,26 @@ export default function RootLayout({
         />
       </head>
       <body className={`${mainFont.variable} ${headingFont.variable} ${heroFont.variable} ${iconicFont.variable} font-main`}>
+        {/* Google Analytics */}
+        <Script 
+          src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID" 
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'GA_MEASUREMENT_ID');
+          `}
+        </Script>
+        
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
           <ScrollAnimationsProvider>
             {children}
           </ScrollAnimationsProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   )
