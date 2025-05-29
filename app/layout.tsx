@@ -3,6 +3,7 @@ import "./globals.css"
 import { Roboto_Condensed, Oswald, Rubik_Mono_One, Permanent_Marker } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import ScrollAnimationsProvider from "@/components/scroll-animations-provider"
+import Navbar from "@/components/navbar"
 import type { Metadata } from "next"
 import { Analytics } from "@vercel/analytics/next"
 import Script from "next/script"
@@ -257,6 +258,7 @@ export default function RootLayout({
         </Script>
         
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
+          <Navbar />
           <ScrollAnimationsProvider>
             {children}
           </ScrollAnimationsProvider>
