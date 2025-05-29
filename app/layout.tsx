@@ -39,16 +39,19 @@ export const metadata: Metadata = {
   creator: "Kwame Dabie",
   publisher: "GVO - Gargantuan Vibes Only",
   
-  // Favicon and app icons
+  // Favicon and app icons - optimized for Google Search
   icons: {
     icon: [
-      { url: '/favicon.png', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon.png', sizes: '16x16', type: 'image/png' }
+      { url: '/favicon.ico', sizes: 'any', type: 'image/x-icon' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-48x48.png', sizes: '48x48', type: 'image/png' }
     ],
     apple: [
-      { url: '/favicon.png', sizes: '180x180', type: 'image/png' }
+      { url: '/favicon-180x180.png', sizes: '180x180', type: 'image/png' },
+      { url: '/favicon-192x192.png', sizes: '192x192', type: 'image/png' }
     ],
-    shortcut: '/favicon.png',
+    shortcut: '/favicon.ico',
   },
   
   // Open Graph metadata
@@ -169,9 +172,20 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/favicon.png" type="image/png" />
-        <link rel="shortcut icon" href="/favicon.png" type="image/png" />
-        <link rel="apple-touch-icon" href="/favicon.png" />
+        {/* Favicon for Google Search Results - Order matters! */}
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        
+        {/* Apple and mobile icons */}
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png" />
+        <link rel="apple-touch-icon" sizes="192x192" href="/favicon-192x192.png" />
+        
+        {/* Web app manifest */}
+        <link rel="manifest" href="/manifest.json" />
+        
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

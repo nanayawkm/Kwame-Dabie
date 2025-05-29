@@ -6,13 +6,15 @@ Disallow: /og-image-generator.html
 Disallow: /.next/
 Disallow: /api/
 
-# Allow all images
+# Allow all images and favicons
 Allow: /images/
 Allow: /*.jpg
 Allow: /*.jpeg
 Allow: /*.png
 Allow: /*.gif
 Allow: /*.webp
+Allow: /*.ico
+Allow: /favicon*
 
 # Sitemap location
 Sitemap: https://kwamedabie.com/sitemap.xml
