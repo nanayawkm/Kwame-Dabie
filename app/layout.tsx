@@ -120,51 +120,99 @@ export default function RootLayout({
 }) {
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "MusicGroup",
-    "name": "Kwame Dabie",
-    "alternateName": "GVO",
-    "description": "Kwame Dabie is an emerging powerhouse in Ghana's hip-hop landscape from Tema. His music seamlessly weaves English, Twi, and Pidgin-English, delivering authentic narratives that touch on ambition, societal tensions, and everyday humor.",
-    "genre": ["Hip-Hop", "Trap", "Afrobeat", "Ghanaian Music"],
-    "foundingLocation": {
-      "@type": "Place",
-      "name": "Tema, Ghana",
-      "addressCountry": "Ghana"
-    },
-    "url": "https://kwamedabie.com",
-    "image": "https://kwamedabie.com/og-image.jpg",
-    "sameAs": [
-      "https://www.instagram.com/kwamedabie",
-      "https://www.twitter.com/kwamedabie",
-      "https://www.tiktok.com/@kwamedabie",
-      "https://www.facebook.com/kwamefuccindabie",
-      "https://www.youtube.com/@kwamedabie",
-      "https://linktr.ee/kwamedabie"
-    ],
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "email": "dabietunes@gmail.com",
-      "contactType": "booking"
-    },
-    "musicAlbum": [
+    "@graph": [
       {
-        "@type": "MusicAlbum",
-        "name": "WWW",
-        "albumReleaseType": "SingleRelease",
-        "datePublished": "2025"
-      }
-    ],
-    "track": [
-      {
-        "@type": "MusicRecording",
-        "name": "Troubles",
-        "datePublished": "2025-02",
-        "url": "https://fanlink.tv/kwamedabie-troubles"
+        "@type": "MusicGroup",
+        "name": "Kwame Dabie",
+        "alternateName": ["GVO", "Gargantuan Vibes Only"],
+        "description": "Kwame Dabie is an emerging powerhouse in Ghana's hip-hop landscape from Tema. His music seamlessly weaves English, Twi, and Pidgin-English, delivering authentic narratives that touch on ambition, societal tensions, and everyday humor.",
+        "genre": ["Hip-Hop", "Trap", "Afrobeat", "Ghanaian Music"],
+        "foundingLocation": {
+          "@type": "Place",
+          "name": "Tema, Ghana",
+          "addressCountry": "Ghana"
+        },
+        "url": "https://kwamedabie.com",
+        "image": "https://kwamedabie.com/og-image.jpg",
+        "sameAs": [
+          "https://www.instagram.com/kwamedabie",
+          "https://www.twitter.com/kwamedabie",
+          "https://www.tiktok.com/@kwamedabie",
+          "https://www.facebook.com/kwamefuccindabie",
+          "https://www.youtube.com/@kwamedabie",
+          "https://linktr.ee/kwamedabie"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "dabietunes@gmail.com",
+          "contactType": "booking"
+        },
+        "musicAlbum": [
+          {
+            "@type": "MusicAlbum",
+            "name": "WWW",
+            "albumReleaseType": "SingleRelease",
+            "datePublished": "2025"
+          }
+        ],
+        "track": [
+          {
+            "@type": "MusicRecording",
+            "name": "Troubles",
+            "datePublished": "2025-02",
+            "url": "https://fanlink.tv/kwamedabie-troubles"
+          },
+          {
+            "@type": "MusicRecording",
+            "name": "Gas",
+            "datePublished": "2024",
+            "url": "https://fanlink.tv/gas-kwamedabie-joey"
+          }
+        ]
       },
       {
-        "@type": "MusicRecording",
-        "name": "Gas",
-        "datePublished": "2024",
-        "url": "https://fanlink.tv/gas-kwamedabie-joey"
+        "@type": "Person",
+        "name": "Kwame Dabie",
+        "alternateName": ["GVO", "Kwame Dabie GVO"],
+        "description": "Kwame Dabie is a Ghanaian hip-hop artist from Tema, Ghana. Known for his distinctive blend of trap music with English, Twi, and Pidgin-English lyrics.",
+        "jobTitle": "Hip-Hop Artist",
+        "nationality": "Ghanaian",
+        "birthPlace": {
+          "@type": "Place",
+          "name": "Tema, Ghana",
+          "addressCountry": "Ghana"
+        },
+        "homeLocation": {
+          "@type": "Place",
+          "name": "Tema, Ghana",
+          "addressCountry": "Ghana"
+        },
+        "url": "https://kwamedabie.com",
+        "image": "https://kwamedabie.com/og-image.jpg",
+        "sameAs": [
+          "https://www.instagram.com/kwamedabie",
+          "https://www.twitter.com/kwamedabie",
+          "https://www.tiktok.com/@kwamedabie",
+          "https://www.facebook.com/kwamefuccindabie",
+          "https://www.youtube.com/@kwamedabie",
+          "https://linktr.ee/kwamedabie"
+        ],
+        "knowsAbout": ["Hip-Hop Music", "Trap Music", "Ghanaian Music", "Tema Ghana", "African Hip-Hop"],
+        "mainEntityOfPage": "https://kwamedabie.com"
+      },
+      {
+        "@type": "WebSite",
+        "name": "Kwame Dabie Official Website",
+        "description": "Official website of Kwame Dabie, Ghanaian hip-hop artist from Tema. Listen to music, read biography, and stay updated with latest news.",
+        "url": "https://kwamedabie.com",
+        "about": {
+          "@type": "Person",
+          "name": "Kwame Dabie"
+        },
+        "mainEntity": {
+          "@type": "Person",
+          "name": "Kwame Dabie"
+        }
       }
     ]
   };
