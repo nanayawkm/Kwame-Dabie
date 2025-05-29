@@ -21,10 +21,7 @@ export default function Home() {
         </p>
         <h2>About Kwame Dabie</h2>
         <p>
-          Hip-hop artist Kwame Dabie, born and raised in Tema, Ghana, represents the new generation of 
-          Ghanaian rap music. Kwame Dabie's music seamlessly weaves together contemporary trap beats with 
-          authentic African narratives, making him one of Ghana's most promising rap talents. 
-          From Tema to the world, Kwame Dabie's journey in hip-hop continues to inspire fans across Africa and beyond.
+          <strong>Kwame Dabie</strong> is an emerging powerhouse in Ghana's hip-hop landscape, representing <strong>Tema</strong> with a distinctive blend of raw energy and lyrical finesse. His music seamlessly weaves <em>English, Twi, and Pidgin-English</em>, delivering authentic narratives that touch on ambition, societal tensions, and everyday humor—all grounded in truth.
         </p>
         <h2>Kwame Dabie Music & Discography</h2>
         <p>
@@ -51,33 +48,6 @@ export default function Home() {
         {/* Music Section */}
         <section id="music" className="w-full bg-black py-8 sm:py-12 md:py-16" aria-label="Music">
           <div className="container mx-auto px-4">
-            {/* Upcoming Section */}
-            <article className="mb-12 sm:mb-16 reveal">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading text-gold-500 section-heading relative after:content-[''] after:absolute after:w-12 after:h-1 after:bg-gold-500 after:-bottom-3 after:left-0 md:after:left-1/2 md:after:-translate-x-1/2 mb-6 sm:mb-8 text-center reveal-bottom">
-                UPCOMING RELEASES
-              </h2>
-              <div className="max-w-md mx-auto px-4 sm:px-0 reveal-bottom delay-200">
-                <div className="group bg-black/50 rounded-lg overflow-hidden border border-green-900/30 hover:border-gold-500 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.2)]">
-                  <div className="relative aspect-square bg-black flex items-center justify-center p-4">
-                    <Image 
-                      src="/images/upcoming/WWW - cover.JPG" 
-                      alt="WWW - Upcoming Release by Kwame Dabie" 
-                      width={400}
-                      height={400}
-                      className="object-contain group-hover:scale-110 transition-transform duration-500 max-h-full max-w-full"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <PreSaveButton />
-                    </div>
-                  </div>
-                  <div className="p-4 text-center">
-                    <h3 className="text-white font-heading text-lg sm:text-xl group-hover:text-gold-500 transition-colors duration-300">WWW</h3>
-                    <p className="text-gray-400 text-sm mt-1 group-hover:text-gold-400 transition-colors duration-300">Coming Soon</p>
-                  </div>
-                </div>
-              </div>
-            </article>
-
             {/* Latest Music Section */}
             <article className="mb-12 sm:mb-16">
               <div className="flex flex-col md:flex-row items-center md:items-start justify-between mb-6 sm:mb-8 reveal">
@@ -86,7 +56,36 @@ export default function Home() {
                 </h2>
               </div>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+                {/* WWW Card - Latest Release */}
+                <a
+                  href="https://fanlink.tv/WWW-KwameDabie"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative overflow-hidden rounded-xl bg-black/50 border border-green-900/30 hover:border-gold-500/50 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.2)]"
+                  aria-label="Listen to WWW by Kwame Dabie"
+                >
+                  <div className="aspect-square relative">
+                    <Image 
+                      src="/images/upcoming/WWW - cover.JPG" 
+                      alt="WWW - Latest Single by Kwame Dabie" 
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-contain transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <button className="bg-gold-500 text-black rounded-full p-3 sm:p-4 transform scale-0 group-hover:scale-100 transition-transform duration-300 hover:bg-gold-400" aria-label="Play WWW">
+                        <Play className="w-6 h-6 sm:w-8 sm:h-8" />
+                      </button>
+                    </div>
+                  </div>
+                  <div className="p-4 sm:p-6">
+                    <h3 className="text-lg sm:text-xl font-bold text-gold-500 mb-2">WWW</h3>
+                    <p className="text-gold-400 text-sm sm:text-base">Latest single</p>
+                  </div>
+                </a>
+
                 <a 
                   href="https://fanlink.tv/kwamedabie-troubles"
                   target="_blank"
@@ -99,7 +98,7 @@ export default function Home() {
                       src="/images/musicc/Troubles Cover.JPG"
                       alt="Troubles by Kwame Dabie - Latest Single"
                       fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       className="object-contain transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -127,7 +126,7 @@ export default function Home() {
                       src="/images/musicc/Gas - Cover.JPG"
                       alt="Gas by Kwame Dabie - Hip-Hop Single"
                       fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       className="object-contain transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -189,10 +188,7 @@ export default function Home() {
                 </h2>
                 <div className="space-y-3 sm:space-y-4 text-gray-300 font-main text-sm sm:text-base">
                   <p>
-                    <strong>Kwame Dabie</strong> is an emerging powerhouse in Ghana's hip-hop landscape, representing <strong>Tema</strong>  
-                     with a distinctive blend of raw energy and lyrical finesse. His music seamlessly weaves <em>English, 
-                    Twi, and Pidgin-English</em>, delivering authentic narratives that touch on ambition, societal 
-                    tensions, and everyday humor—all grounded in truth.
+                    <strong>Kwame Dabie</strong> is an emerging powerhouse in Ghana's hip-hop landscape, representing <strong>Tema</strong> with a distinctive blend of raw energy and lyrical finesse. His music seamlessly weaves <em>English, Twi, and Pidgin-English</em>, delivering authentic narratives that touch on ambition, societal tensions, and everyday humor—all grounded in truth.
                   </p>
                   <p>
                     With a signature sound rooted in <strong>trap</strong>, Dabie's style is melodic and wavy—bold yet healing, 
@@ -416,3 +412,4 @@ export default function Home() {
     </div>
   )
 }
+
