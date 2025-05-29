@@ -189,8 +189,8 @@ export default function Home() {
                 </h2>
                 <div className="space-y-3 sm:space-y-4 text-gray-300 font-main text-sm sm:text-base">
                   <p>
-                    <strong>Kwame Dabie</strong> is an emerging powerhouse in Ghana's hip-hop landscape, representing <strong>Tema</strong> 
-                    with a distinctive blend of raw energy and lyrical finesse. His music seamlessly weaves <em>English, 
+                    <strong>Kwame Dabie</strong> is an emerging powerhouse in Ghana's hip-hop landscape, representing <strong>Tema</strong>  
+                     with a distinctive blend of raw energy and lyrical finesse. His music seamlessly weaves <em>English, 
                     Twi, and Pidgin-English</em>, delivering authentic narratives that touch on ambition, societal 
                     tensions, and everyday humor—all grounded in truth.
                   </p>

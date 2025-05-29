@@ -40,18 +40,24 @@ export const metadata: Metadata = {
   creator: "Kwame Dabie",
   publisher: "GVO - Gargantuan Vibes Only",
   
-  // Favicon and app icons - optimized for Google Search
+  // MetadataBase for proper URL resolution (required for Google)
+  metadataBase: new URL('https://kwamedabie.com'),
+  
+  // Favicon configuration optimized for Google Search Results
   icons: {
+    // Primary favicon for Google Search - 48x48px minimum recommended
     icon: [
       { url: '/favicon.ico', sizes: 'any', type: 'image/x-icon' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-512x512.png', sizes: '512x512', type: 'image/png' },
+      { url: '/favicon-48x48.png', sizes: '48x48', type: 'image/png' },
       { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon-48x48.png', sizes: '48x48', type: 'image/png' }
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' }
     ],
+    // Apple touch icons
     apple: [
-      { url: '/favicon-180x180.png', sizes: '180x180', type: 'image/png' },
-      { url: '/favicon-192x192.png', sizes: '192x192', type: 'image/png' }
+      { url: '/favicon-180x180.png', sizes: '180x180', type: 'image/png' }
     ],
+    // Legacy shortcut icon
     shortcut: '/favicon.ico',
   },
   
@@ -221,17 +227,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Favicon for Google Search Results - Order matters! */}
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
-        <link rel="shortcut icon" href="/favicon.ico" />
-        
-        {/* Apple and mobile icons */}
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png" />
-        <link rel="apple-touch-icon" sizes="192x192" href="/favicon-192x192.png" />
-        
         {/* Web app manifest */}
         <link rel="manifest" href="/manifest.json" />
         
