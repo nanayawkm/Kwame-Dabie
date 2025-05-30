@@ -404,6 +404,12 @@ export default function RootLayout({
         {/* Web app manifest */}
         <link rel="manifest" href="/manifest.json" />
         
+        {/* Direct favicon links */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png" />
+        
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
