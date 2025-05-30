@@ -1,33 +1,134 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+  
+  <!-- Homepage - Highest Priority -->
   <url>
-    <loc>https://kwamedabie.com/</loc>
-    <lastmod>2025-01-15</lastmod>
+    <loc>https://kwamedabie.com</loc>
+    <lastmod>2025-01-28T12:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://kwamedabie.com/og-image.jpg</image:loc>
-      <image:title>Kwame Dabie - Ghanaian Hip-Hop Artist</image:title>
-      <image:caption>Official website of Kwame Dabie, an emerging powerhouse in Ghana's hip-hop landscape from Tema</image:caption>
+      <image:title>Kwame Dabie - Ghana's Rising Hip-Hop Star</image:title>
+      <image:caption>Official website of Kwame Dabie, Ghanaian hip-hop artist from Tema</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kwamedabie.com/images/gallery/Dabie Logo png White.PNG</image:loc>
+      <image:title>Kwame Dabie Official Logo</image:title>
+      <image:caption>GVO - Gargantuan Vibes Only official logo</image:caption>
     </image:image>
   </url>
-  <url>
-    <loc>https://kwamedabie.com/#about</loc>
-    <lastmod>2025-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+
+  <!-- Music Section -->
   <url>
     <loc>https://kwamedabie.com/#music</loc>
-    <lastmod>2025-01-15</lastmod>
+    <lastmod>2025-01-28T12:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://kwamedabie.com/images/upcoming/WWW - cover.JPG</image:loc>
+      <image:title>WWW - Latest Single by Kwame Dabie</image:title>
+      <image:caption>Latest single WWW by Ghana hip-hop artist Kwame Dabie</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kwamedabie.com/images/musicc/Troubles Cover.JPG</image:loc>
+      <image:title>Troubles - Kwame Dabie Single</image:title>
+      <image:caption>Troubles single by Ghanaian rapper Kwame Dabie</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kwamedabie.com/images/musicc/Gas - Cover.JPG</image:loc>
+      <image:title>Gas - Kwame Dabie Hip-Hop Single</image:title>
+      <image:caption>Gas hip-hop single by Ghana artist Kwame Dabie</image:caption>
+    </image:image>
   </url>
+
+  <!-- About Section -->
+  <url>
+    <loc>https://kwamedabie.com/#about</loc>
+    <lastmod>2025-01-28T12:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://kwamedabie.com/images/albums/about kwame.jpg</image:loc>
+      <image:title>About Kwame Dabie - Ghanaian Hip-Hop Artist</image:title>
+      <image:caption>Learn about Kwame Dabie, Ghana's rising hip-hop star from Tema</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Gallery Section -->
   <url>
     <loc>https://kwamedabie.com/#gallery</loc>
-    <lastmod>2025-01-15</lastmod>
+    <lastmod>2025-01-28T12:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <!-- Streaming Platforms -->
+  <url>
+    <loc>https://kwamedabie.com/#streaming-platforms</loc>
+    <lastmod>2025-01-28T12:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- External Music Links (Important for SEO) -->
+  <url>
+    <loc>https://fanlink.tv/WWW-KwameDabie</loc>
+    <lastmod>2025-01-28T12:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://fanlink.tv/kwamedabie-troubles</loc>
+    <lastmod>2025-02-01T12:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://fanlink.tv/gas-kwamedabie-joey</loc>
+    <lastmod>2024-12-01T12:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Social Media Profiles (For Entity SEO) -->
+  <url>
+    <loc>https://www.instagram.com/kwamedabie</loc>
+    <lastmod>2025-01-28T12:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.twitter.com/kwamedabie</loc>
+    <lastmod>2025-01-28T12:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.tiktok.com/@kwamedabie</loc>
+    <lastmod>2025-01-28T12:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.youtube.com/@kwamedabie</loc>
+    <lastmod>2025-01-28T12:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://linktr.ee/kwamedabie</loc>
+    <lastmod>2025-01-28T12:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset> 

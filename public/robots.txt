@@ -1,13 +1,15 @@
+# Robots.txt for Kwame Dabie Official Website
+# Updated: January 28, 2025
+
+# Allow all search engines to crawl the entire site
 User-agent: *
 Allow: /
 
-# Block access to generator files and system files
-Disallow: /og-image-generator.html
-Disallow: /.next/
-Disallow: /api/
-
-# Allow all images and favicons
+# Specifically allow important content
 Allow: /images/
+Allow: /music/
+Allow: /gallery/
+Allow: /about/
 Allow: /*.jpg
 Allow: /*.jpeg
 Allow: /*.png
@@ -15,9 +17,87 @@ Allow: /*.gif
 Allow: /*.webp
 Allow: /*.ico
 Allow: /favicon*
+Allow: /og-image*
+Allow: /manifest.json
 
-# Sitemap location
+# Block access to system files and development files
+Disallow: /api/
+Disallow: /.next/
+Disallow: /node_modules/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.env*
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /yarn.lock
+Disallow: /.git/
+Disallow: /.gitignore
+Disallow: /README.md
+
+# Block temporary or test files
+Disallow: /test/
+Disallow: /staging/
+Disallow: /dev/
+Disallow: /*test*
+Disallow: /*tmp*
+Disallow: /*temp*
+
+# Allow specific important pages for music artists
+Allow: /music
+Allow: /biography
+Allow: /discography
+Allow: /tour
+Allow: /news
+Allow: /press
+Allow: /contact
+
+# Crawl delay (be respectful to the server)
+Crawl-delay: 1
+
+# Sitemaps (critical for SEO)
 Sitemap: https://kwamedabie.com/sitemap.xml
 
-# Crawl delay (optional, adjust as needed)
-Crawl-delay: 1 
+# Additional directives for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: facebookexternalhit
+Allow: /
+# Allow Facebook to crawl for Open Graph
+
+User-agent: Twitterbot
+Allow: /
+# Allow Twitter to crawl for Twitter Cards
+
+User-agent: LinkedInBot
+Allow: /
+# Allow LinkedIn to crawl for social sharing
+
+# Music-specific bots
+User-agent: Spotify
+Allow: /
+
+User-agent: AppleBot
+Allow: /
+
+User-agent: YoutubeBot
+Allow: /
+
+# Block malicious or unwanted bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: / 

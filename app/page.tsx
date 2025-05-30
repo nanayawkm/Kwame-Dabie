@@ -6,28 +6,84 @@ import CoverFlowCarousel from "@/components/cover-flow-carousel"
 import GalleryCarousel from "@/components/gallery-carousel"
 import PreSaveButton from "@/components/pre-save-button"
 import QuubeLogo from "@/components/quube-logo"
+import type { Metadata } from "next"
+
+// Page-specific metadata
+export const metadata: Metadata = {
+  title: "Kwame Dabie | Official Website - Ghana's Rising Hip-Hop Star from Tema",
+  description: "Stream Kwame Dabie's latest hits WWW, Troubles & Gas. Official website of Ghana's top emerging hip-hop artist from Tema. Authentic Ghanaian trap, Afrobeats fusion. GVO - Gargantuan Vibes Only.",
+  keywords: [
+    "Kwame Dabie official website", "Kwame Dabie Ghana rapper", "Ghana hip hop artist",
+    "Tema rapper Ghana", "Ghanaian Afrobeats artist", "African hip hop star",
+    "WWW Kwame Dabie stream", "Troubles Kwame Dabie", "Gas Kwame Dabie",
+    "Ghana trap music", "Afrobeats hip hop fusion", "GVO Gargantuan Vibes Only",
+    "Ghana music artist official", "African rap artist", "West African hip hop"
+  ],
+  openGraph: {
+    title: "Kwame Dabie | Ghana's Rising Hip-Hop Star - Official Website",
+    description: "🎵 Stream WWW, Troubles & Gas 🇬🇭 Ghana's hottest hip-hop artist 🔥 Official music, bio & latest releases",
+    url: "https://kwamedabie.com",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Kwame Dabie - Ghana's Rising Hip-Hop Star from Tema"
+      }
+    ]
+  },
+  twitter: {
+    title: "Kwame Dabie | Ghana's Rising Hip-Hop Star",
+    description: "🎵 Stream WWW, Troubles & Gas 🇬🇭 Ghana's hottest hip-hop artist 🔥 GVO - Gargantuan Vibes Only"
+  }
+}
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Hidden SEO content for better "Kwame Dabie" rankings */}
+      {/* Enhanced SEO content for better "Kwame Dabie" rankings */}
       <div className="sr-only">
-        <h1>Kwame Dabie - Official Website</h1>
+        <h1>Kwame Dabie - Official Website | Ghana's Premier Hip-Hop Artist</h1>
         <p>
-          Kwame Dabie is a Ghanaian hip-hop artist from Tema, Ghana. Known for his unique blend of trap music 
-          with English, Twi, and Pidgin-English lyrics, Kwame Dabie (GVO - Gargantuan Vibes Only) has become 
-          an emerging powerhouse in Ghana's hip-hop scene. Listen to Kwame Dabie's latest tracks "Troubles" 
-          and "Gas" on all streaming platforms. Official Kwame Dabie music, biography, news, and tour dates.
+          <strong>Kwame Dabie</strong> is Ghana's rising hip-hop star and one of Africa's most promising rap artists from Tema, Ghana. 
+          Known for his unique blend of <em>Ghanaian trap music, Afrobeats fusion, and authentic African hip-hop</em> with lyrics in 
+          English, Twi, and Pidgin-English. Kwame Dabie (GVO - Gargantuan Vibes Only) is revolutionizing the Ghana music scene with 
+          his distinctive sound and authentic storytelling. Stream Kwame Dabie's latest tracks "WWW", "Troubles" and "Gas" on all 
+          major streaming platforms. Official Kwame Dabie music, biography, news, tour dates, and exclusive content.
         </p>
-        <h2>About Kwame Dabie</h2>
+        
+        <h2>About Kwame Dabie - Ghana Hip-Hop Artist</h2>
         <p>
-          <strong>Kwame Dabie</strong> is an emerging powerhouse in Ghana's hip-hop landscape, representing <strong>Tema</strong> with a distinctive blend of raw energy and lyrical finesse. His music seamlessly weaves <em>English, Twi, and Pidgin-English</em>, delivering authentic narratives that touch on ambition, societal tensions, and everyday humor—all grounded in truth.
+          <strong>Kwame Dabie</strong> is a talented Ghanaian hip-hop artist and rapper from <strong>Tema, Ghana</strong>, 
+          representing the new generation of African hip-hop. His music seamlessly blends traditional Ghanaian influences 
+          with modern trap beats and Afrobeats elements, creating a unique sound that resonates across Africa and beyond. 
+          Known for his authentic narratives touching on ambition, societal issues, and everyday experiences, Kwame Dabie 
+          delivers raw energy and lyrical finesse in <em>English, Twi, and Pidgin-English</em>.
         </p>
-        <h2>Kwame Dabie Music & Discography</h2>
+        
+        <h2>Kwame Dabie Latest Music & Discography</h2>
         <p>
-          Stream Kwame Dabie's hit singles "Troubles" and "Gas" featuring collaborations with top Ghanaian artists. 
-          Kwame Dabie's upcoming release "WWW" promises to showcase his evolution as an artist. 
-          Find all Kwame Dabie songs, music videos, and exclusive content here on his official website.
+          Stream <strong>Kwame Dabie's hit singles</strong> including his latest release "WWW" (2025), "Troubles" (February 2025), 
+          and the popular "Gas" (2024) featuring collaborations with top Ghanaian artists. Kwame Dabie has released four rap EPs, 
+          establishing himself as one of Ghana's most consistent and innovative hip-hop artists. His music showcases the evolution 
+          of Ghanaian trap music and Afrobeats fusion, making him a standout figure in the African music scene. 
+          Find all Kwame Dabie songs, music videos, streaming links, and exclusive content on his official website.
+        </p>
+        
+        <h2>Kwame Dabie - GVO (Gargantuan Vibes Only)</h2>
+        <p>
+          GVO (Gargantuan Vibes Only) represents Kwame Dabie's brand and musical philosophy of delivering exceptional, 
+          larger-than-life musical experiences. Based in Tema, Ghana, GVO embodies the spirit of contemporary African hip-hop 
+          while staying true to Ghanaian roots. Kwame Dabie continues to build his legacy as a premier Ghana rap artist, 
+          with aspirations to dominate charts across Africa and establish Ghana on the global hip-hop map.
+        </p>
+        
+        <h2>Stream Kwame Dabie Music</h2>
+        <p>
+          Listen to Kwame Dabie on Spotify, Apple Music, YouTube Music, Audiomack, Boomplay, and all major streaming platforms. 
+          Follow @kwamedabie on Instagram, Twitter, TikTok, and YouTube for the latest updates, behind-the-scenes content, 
+          and new release announcements. Experience authentic Ghanaian hip-hop, African trap music, and Afrobeats fusion 
+          from one of Ghana's most promising rap talents.
         </p>
       </div>
 
