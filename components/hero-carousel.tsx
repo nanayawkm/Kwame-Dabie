@@ -19,7 +19,7 @@ export default function HeroCarousel() {
     <div className="relative w-full h-full overflow-hidden">
       <video
         ref={videoRef}
-        src="/images/gallery/GAS shorts.MOV"
+        src="/images/gallery/FALSE PROPHETS - trailer.mov"
         className="w-full h-full object-cover"
         autoPlay
         muted

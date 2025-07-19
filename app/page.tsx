@@ -6,6 +6,7 @@ import CoverFlowCarousel from "@/components/cover-flow-carousel"
 import GalleryCarousel from "@/components/gallery-carousel"
 import PreSaveButton from "@/components/pre-save-button"
 import QuubeLogo from "@/components/quube-logo"
+import EPAnnouncementCarousel from "@/components/ep-announcement-carousel"
 import type { Metadata } from "next"
 
 // Page-specific metadata
@@ -94,6 +95,66 @@ export default function Home() {
           <HeroSection />
         </section>
 
+        {/* EP Announcement Section */}
+        <section id="ep-announcement" className="w-full bg-gradient-to-b from-black via-green-900/10 to-black py-8 sm:py-12 md:py-16 lg:py-20 border-t border-green-900/30" aria-label="False Prophets EP Announcement">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              {/* Section Header */}
+              <div className="text-center mb-8 sm:mb-10 md:mb-16 reveal">
+                <div className="inline-block bg-gold-500/10 border border-gold-500/30 rounded-full px-4 sm:px-6 md:px-8 py-2 sm:py-3 mb-4 sm:mb-6">
+                  <span className="text-gold-500 text-sm sm:text-base md:text-lg font-bold uppercase tracking-wider">New EP Alert</span>
+                </div>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading text-gold-500 section-heading mb-4 sm:mb-6 text-graffiti px-2">
+                  FALSE PROPHETS
+                </h2>
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed px-4">
+                  This is not just an album; it's a cultural audit.
+                </p>
+              </div>
+
+              {/* EP Carousel */}
+              <div className="mb-8 sm:mb-12 md:mb-16 reveal delay-200">
+                <EPAnnouncementCarousel />
+              </div>
+
+              {/* Pre-Save Call to Action */}
+              <div className="text-center reveal delay-400">
+                <div className="max-w-2xl mx-auto px-4">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-heading text-white mb-4 sm:mb-6">
+                    Be the first to experience the evolution
+                  </h3>
+                  
+                  <a
+                    href="https://tiememusicdistro.lnk.to/FALSEPROPHETS"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-block w-full sm:w-auto"
+                  >
+                    <button className="relative overflow-hidden w-full sm:w-auto bg-gradient-to-r from-gold-500 via-yellow-500 to-gold-500 hover:from-yellow-400 hover:via-gold-500 hover:to-yellow-400 text-black font-bold py-4 px-8 sm:py-5 sm:px-12 md:py-6 md:px-16 rounded-full text-lg sm:text-xl md:text-2xl uppercase tracking-wider transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-[0_0_40px_rgba(212,175,55,0.6)] border-2 border-gold-400 touch-manipulation">
+                      <span className="relative z-10 flex items-center justify-center gap-2 sm:gap-3">
+                        <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                        PRE-SAVE NOW
+                        <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                        </svg>
+                      </span>
+                      
+                      {/* Button shimmer effect */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                    </button>
+                  </a>
+                  
+                  <p className="text-gray-400 text-sm md:text-base mt-4">
+                    Available on all major streaming platforms
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Streaming Platforms Section */}
         <section id="streaming-platforms" className="w-full bg-black py-6 sm:py-8 border-t border-b border-green-900/30" aria-label="Streaming Platforms">
           <div className="container mx-auto px-4">
@@ -118,7 +179,7 @@ export default function Home() {
                   href="https://fanlink.tv/WWW-KwameDabie"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative overflow-hidden rounded-xl bg-black/50 border border-green-900/30 hover:border-gold-500/50 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.2)]"
+                  className="group relative overflow-hidden rounded-xl bg-black/50 border border-green-900/30 hover:border-gold-500/50 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.2)] touch-manipulation"
                   aria-label="Listen to WWW by Kwame Dabie"
                 >
                   <div className="aspect-square relative">
@@ -146,7 +207,7 @@ export default function Home() {
                   href="https://fanlink.tv/kwamedabie-troubles"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative overflow-hidden rounded-xl bg-black/50 border border-green-900/30 hover:border-gold-500/50 transition-all duration-300"
+                  className="group relative overflow-hidden rounded-xl bg-black/50 border border-green-900/30 hover:border-gold-500/50 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.2)] touch-manipulation"
                   aria-label="Listen to Troubles by Kwame Dabie"
                 >
                   <div className="aspect-square relative">
@@ -174,7 +235,7 @@ export default function Home() {
                   href="https://fanlink.tv/gas-kwamedabie-joey"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative overflow-hidden rounded-xl bg-black/50 border border-green-900/30 hover:border-gold-500/50 transition-all duration-300"
+                  className="group relative overflow-hidden rounded-xl bg-black/50 border border-green-900/30 hover:border-gold-500/50 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.2)] touch-manipulation"
                   aria-label="Listen to Gas by Kwame Dabie"
                 >
                   <div className="aspect-square relative">
@@ -203,7 +264,7 @@ export default function Home() {
                   href="https://linktr.ee/kwamedabie"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative overflow-hidden rounded-xl bg-black/50 border border-green-900/30 hover:border-gold-500/50 transition-all duration-300 flex flex-col items-center justify-center"
+                  className="group relative overflow-hidden rounded-xl bg-black/50 border border-green-900/30 hover:border-gold-500/50 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.2)] touch-manipulation flex flex-col items-center justify-center"
                   aria-label="Discover more music by Kwame Dabie"
                 >
                   <div className="flex flex-col items-center justify-center h-full p-8">
