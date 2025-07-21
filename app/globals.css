@@ -129,10 +129,11 @@ h6 {
   @apply tracking-tight font-bold;
 }
 
-/* Smooth transitions */
+/* Smooth transitions - optimized */
 a,
 button {
   @apply transition-all duration-300;
+  will-change: transform, opacity;
 }
 
 /* Custom scrollbar */
@@ -152,7 +153,7 @@ button {
   @apply bg-gold-500;
 }
 
-/* Animations */
+/* Simplified animations for better performance */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -173,20 +174,9 @@ button {
   }
 }
 
-@keyframes slideDown {
-  from {
-    transform: translateY(-20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
 @keyframes scaleIn {
   from {
-    transform: scale(0.9);
+    transform: scale(0.95);
     opacity: 0;
   }
   to {
@@ -195,110 +185,24 @@ button {
   }
 }
 
-@keyframes photoshootFlash {
-  0% {
-    opacity: 1;
-  }
-  10% {
-    opacity: 1;
-    filter: brightness(2.5);
-  }
-  20% {
-    opacity: 0.8;
-    filter: brightness(1);
-  }
-  25% {
-    opacity: 1;
-    filter: brightness(1.5);
-  }
-  30% {
-    opacity: 1;
-    filter: brightness(1);
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.flash-transition {
-  animation: photoshootFlash 0.6s ease-out;
-  position: relative;
-}
-
-.flash-transition::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-color: white;
-  opacity: 0;
-  z-index: 5;
-  animation: flashOverlay 0.6s ease-out;
-  pointer-events: none;
-}
-
-@keyframes flashOverlay {
-  0% {
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.7;
-  }
-  20% {
-    opacity: 0.1;
-  }
-  25% {
-    opacity: 0.4;
-  }
-  30% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
 .animate-fade-in {
-  animation: fadeIn 0.8s ease forwards;
+  animation: fadeIn 0.6s ease forwards;
 }
 
 .animate-slide-up {
-  animation: slideUp 0.8s ease forwards;
-}
-
-.animate-slide-down {
-  animation: slideDown 0.8s ease forwards;
+  animation: slideUp 0.6s ease forwards;
 }
 
 .animate-scale-in {
-  animation: scaleIn 0.8s ease forwards;
+  animation: scaleIn 0.6s ease forwards;
 }
 
-/* Animation delays */
-.delay-100 {
-  animation-delay: 100ms;
-}
-
-.delay-200 {
-  animation-delay: 200ms;
-}
-
-.delay-300 {
-  animation-delay: 300ms;
-}
-
-.delay-400 {
-  animation-delay: 400ms;
-}
-
-.delay-500 {
-  animation-delay: 500ms;
-}
-
-/* Scroll reveal animations */
+/* Optimized scroll reveal animations */
 .reveal {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: opacity, transform;
 }
 
 .reveal.active {
@@ -308,14 +212,16 @@ button {
 
 .reveal-left {
   opacity: 0;
-  transform: translateX(-40px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translateX(-30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: opacity, transform;
 }
 
 .reveal-right {
   opacity: 0;
-  transform: translateX(40px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translateX(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: opacity, transform;
 }
 
 .reveal-left.active,
@@ -324,6 +230,7 @@ button {
   transform: translateX(0);
 }
 
+/* Animation delays - reduced for performance */
 .delay-100 {
   transition-delay: 100ms;
 }
@@ -340,82 +247,30 @@ button {
   transition-delay: 400ms;
 }
 
-.delay-500 {
-  transition-delay: 500ms;
-}
-
-/* Mobile optimization for smooth scrolling */
-@media (max-width: 640px) {
+/* Mobile optimization for reduced motion */
+@media (max-width: 768px) {
   .reveal,
   .reveal-left,
   .reveal-right {
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-}
-
-/* Enhanced flash effects for gallery */
-@keyframes enhanced-flash {
-  0% {
-    opacity: 0;
-  }
-  25% {
-    opacity: 0.7;
-  }
-  50% {
-    opacity: 0.4;
-  }
-  75% {
-    opacity: 0.2;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-.gallery-flash {
-  position: absolute;
-  inset: 0;
-  background-color: black;
-  z-index: 50;
-  opacity: 0;
-  pointer-events: none;
-  animation: enhanced-flash 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: opacity;
-  contain: strict;
-}
-
-.gallery-image-enter {
-  opacity: 0;
-  transform: scale(0.95);
-}
-
-.gallery-image-enter-active {
-  opacity: 1;
-  transform: scale(1);
-  transition: opacity 500ms, transform 500ms;
-  will-change: opacity, transform;
-  contain: content;
-}
-
-.gallery-image-exit {
-  opacity: 1;
-}
-
-.gallery-image-exit-active {
-  opacity: 0;
-  transition: opacity 500ms;
-  will-change: opacity;
-  contain: content;
-}
-
-/* Mobile optimizations for gallery */
-@media (max-width: 768px) {
-  .gallery-flash {
-    animation-duration: 0.4s;
+    transition: opacity 0.4s ease, transform 0.4s ease;
   }
   
-  .gallery-image-enter-active,
-  .gallery-image-exit-active {
-    transition-duration: 400ms;
+  /* Reduce motion on mobile for better performance */
+  .animate-fade-in,
+  .animate-slide-up,
+  .animate-scale-in {
+    animation-duration: 0.4s;
+  }
+}
+
+/* Prefer reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

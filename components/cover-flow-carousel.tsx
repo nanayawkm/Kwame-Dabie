@@ -42,11 +42,24 @@ const albums = [
 export default function CoverFlowCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const carouselRef = useRef<HTMLDivElement>(null)
   const [touchStart, setTouchStart] = useState<number | null>(null)
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
 
   const minSwipeDistance = 50
+
+  // Detect mobile for performance optimizations
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchEnd(null)
@@ -75,14 +88,14 @@ export default function CoverFlowCarousel() {
     if (isAnimating) return
     setIsAnimating(true)
     setCurrentIndex((prev) => (prev + 1) % albums.length)
-    setTimeout(() => setIsAnimating(false), 500)
+    setTimeout(() => setIsAnimating(false), 400) // Reduced animation time
   }
 
   const prev = () => {
     if (isAnimating) return
     setIsAnimating(true)
     setCurrentIndex((prev) => (prev - 1 + albums.length) % albums.length)
-    setTimeout(() => setIsAnimating(false), 500)
+    setTimeout(() => setIsAnimating(false), 400) // Reduced animation time
   }
 
   const getCardStyle = (index: number) => {
@@ -92,33 +105,35 @@ export default function CoverFlowCarousel() {
     const isFarLeft = diff === albums.length - 2 || diff === 2
 
     if (isCenter) {
-      return "scale-100 translate-x-0 translate-y-0 rotate-0 z-30 opacity-100 hover:scale-105 hover:shadow-[0_0_40px_rgba(212,175,55,0.4)]"
+      return "scale-100 translate-x-0 translate-y-0 rotate-0 z-30 opacity-100 hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.3)]"
     } else if (isLeft) {
       return diff === 1
-        ? "scale-50 translate-x-[120%] translate-y-[-2%] rotate-0 z-20 opacity-90 blur-[2px]"
-        : "scale-50 -translate-x-[120%] translate-y-[-2%] rotate-0 z-20 opacity-90 blur-[2px]"
+        ? "scale-75 translate-x-[100%] translate-y-[-1%] rotate-0 z-20 opacity-80 blur-[1px]"
+        : "scale-75 -translate-x-[100%] translate-y-[-1%] rotate-0 z-20 opacity-80 blur-[1px]"
     } else if (isFarLeft) {
       return diff === 2
-        ? "scale-50 translate-x-[240%] translate-y-[-4%] rotate-0 z-10 opacity-80 blur-[3px]"
-        : "scale-50 -translate-x-[240%] translate-y-[-4%] rotate-0 z-10 opacity-80 blur-[3px]"
+        ? "scale-50 translate-x-[200%] translate-y-[-2%] rotate-0 z-10 opacity-60 blur-[2px]"
+        : "scale-50 -translate-x-[200%] translate-y-[-2%] rotate-0 z-10 opacity-60 blur-[2px]"
     } else {
       return "hidden"
     }
   }
 
+  const cardSize = isMobile ? { width: 240, height: 300 } : { width: 320, height: 400 };
+
   return (
     <div
       ref={carouselRef}
-      className="relative w-full h-[600px] overflow-hidden"
+      className={`relative w-full ${isMobile ? 'h-[400px]' : 'h-[600px]'} overflow-hidden`}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      <div className="absolute inset-0 flex items-center justify-center perspective-[2000px]">
+      <div className="absolute inset-0 flex items-center justify-center">
         {albums.map((album, index) => (
           <div
             key={album.id}
-            className={`absolute transition-all duration-700 ease-in-out ${getCardStyle(index)}`}
+            className={`absolute transition-all duration-500 ease-in-out ${getCardStyle(index)}`}
             onClick={() => {
               if (index === currentIndex) {
                 window.open(album.link, "_blank")
@@ -126,24 +141,30 @@ export default function CoverFlowCarousel() {
                 setCurrentIndex(index)
               }
             }}
+            style={{ willChange: 'transform, opacity' }}
           >
-            <div className="relative w-[320px] h-[400px] group cursor-pointer transform-gpu">
+            <div className={`relative group cursor-pointer transform-gpu`} 
+                 style={{ width: cardSize.width, height: cardSize.height }}>
               <div className="absolute inset-0 bg-black/50 rounded-xl overflow-hidden border border-green-900/30 hover:border-gold-500/50 transition-all duration-300 shadow-lg">
                 <Image
                   src={album.cover}
                   alt={album.title}
-                  width={320}
-                  height={400}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  width={cardSize.width}
+                  height={cardSize.height}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  sizes={isMobile ? "240px" : "320px"}
+                  quality={isMobile ? 75 : 90}
+                  priority={index === 0}
+                  loading={index <= 1 ? "eager" : "lazy"}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <button className="bg-gold-500 text-black rounded-full p-4 transform scale-0 group-hover:scale-100 transition-transform duration-300 hover:bg-gold-400">
-                    <Play className="w-8 h-8" />
+                  <button className="bg-gold-500 text-black rounded-full p-3 sm:p-4 transform scale-0 group-hover:scale-100 transition-transform duration-300 hover:bg-gold-400">
+                    <Play className={`${isMobile ? 'w-6 h-6' : 'w-8 h-8'}`} />
                   </button>
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <h3 className="text-xl font-bold">{album.title}</h3>
+                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white">
+                  <h3 className={`${isMobile ? 'text-lg' : 'text-xl'} font-bold`}>{album.title}</h3>
                 </div>
               </div>
             </div>
@@ -159,13 +180,14 @@ export default function CoverFlowCarousel() {
               if (isAnimating) return
               setIsAnimating(true)
               setCurrentIndex(index)
-              setTimeout(() => setIsAnimating(false), 700)
+              setTimeout(() => setIsAnimating(false), 500)
             }}
+            disabled={isAnimating}
             className={`h-3 w-3 rounded-full transition-all duration-300 ${
               index === currentIndex 
                 ? "bg-gold-500 scale-125" 
                 : "bg-white/50 hover:bg-white/70"
-            }`}
+            } disabled:opacity-50`}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
@@ -173,7 +195,8 @@ export default function CoverFlowCarousel() {
 
       <button
         onClick={prev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-40 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 transition-all duration-300 hover:scale-110"
+        disabled={isAnimating}
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-40 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 transition-all duration-300 hover:scale-110 disabled:opacity-50"
         aria-label="Previous slide"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -183,7 +206,8 @@ export default function CoverFlowCarousel() {
 
       <button
         onClick={next}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-40 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 transition-all duration-300 hover:scale-110"
+        disabled={isAnimating}
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-40 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 transition-all duration-300 hover:scale-110 disabled:opacity-50"
         aria-label="Next slide"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

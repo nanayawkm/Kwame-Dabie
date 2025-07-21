@@ -141,32 +141,49 @@ export default function GalleryCarousel() {
   const [images, setImages] = useState<GalleryImage[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [flashActive, setFlashActive] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const galleryRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const flashElements = useRef<HTMLDivElement[]>([]);
+  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
   
-  // Shuffle images on initial load
+  // Detect mobile for performance optimizations
   useEffect(() => {
-    // Using a smaller set of images for mobile to prevent crashes
-    const isMobile = window.innerWidth < 768;
-    const imagesToUse = isMobile ? galleryImages.slice(0, 12) : galleryImages;
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
+  // Initialize images with performance considerations
+  useEffect(() => {
+    const imagesToUse = isMobile ? galleryImages.slice(0, 10) : galleryImages; // Fewer images on mobile
     setImages(shuffleArray(imagesToUse));
     setIsLoaded(true);
-  }, []);
+    // Preload first image
+    setLoadedImages(new Set([0]));
+  }, [isMobile]);
   
-  // Clean up flash elements when component unmounts
+  // Preload adjacent images for smoother transitions
   useEffect(() => {
-    return () => {
-      flashElements.current.forEach(element => {
-        if (element && element.parentNode) {
-          element.parentNode.removeChild(element);
-        }
-      });
-    };
-  }, []);
+    if (images.length === 0) return;
+    
+    const preloadIndexes = [
+      (currentIndex + 1) % images.length,
+      (currentIndex - 1 + images.length) % images.length
+    ];
+    
+    setLoadedImages(prev => {
+      const newSet = new Set(prev);
+      preloadIndexes.forEach(index => newSet.add(index));
+      return newSet;
+    });
+  }, [currentIndex, images.length]);
   
-  // Auto-advance slides with a cleaner implementation
+  // Simplified auto-advance
   useEffect(() => {
     if (images.length === 0) return;
     
@@ -174,90 +191,46 @@ export default function GalleryCarousel() {
       if (!isTransitioning) {
         nextSlide();
       }
-    }, 5000);
+    }, 6000); // Slightly longer interval for better UX
     
     return () => clearInterval(interval);
   }, [currentIndex, isTransitioning, images.length]);
-
-  const triggerFlashEffect = useCallback(() => {
-    setFlashActive(true);
-    
-    // Create and append the flash element for enhanced effect, with a more cautious approach
-    if (galleryRef.current) {
-      try {
-        const flashElement = document.createElement('div');
-        flashElement.className = 'gallery-flash';
-        galleryRef.current.appendChild(flashElement);
-        flashElements.current.push(flashElement);
-        
-        // Remove the element after animation completes
-        setTimeout(() => {
-          if (flashElement.parentNode) {
-            flashElement.parentNode.removeChild(flashElement);
-            flashElements.current = flashElements.current.filter(el => el !== flashElement);
-          }
-        }, 600);
-      } catch (error) {
-        console.error('Error creating flash effect:', error);
-      }
-    }
-    
-    // Reset flash state after it completes
-    setTimeout(() => {
-      setFlashActive(false);
-    }, 600);
-  }, [galleryRef]);
 
   const nextSlide = useCallback(() => {
     if (isTransitioning || images.length === 0) return;
     
     setIsTransitioning(true);
-    triggerFlashEffect();
+    setCurrentIndex((prev) => (prev + 1) % images.length);
     
-    // Short delay before changing the image to sync with flash effect
-    setTimeout(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, 300);
-    
-    // Reset transition state after animation completes
+    // Shorter transition for better performance
     setTimeout(() => {
       setIsTransitioning(false);
-    }, 600);
-  }, [isTransitioning, images.length, triggerFlashEffect]);
+    }, 400);
+  }, [isTransitioning, images.length]);
 
   const prevSlide = useCallback(() => {
     if (isTransitioning || images.length === 0) return;
     
     setIsTransitioning(true);
-    triggerFlashEffect();
-    
-    // Short delay before changing the image to sync with flash effect
-    setTimeout(() => {
-      setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-    }, 300);
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
     
     setTimeout(() => {
       setIsTransitioning(false);
-    }, 600);
-  }, [isTransitioning, images.length, triggerFlashEffect]);
+    }, 400);
+  }, [isTransitioning, images.length]);
 
   const goToSlide = useCallback((index: number) => {
     if (isTransitioning || index === currentIndex || images.length === 0) return;
     
     setIsTransitioning(true);
-    triggerFlashEffect();
-    
-    // Short delay before changing the image to sync with flash effect
-    setTimeout(() => {
-      setCurrentIndex(index);
-    }, 300);
+    setCurrentIndex(index);
     
     setTimeout(() => {
       setIsTransitioning(false);
-    }, 600);
-  }, [isTransitioning, currentIndex, triggerFlashEffect, images.length]);
+    }, 400);
+  }, [isTransitioning, currentIndex, images.length]);
 
-  // If images haven't loaded yet, return a loading state
+  // Loading state
   if (!isLoaded || images.length === 0) {
     return <div className="flex items-center justify-center h-60 w-full">
       <div className="animate-pulse text-gold-500">Loading gallery...</div>
@@ -267,52 +240,49 @@ export default function GalleryCarousel() {
   return (
     <div className="relative w-full overflow-hidden rounded-xl" ref={galleryRef}>
       {/* Main carousel container */}
-      <div className="relative w-full bg-black/20 rounded-xl overflow-hidden" style={{ minHeight: '60vh' }}>
-        {/* Flash overlay for smooth transitions */}
-        <div 
-          className={`absolute inset-0 bg-black z-30 pointer-events-none transition-opacity duration-300 ${
-            flashActive ? 'opacity-70' : 'opacity-0'
-          }`} 
-        />
+      <div className="relative w-full bg-black/20 rounded-xl overflow-hidden" style={{ minHeight: isMobile ? '50vh' : '60vh' }}>
         
-        {images.map((image, index) => (
-          <div
-            key={image.id}
-            className={`absolute inset-0 flex items-center justify-center transition-all duration-500 p-2 h-full ${
-              index === currentIndex ? 'gallery-image-enter-active opacity-100 z-10' : 'gallery-image-exit-active opacity-0 z-0'
-            }`}
-            style={{
-              transitionDelay: index === currentIndex ? '250ms' : '0ms',
-            }}
-          >
-            <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
-              <Image
-                src={image.src}
-                alt={image.alt}
-                fill
-                className={`object-contain transform transition-transform duration-700 ${
-                  index === currentIndex ? 'scale-100' : 'scale-110'
-                }`}
-                sizes="(max-width: 768px) 100vw, 80vw"
-                priority={index === currentIndex}
-                onError={(e) => {
-                  // Handle image load errors
-                  console.error(`Failed to load image: ${image.src}`);
-                  // Replace with a fallback or placeholder if needed
-                  e.currentTarget.style.display = 'none';
-                }}
-                loading={index === currentIndex ? "eager" : "lazy"}
-                quality={window.innerWidth < 768 ? 75 : 90}
-              />
+        {images.map((image, index) => {
+          const isActive = index === currentIndex;
+          const shouldLoad = loadedImages.has(index) || isActive;
+          
+          return (
+            <div
+              key={image.id}
+              className={`absolute inset-0 flex items-center justify-center transition-opacity duration-400 p-2 h-full ${
+                isActive ? 'opacity-100 z-10' : 'opacity-0 z-0'
+              }`}
+            >
+              <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
+                {shouldLoad && (
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    className="object-contain"
+                    sizes={isMobile ? "(max-width: 768px) 100vw" : "(max-width: 768px) 100vw, 80vw"}
+                    priority={index === 0}
+                    quality={isMobile ? 65 : 85} // Lower quality on mobile for faster loading
+                    loading={index <= 2 ? "eager" : "lazy"}
+                    onLoad={() => {
+                      setLoadedImages(prev => new Set(prev).add(index));
+                    }}
+                    onError={(e) => {
+                      console.error(`Failed to load image: ${image.src}`);
+                    }}
+                  />
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Navigation buttons */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/60 hover:bg-black/80 text-gold-500 rounded-full p-3 transition-all duration-300 hover:scale-110"
+        disabled={isTransitioning}
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/60 hover:bg-black/80 text-gold-500 rounded-full p-3 transition-all duration-300 hover:scale-110 disabled:opacity-50"
         aria-label="Previous slide"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -322,7 +292,8 @@ export default function GalleryCarousel() {
 
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/60 hover:bg-black/80 text-gold-500 rounded-full p-3 transition-all duration-300 hover:scale-110"
+        disabled={isTransitioning}
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/60 hover:bg-black/80 text-gold-500 rounded-full p-3 transition-all duration-300 hover:scale-110 disabled:opacity-50"
         aria-label="Next slide"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -330,9 +301,8 @@ export default function GalleryCarousel() {
         </svg>
       </button>
 
-      {/* Controls bar at bottom */}
+      {/* Progress indicator */}
       <div className="absolute bottom-4 left-0 right-0 flex justify-center items-center px-4 z-20">
-        {/* Indicator dots and counter */}
         <div className="flex items-center space-x-2">
           <span className="text-white/80 text-sm mr-1">{images.length > 0 ? currentIndex + 1 : 0}</span>
           <div className="h-0.5 w-12 bg-white/40 rounded-full overflow-hidden">

@@ -5,19 +5,11 @@ import Image from 'next/image'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 export default function EPAnnouncementCarousel() {
-  const [currentSlide, setCurrentSlide] = useState(0)
+  const [currentSlide, setCurrentSlide] = useState(1) // Start with cover
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
   const autoPlayRef = useRef<NodeJS.Timeout | null>(null)
 
   const slides = [
-    {
-      id: 'cover',
-      type: 'cover',
-      title: 'New EP',
-      subtitle: 'FALSE PROPHETS',
-      image: '/images/upcoming/False Prophets - cover.JPG',
-      alt: 'False Prophets EP Cover Art by Kwame Dabie'
-    },
     {
       id: 'tracklist',
       type: 'tracklist', 
@@ -25,6 +17,14 @@ export default function EPAnnouncementCarousel() {
       subtitle: 'Full EP Details',
       image: '/images/upcoming/FALSE PROPHETS_TRACKLIST.JPG',
       alt: 'False Prophets EP Tracklist by Kwame Dabie'
+    },
+    {
+      id: 'cover',
+      type: 'cover',
+      title: 'New EP',
+      subtitle: 'FALSE PROPHETS',
+      image: '/images/upcoming/False Prophets - cover.JPG',
+      alt: 'False Prophets EP Cover Art by Kwame Dabie'
     }
   ]
 
@@ -49,7 +49,7 @@ export default function EPAnnouncementCarousel() {
     }
     if (isAutoPlaying) {
       autoPlayRef.current = setInterval(() => {
-        setCurrentSlide((prev) => (prev + 1) % slides.length)
+        setCurrentSlide((prev) => prev === 1 ? 0 : 1) // Toggle between cover and tracklist
       }, 4000) // 4 seconds interval
     }
   }
@@ -70,7 +70,7 @@ export default function EPAnnouncementCarousel() {
   useEffect(() => {
     if (isAutoPlaying) {
       autoPlayRef.current = setInterval(() => {
-        setCurrentSlide((prev) => (prev + 1) % slides.length)
+        setCurrentSlide((prev) => prev === 1 ? 0 : 1) // Toggle between cover and tracklist
       }, 4000)
     }
 
@@ -79,7 +79,7 @@ export default function EPAnnouncementCarousel() {
         clearInterval(autoPlayRef.current)
       }
     }
-  }, [isAutoPlaying, slides.length])
+  }, [isAutoPlaying])
 
   // Touch/swipe handling
   const [touchStart, setTouchStart] = useState(0)
@@ -100,11 +100,13 @@ export default function EPAnnouncementCarousel() {
     const isLeftSwipe = distance > 50
     const isRightSwipe = distance < -50
 
-    if (isLeftSwipe) {
-      nextSlide()
-    } else if (isRightSwipe) {
-      prevSlide()
+    if (isLeftSwipe || isRightSwipe) {
+      // Any swipe - always go to next slide in sequence
+      const nextSlide = currentSlide === 1 ? 0 : 1;
+      setCurrentSlide(nextSlide);
     }
+    
+    resetAutoPlay()
     
     // Reset touch positions
     setTouchStart(0)
@@ -126,7 +128,7 @@ export default function EPAnnouncementCarousel() {
         <div 
           className="flex h-full"
           style={{ 
-            transform: `translateX(-${currentSlide * 100}%)`,
+            transform: `translateX(${currentSlide * -100}%)`,
             transition: 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
           }}
         >
@@ -136,22 +138,13 @@ export default function EPAnnouncementCarousel() {
               className="min-w-full h-full relative"
               style={{
                 transform: index === currentSlide 
-                  ? 'scale(1) rotateY(0deg)' 
-                  : index < currentSlide 
-                    ? 'scale(0.95) rotateY(-12deg)' 
-                    : 'scale(0.95) rotateY(12deg)',
+                  ? 'scale(1)' 
+                  : 'scale(0.98)',
                 transition: 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                transformStyle: 'preserve-3d',
-                opacity: index === currentSlide ? 1 : 0.6
+                opacity: index === currentSlide ? 1 : 0.8
               }}
             >
-              <div 
-                className="w-full h-full relative"
-                style={{
-                  transform: index === currentSlide ? 'translateZ(0px)' : 'translateZ(-30px)',
-                  transition: 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-                }}
-              >
+              <div className="w-full h-full relative">
                 <Image 
                   src={slide.image}
                   alt={slide.alt}
@@ -175,15 +168,25 @@ export default function EPAnnouncementCarousel() {
 
         {/* Navigation Arrows */}
         <button
-          onClick={prevSlide}
+          onClick={() => { 
+            // Always go forward: if on cover (1), go to tracklist (0), if on tracklist (0), go to cover (1)
+            const nextSlide = currentSlide === 1 ? 0 : 1;
+            setCurrentSlide(nextSlide); 
+            resetAutoPlay(); 
+          }}
           className="absolute left-2 sm:left-4 md:left-6 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-gold-500/20 text-gold-500 rounded-full p-2 sm:p-3 md:p-4 transition-all duration-300 opacity-60 sm:opacity-0 group-hover:opacity-100 hover:scale-125 hover:rotate-12 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] touch-manipulation"
-          aria-label="Previous slide"
+          aria-label="Next slide"
         >
           <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
         
         <button
-          onClick={nextSlide}
+          onClick={() => { 
+            // Always go forward: if on cover (1), go to tracklist (0), if on tracklist (0), go to cover (1)
+            const nextSlide = currentSlide === 1 ? 0 : 1;
+            setCurrentSlide(nextSlide); 
+            resetAutoPlay(); 
+          }}
           className="absolute right-2 sm:right-4 md:right-6 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-gold-500/20 text-gold-500 rounded-full p-2 sm:p-3 md:p-4 transition-all duration-300 opacity-60 sm:opacity-0 group-hover:opacity-100 hover:scale-125 hover:-rotate-12 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] touch-manipulation"
           aria-label="Next slide"
         >

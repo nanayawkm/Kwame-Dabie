@@ -10,26 +10,34 @@ import Script from "next/script"
 
 const mainFont = Roboto_Condensed({ 
   subsets: ["latin"],
-  weight: ["300", "400", "700"],
+  weight: ["400", "700"], // Reduced font weights for better performance
   variable: "--font-main",
+  display: "swap", // Critical for performance - prevents invisible text during font swap
+  preload: true,
 })
 
 const headingFont = Oswald({ 
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "600"], // Reduced font weights
   variable: "--font-heading",
+  display: "swap",
+  preload: true,
 })
 
 const heroFont = Rubik_Mono_One({
   subsets: ["latin"],
   weight: ["400"],
   variable: "--font-hero",
+  display: "swap",
+  preload: false, // Not critical, load after main fonts
 })
 
 const iconicFont = Permanent_Marker({
   subsets: ["latin"],
   weight: ["400"],
   variable: "--font-iconic",
+  display: "swap",
+  preload: false, // Not critical, load after main fonts
 })
 
 export const metadata: Metadata = {
@@ -401,6 +409,17 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Performance: Preconnect to external domains */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        
+        {/* DNS prefetch for external domains */}
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        
         {/* Web app manifest */}
         <link rel="manifest" href="/manifest.json" />
         
@@ -410,6 +429,10 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png" />
         
+        {/* Preload critical assets */}
+        <link rel="preload" href="/images/gallery/GVO png .png" as="image" type="image/png" />
+        
+        {/* Structured data */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

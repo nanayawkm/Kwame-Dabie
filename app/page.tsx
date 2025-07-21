@@ -1,13 +1,23 @@
 import Image from "next/image"
 import { Play } from "lucide-react"
+import { Suspense, lazy } from "react"
 import StreamingPlatforms from "@/components/streaming-platforms"
 import HeroSection from "@/components/hero-section"
-import CoverFlowCarousel from "@/components/cover-flow-carousel"
-import GalleryCarousel from "@/components/gallery-carousel"
 import PreSaveButton from "@/components/pre-save-button"
 import QuubeLogo from "@/components/quube-logo"
-import EPAnnouncementCarousel from "@/components/ep-announcement-carousel"
 import type { Metadata } from "next"
+
+// Lazy load heavy components for better performance
+const CoverFlowCarousel = lazy(() => import("@/components/cover-flow-carousel"))
+const GalleryCarousel = lazy(() => import("@/components/gallery-carousel"))
+const EPAnnouncementCarousel = lazy(() => import("@/components/ep-announcement-carousel"))
+
+// Loading component for lazy-loaded sections
+const SectionLoading = ({ height = "h-60" }: { height?: string }) => (
+  <div className={`flex items-center justify-center ${height} w-full`}>
+    <div className="animate-pulse text-gold-500">Loading...</div>
+  </div>
+)
 
 // Page-specific metadata
 export const metadata: Metadata = {
@@ -114,7 +124,9 @@ export default function Home() {
 
               {/* EP Carousel */}
               <div className="mb-8 sm:mb-12 md:mb-16 reveal delay-200">
-                <EPAnnouncementCarousel />
+                <Suspense fallback={<SectionLoading height="h-80" />}>
+                  <EPAnnouncementCarousel />
+                </Suspense>
               </div>
 
               {/* Pre-Save Call to Action */}
@@ -189,6 +201,8 @@ export default function Home() {
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       className="object-contain transition-transform duration-500 group-hover:scale-105"
+                      priority
+                      quality={90}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -217,6 +231,8 @@ export default function Home() {
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       className="object-contain transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                      quality={90}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -245,6 +261,8 @@ export default function Home() {
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       className="object-contain transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                      quality={90}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -274,6 +292,8 @@ export default function Home() {
                         alt="GVO - Gargantuan Vibes Only Logo"
                         fill
                         className="object-contain"
+                        loading="lazy"
+                        quality={90}
                       />
                     </div>
                     <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-gold-500 transition-colors duration-300">More Music</h3>
@@ -289,7 +309,9 @@ export default function Home() {
                 ALBUMS & EPs
               </h2>
               <div className="max-w-5xl mx-auto px-4 sm:px-0 reveal-bottom delay-200">
-                <CoverFlowCarousel />
+                <Suspense fallback={<SectionLoading height="h-96" />}>
+                  <CoverFlowCarousel />
+                </Suspense>
               </div>
             </article>
           </div>
@@ -331,6 +353,8 @@ export default function Home() {
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 50vw"
+                    loading="lazy"
+                    quality={85}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 </div>
@@ -346,7 +370,9 @@ export default function Home() {
               GALLERY
             </h2>
             <div className="max-w-5xl mx-auto px-4 sm:px-0 reveal delay-300">
-              <GalleryCarousel />
+              <Suspense fallback={<SectionLoading height="h-96" />}>
+                <GalleryCarousel />
+              </Suspense>
             </div>
           </div>
         </section>
