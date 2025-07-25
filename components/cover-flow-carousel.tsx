@@ -7,6 +7,14 @@ import { Play } from "lucide-react"
 const albums = [
   {
     id: 1,
+    title: "False Prophets",
+    artist: "",
+    cover: "/images/upcoming/False Prophets - cover.JPG",
+    year: "",
+    link: "https://tiememusicdistro.lnk.to/FALSEPROPHETS"
+  },
+  {
+    id: 2,
     title: "3:33 am",
     artist: "",
     cover: "/images/hero/333 cover.jpg",
@@ -14,7 +22,7 @@ const albums = [
     link: "https://fanlink.tv/333AMkwamedabie"
   },
   {
-    id: 2,
+    id: 3,
     title: "The Purgatory Saga 2",
     artist: "",
     cover: "/images/hero/Purgatory Saga 2 cover.jpg",
@@ -22,7 +30,7 @@ const albums = [
     link: "https://fanlink.tv/thepurgatorysaga2"
   },
   {
-    id: 3,
+    id: 4,
     title: "The Purgatory Saga",
     artist: "",
     cover: "/images/hero/The Purgatory Saga - cover.jpg",
@@ -30,7 +38,7 @@ const albums = [
     link: "https://audiomack.com/kwamedabie/album/the-purgatory-saga-2?share-user-id=2493638"
   },
   {
-    id: 4,
+    id: 5,
     title: "Small Time",
     artist: "",
     cover: "/images/hero/Small Time - cover.jpg",
