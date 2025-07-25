@@ -142,19 +142,14 @@ export default function Home() {
                     rel="noopener noreferrer"
                     className="group inline-block w-full sm:w-auto"
                   >
-                    <button className="relative overflow-hidden w-full sm:w-auto bg-gradient-to-r from-gold-500 via-yellow-500 to-gold-500 hover:from-yellow-400 hover:via-gold-500 hover:to-yellow-400 text-black font-bold py-4 px-8 sm:py-5 sm:px-12 md:py-6 md:px-16 rounded-full text-lg sm:text-xl md:text-2xl uppercase tracking-wider transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-[0_0_40px_rgba(212,175,55,0.6)] border-2 border-gold-400 touch-manipulation">
-                      <span className="relative z-10 flex items-center justify-center gap-2 sm:gap-3">
-                        <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                        </svg>
-                        LISTEN NOW
-                        <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
-                        </svg>
-                      </span>
+                    <button className="relative w-full sm:w-auto bg-gradient-to-r from-gold-500 via-yellow-500 to-gold-500 hover:from-yellow-400 hover:via-gold-500 hover:to-yellow-400 text-black font-bold py-4 px-8 sm:py-5 sm:px-12 md:py-6 md:px-16 rounded-full text-xl sm:text-2xl md:text-3xl lg:text-4xl uppercase tracking-wider transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-[0_0_40px_rgba(212,175,55,0.6)] border-2 border-gold-400 touch-manipulation" style={{animation: 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite'}}>
+                      {/* Ping effect */}
+                      <span className="absolute -inset-3 bg-gold-400 rounded-full opacity-30 -z-10" style={{animation: 'ping 4s cubic-bezier(0, 0, 0.2, 1) infinite'}}></span>
                       
-                      {/* Button shimmer effect */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                      
+                      <span className="relative z-10">
+                        LISTEN NOW
+                      </span>
                     </button>
                   </a>
                   

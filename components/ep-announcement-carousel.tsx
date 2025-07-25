@@ -194,8 +194,9 @@ export default function EPAnnouncementCarousel() {
         </button>
 
         {/* Out Now Badge */}
-        <div className="absolute top-2 sm:top-4 md:top-6 right-2 sm:right-4 md:right-6 bg-gold-500 text-black px-2 py-1 sm:px-4 sm:py-2 rounded-full font-bold text-xs sm:text-sm md:text-base uppercase tracking-wider">
-          Out Now
+        <div className="absolute top-2 sm:top-4 md:top-6 right-2 sm:right-4 md:right-6 bg-gold-500 text-black px-2 py-1 sm:px-4 sm:py-2 rounded-full font-bold text-xs sm:text-sm md:text-base uppercase tracking-wider shadow-lg hover:shadow-[0_0_20px_rgba(212,175,55,0.8)] transition-all duration-300" style={{animation: 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite'}}>
+          <span className="absolute inset-0 bg-gold-400 rounded-full opacity-30" style={{animation: 'ping 4s cubic-bezier(0, 0, 0.2, 1) infinite'}}></span>
+          <span className="relative">Out Now</span>
         </div>
       </div>
 

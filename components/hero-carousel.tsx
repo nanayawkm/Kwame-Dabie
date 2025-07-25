@@ -10,11 +10,22 @@ export default function HeroCarousel() {
   useEffect(() => {
     const videoElement = videoRef.current
     if (videoElement) {
+      // Start loading immediately
+      videoElement.load()
+      
       const handleCanPlay = () => {
         setIsVideoReady(true)
         videoElement.play().catch(err => {
           console.error("Video autoplay failed:", err)
           // Don't set error state for autoplay failures, just keep poster
+        })
+      }
+
+      const handleLoadedData = () => {
+        // Video has loaded enough data to start playing
+        setIsVideoReady(true)
+        videoElement.play().catch(err => {
+          console.error("Video autoplay failed:", err)
         })
       }
 
@@ -24,10 +35,12 @@ export default function HeroCarousel() {
       }
 
       videoElement.addEventListener('canplay', handleCanPlay)
+      videoElement.addEventListener('loadeddata', handleLoadedData)
       videoElement.addEventListener('error', handleError)
 
       return () => {
         videoElement.removeEventListener('canplay', handleCanPlay)
+        videoElement.removeEventListener('loadeddata', handleLoadedData)
         videoElement.removeEventListener('error', handleError)
       }
     }
@@ -58,7 +71,7 @@ export default function HeroCarousel() {
         muted
         loop
         playsInline
-        preload="metadata"
+        preload="auto"
         poster="/images/albums/about kwame.jpg"
       />
       
