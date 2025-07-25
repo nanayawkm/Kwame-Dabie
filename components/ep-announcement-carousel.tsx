@@ -193,9 +193,9 @@ export default function EPAnnouncementCarousel() {
           <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
 
-        {/* Coming Soon Badge */}
+        {/* Out Now Badge */}
         <div className="absolute top-2 sm:top-4 md:top-6 right-2 sm:right-4 md:right-6 bg-gold-500 text-black px-2 py-1 sm:px-4 sm:py-2 rounded-full font-bold text-xs sm:text-sm md:text-base uppercase tracking-wider">
-          Coming Soon
+          Out Now
         </div>
       </div>
 
