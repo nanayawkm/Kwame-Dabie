@@ -189,16 +189,18 @@ export default function Home() {
                   className="group relative overflow-hidden rounded-xl bg-black/50 border border-green-900/30 hover:border-gold-500/50 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.2)] touch-manipulation"
                   aria-label="Pre-save TƐ! by Kwame Dabie"
                 >
-                  <div className="aspect-square relative">
-                    <Image 
-                      src="/images/upcoming/dabie_t3_cover.jpg" 
-                      alt="TƐ! - Latest Single by Kwame Dabie" 
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      className="object-contain transition-transform duration-500 group-hover:scale-105"
-                      priority
-                      quality={90}
-                    />
+                  <div className="aspect-square relative p-4">
+                    <div className="relative w-full h-full">
+                      <Image 
+                        src="/images/upcoming/dabie_t3_cover.jpg" 
+                        alt="TƐ! - Latest Single by Kwame Dabie" 
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        className="object-contain transition-transform duration-500 group-hover:scale-105"
+                        priority
+                        quality={90}
+                      />
+                    </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <button className="bg-gold-500 text-black rounded-full p-3 sm:p-4 transform scale-0 group-hover:scale-100 transition-transform duration-300 hover:bg-gold-400" aria-label="Pre-save TƐ!">
