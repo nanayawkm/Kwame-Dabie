@@ -125,6 +125,21 @@ const galleryImages: GalleryImage[] = [
     src: "/images/albums/about kwame.jpg",
     alt: "About Kwame Dabie",
   },
+  {
+    id: 24,
+    src: "/images/albums/k1.jpg",
+    alt: "Kwame Dabie photo",
+  },
+  {
+    id: 25,
+    src: "/images/albums/k2.jpg",
+    alt: "Kwame Dabie photo",
+  },
+  {
+    id: 26,
+    src: "/images/albums/k3.jpg",
+    alt: "Kwame Dabie photo",
+  },
 ]
 
 // Fisher-Yates shuffle algorithm

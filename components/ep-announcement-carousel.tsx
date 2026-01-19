@@ -5,26 +5,18 @@ import Image from 'next/image'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 export default function EPAnnouncementCarousel() {
-  const [currentSlide, setCurrentSlide] = useState(1) // Start with cover
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  const [currentSlide, setCurrentSlide] = useState(0) // Single slide
+  const [isAutoPlaying, setIsAutoPlaying] = useState(false)
   const autoPlayRef = useRef<NodeJS.Timeout | null>(null)
 
   const slides = [
     {
-      id: 'tracklist',
-      type: 'tracklist', 
-      title: 'Track List',
-      subtitle: 'Full EP Details',
-      image: '/images/upcoming/FALSE PROPHETS_TRACKLIST.JPG',
-      alt: 'False Prophets EP Tracklist by Kwame Dabie'
-    },
-    {
       id: 'cover',
       type: 'cover',
-      title: 'New EP',
-      subtitle: 'FALSE PROPHETS',
-      image: '/images/upcoming/False Prophets - cover.JPG',
-      alt: 'False Prophets EP Cover Art by Kwame Dabie'
+      title: 'New Single',
+      subtitle: 'TƐ!',
+      image: '/images/upcoming/dabie_t3_cover.jpg',
+      alt: 'TƐ! Single Cover Art by Kwame Dabie'
     }
   ]
 
@@ -47,11 +39,7 @@ export default function EPAnnouncementCarousel() {
     if (autoPlayRef.current) {
       clearInterval(autoPlayRef.current)
     }
-    if (isAutoPlaying) {
-      autoPlayRef.current = setInterval(() => {
-        setCurrentSlide((prev) => prev === 1 ? 0 : 1) // Toggle between cover and tracklist
-      }, 4000) // 4 seconds interval
-    }
+    // Single slide - no auto-play needed
   }
 
   const pauseAutoPlay = () => {
@@ -68,12 +56,7 @@ export default function EPAnnouncementCarousel() {
 
   // Auto-play effect
   useEffect(() => {
-    if (isAutoPlaying) {
-      autoPlayRef.current = setInterval(() => {
-        setCurrentSlide((prev) => prev === 1 ? 0 : 1) // Toggle between cover and tracklist
-      }, 4000)
-    }
-
+    // Single slide - no auto-play needed
     return () => {
       if (autoPlayRef.current) {
         clearInterval(autoPlayRef.current)
@@ -100,12 +83,7 @@ export default function EPAnnouncementCarousel() {
     const isLeftSwipe = distance > 50
     const isRightSwipe = distance < -50
 
-    if (isLeftSwipe || isRightSwipe) {
-      // Any swipe - always go to next slide in sequence
-      const nextSlide = currentSlide === 1 ? 0 : 1;
-      setCurrentSlide(nextSlide);
-    }
-    
+    // Single slide - no swipe navigation needed
     resetAutoPlay()
     
     // Reset touch positions
@@ -166,42 +144,34 @@ export default function EPAnnouncementCarousel() {
           ))}
         </div>
 
-        {/* Navigation Arrows */}
+        {/* Navigation Arrows - Hidden for single slide */}
         <button
-          onClick={() => { 
-            // Always go forward: if on cover (1), go to tracklist (0), if on tracklist (0), go to cover (1)
-            const nextSlide = currentSlide === 1 ? 0 : 1;
-            setCurrentSlide(nextSlide); 
-            resetAutoPlay(); 
-          }}
-          className="absolute left-2 sm:left-4 md:left-6 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-gold-500/20 text-gold-500 rounded-full p-2 sm:p-3 md:p-4 transition-all duration-300 opacity-60 sm:opacity-0 group-hover:opacity-100 hover:scale-125 hover:rotate-12 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] touch-manipulation"
-          aria-label="Next slide"
+          onClick={() => {}}
+          className="absolute left-2 sm:left-4 md:left-6 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-gold-500/20 text-gold-500 rounded-full p-2 sm:p-3 md:p-4 transition-all duration-300 opacity-0 pointer-events-none"
+          aria-label="Previous slide"
+          disabled
         >
           <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
         
         <button
-          onClick={() => { 
-            // Always go forward: if on cover (1), go to tracklist (0), if on tracklist (0), go to cover (1)
-            const nextSlide = currentSlide === 1 ? 0 : 1;
-            setCurrentSlide(nextSlide); 
-            resetAutoPlay(); 
-          }}
-          className="absolute right-2 sm:right-4 md:right-6 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-gold-500/20 text-gold-500 rounded-full p-2 sm:p-3 md:p-4 transition-all duration-300 opacity-60 sm:opacity-0 group-hover:opacity-100 hover:scale-125 hover:-rotate-12 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] touch-manipulation"
+          onClick={() => {}}
+          className="absolute right-2 sm:right-4 md:right-6 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-gold-500/20 text-gold-500 rounded-full p-2 sm:p-3 md:p-4 transition-all duration-300 opacity-0 pointer-events-none"
           aria-label="Next slide"
+          disabled
         >
           <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
 
-        {/* Out Now Badge */}
+        {/* Coming Soon Badge */}
         <div className="absolute top-2 sm:top-4 md:top-6 right-2 sm:right-4 md:right-6 bg-gold-500 text-black px-2 py-1 sm:px-4 sm:py-2 rounded-full font-bold text-xs sm:text-sm md:text-base uppercase tracking-wider shadow-lg hover:shadow-[0_0_20px_rgba(212,175,55,0.8)] transition-all duration-300" style={{animation: 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite'}}>
           <span className="absolute inset-0 bg-gold-400 rounded-full opacity-30" style={{animation: 'ping 4s cubic-bezier(0, 0, 0.2, 1) infinite'}}></span>
-          <span className="relative">Out Now</span>
+          <span className="relative">Coming Soon</span>
         </div>
       </div>
 
-      {/* Slide Indicators */}
-      <div className="flex justify-center space-x-3 sm:space-x-4 mt-4 sm:mt-6">
+      {/* Slide Indicators - Hidden for single slide */}
+      <div className="flex justify-center space-x-3 sm:space-x-4 mt-4 sm:mt-6 hidden">
         {slides.map((_, index) => (
           <button
             key={index}
