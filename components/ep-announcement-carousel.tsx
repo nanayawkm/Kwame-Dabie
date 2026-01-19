@@ -122,17 +122,15 @@ export default function EPAnnouncementCarousel() {
                 opacity: index === currentSlide ? 1 : 0.8
               }}
             >
-              <div className="w-full h-full relative flex items-center justify-center p-4 sm:p-6 md:p-8">
-                <div className="relative w-full h-full max-w-[500px] max-h-[500px]">
-                  <Image 
-                    src={slide.image}
-                    alt={slide.alt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 500px"
-                    className="object-contain transition-all duration-500"
-                    priority={index === 0}
-                  />
-                </div>
+              <div className="w-full h-full relative">
+                <Image 
+                  src={slide.image}
+                  alt={slide.alt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
+                  className="object-contain transition-all duration-500"
+                  priority={index === 0}
+                />
                 
                 {/* Overlay Gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
