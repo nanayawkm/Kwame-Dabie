@@ -145,7 +145,7 @@ export default function Home() {
                       
                       
                       <span className="relative z-10">
-                        PRE-SAVE NOW
+                        LISTEN NOW
                       </span>
                     </button>
                   </a>
@@ -178,6 +178,37 @@ export default function Home() {
               </div>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+                {/* Guantanamo Bay Freestyle Card - Latest Release */}
+                <a
+                  href="https://fanlink.tv/guantanamobayfreestyle"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative overflow-hidden rounded-xl bg-black/50 border border-green-900/30 hover:border-gold-500/50 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.2)] touch-manipulation"
+                  aria-label="Listen to Guantanamo Bay Freestyle by Kwame Dabie"
+                >
+                  <div className="aspect-square relative">
+                    <Image
+                      src="/images/GUANTANAMO_BAY_FREESTYLE_COVER.jpg"
+                      alt="Guantanamo Bay Freestyle by Kwame Dabie - Latest Single"
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-contain transition-transform duration-500 group-hover:scale-105"
+                      priority
+                      quality={90}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <button className="bg-gold-500 text-black rounded-full p-3 sm:p-4 transform scale-0 group-hover:scale-100 transition-transform duration-300 hover:bg-gold-400" aria-label="Play Guantanamo Bay Freestyle">
+                        <Play className="w-6 h-6 sm:w-8 sm:h-8" />
+                      </button>
+                    </div>
+                  </div>
+                  <div className="p-4 sm:p-6">
+                    <h3 className="text-lg sm:text-xl font-bold text-gold-500 mb-2">Guantanamo Bay Freestyle</h3>
+                    <p className="text-gold-400 text-sm sm:text-base">Latest single</p>
+                  </div>
+                </a>
+
                 {/* TƐ! Card - Latest Release */}
                 <a
                   href="https://tiememusicdistro.lnk.to/tkV7gI"
@@ -555,7 +586,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
               <p className="text-gold-500 text-xs sm:text-sm">© 2025 Kwame Dabie. All rights reserved.</p>
               <a 
-                href="https://www.quubetech.com" 
+                href="https://quube.tech" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="flex items-center gap-2 hover:opacity-80 transition-opacity"
