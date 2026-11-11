@@ -5,7 +5,7 @@ import { TRACKS } from "@/lib/content"
 import { buzz, reducedMotion } from "@/lib/client"
 import { usePlayer } from "./player"
 import { useCards } from "./story-cards"
-import { PauseIcon, PlayIcon } from "./icon"
+import { PauseIcon, PlayIcon, StoryIcon } from "./icon"
 
 export default function Tracklist() {
   const [openN, setOpenN] = useState<string | null>(null)
@@ -35,10 +35,23 @@ export default function Tracklist() {
       <div className="wrap">
         <p className="lbl red" style={{ margin: 0 }}>The tracks</p>
         <h2 className="sec-h" id="tl-h">Tracklist</h2>
-        <div className="tl-intro">
-          <p>Tap a track for its story, press play on Roadman 2 for a preview, and make a card for your Instagram, Snapchat or WhatsApp status.</p>
-          <button className="card-btn" type="button" onClick={() => cards.open({ kind: "tape" })}>Make a tape card</button>
+        <div className="tl-share">
+          <button className="tl-mock" type="button" aria-hidden="true" tabIndex={-1} onClick={() => cards.open({ kind: "tape" })}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/media/cover.jpg" alt="" />
+            <i /><i /><i /><i />
+            <b />
+          </button>
+          <div className="tl-share-copy">
+            <p className="lbl red" style={{ margin: 0 }}>Post it</p>
+            <h3 className="tl-share-h">Make your tape card</h3>
+            <p className="tl-share-d">The cover and all ten tracks, sized for your Instagram, Snapchat or WhatsApp status.</p>
+          </div>
+          <button className="card-btn card-btn--red" type="button" onClick={() => cards.open({ kind: "tape" })}>
+            <StoryIcon /> Make a tape card
+          </button>
         </div>
+        <p className="tl-hint lbl">Tap any track for its story and its own story card. Press <span className="red">▶</span> on Roadman 2 for a preview.</p>
         <ol className="tracks">
           {TRACKS.map((t) => {
             const isOpen = openN === t.n
@@ -81,8 +94,9 @@ export default function Tracklist() {
                 <div className="panel" id={`p${t.n}`} hidden={!isOpen}>
                   <span className="lbl prod">Prod. by {t.prod}</span>
                   <p>{t.story}</p>
-                  <span className="lbl mood"><b>Mood</b>{t.mood}</span>
-                  <button className="card-btn" type="button" onClick={() => cards.open({ kind: "track", track: t })}>Make a story card</button>
+                  <button className="card-btn" type="button" onClick={() => cards.open({ kind: "track", track: t })}>
+                    <StoryIcon /> Make a story card
+                  </button>
                 </div>
               </li>
             )

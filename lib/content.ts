@@ -24,34 +24,33 @@ export type Track = {
   ft?: string
   prod: string
   story: string
-  mood: string
   tags?: { label: string; hot?: boolean }[]
   preview?: string
   link?: string
 }
 
 export const TRACKS: Track[] = [
-  { n: "01", title: "Life Will Show U", prod: "JoeyOnTheTrack", mood: "Reflective / Raw / Sobering",
+  { n: "01", title: "Life Will Show U", prod: "JoeyOnTheTrack",
     story: "The intro. It sets you into the tape. You think you have everybody, but when life shows you the truth, you realise you have no one. It is just you and your God." },
-  { n: "02", title: "Not the Time to Cry", prod: "JoeyOnTheTrack", mood: "Defiant / Determined / Intense",
+  { n: "02", title: "Not the Time to Cry", prod: "JoeyOnTheTrack",
     story: "This is the time to fight. Get up and move on. It is not the time to complain and it is not the time to cry. It is the time to get up and fight for whatever you want." },
-  { n: "03", title: "Mission 01", prod: "JoeyOnTheTrack", mood: "Focused / Driven / Dark",
+  { n: "03", title: "Mission 01", prod: "JoeyOnTheTrack",
     story: "The mission is one. Not the time to cry, not the time to stall: just get up, move and get done what you have to do." },
-  { n: "04", title: "Sani Abacha", ft: "Funky319", prod: "MJayDidThis", mood: "Flashy / Hungry / Menacing",
+  { n: "04", title: "Sani Abacha", ft: "Funky319", prod: "MJayDidThis",
     story: "Named after the late Nigerian head of state known for amassing vast wealth illegally. A record about getting money, plenty of money, by any route necessary. Features Funky319, a rapper from Côte d'Ivoire." },
-  { n: "05", title: "O&O", prod: "KBTheAlchemist", mood: "Relentless / Hypnotic / Gritty",
+  { n: "05", title: "O&O", prod: "KBTheAlchemist",
     story: "Over and over. An earlier single. Doing whatever you have to do again and again, and never stopping." },
-  { n: "06", title: "Addict", prod: "JoeyOnTheTrack", mood: "Obsessive / Dangerous / Hard", tags: [{ label: "Out now", hot: true }],
+  { n: "06", title: "Addict", prod: "JoeyOnTheTrack", tags: [{ label: "Out now", hot: true }],
     story: "Lead single, released October 2026. The more you do something, the more addicted and dangerous you become at it. Repetition as perfection." },
-  { n: "07", title: "Times I Stared", prod: "JoeyOnTheTrack", mood: "Introspective / Somber / Honest",
+  { n: "07", title: "Times I Stared", prod: "JoeyOnTheTrack",
     story: "A look back at the times I stared and did not focus on my own. Reflection on lost focus and lessons learned." },
-  { n: "08", title: "20 Mins to the Capital", prod: "420Tenney & JoeyOnTheTrack", mood: "Restless / Hustling / Driven",
+  { n: "08", title: "20 Mins to the Capital", prod: "420Tenney & JoeyOnTheTrack",
     story: "The journey on the road. Twenty minutes from Tema to the capital, going to look for money, going to look for capital." },
-  { n: "09", title: "Roadman 2", ft: "AraTheJay", prod: "Mr Kwamz", mood: "Gritty / Street / Anthemic",
+  { n: "09", title: "Roadman 2", ft: "AraTheJay", prod: "Mr Kwamz",
     tags: [{ label: "Out now", hot: true }, { label: "Lead single" }],
     preview: "/media/roadman2-preview.mp3", link: "https://tiememusicdistro.lnk.to/ROADMAN2",
     story: "The lead single off the tape, a collaboration with AraTheJay from Tema, Ghana. The sequel to \"Roadman\" (2022): the road and what we go through on it." },
-  { n: "10", title: "Asylum", ft: "Nsogbu Malaika", prod: "NinoxaFlame", mood: "Chaotic / Dark / Unsettling",
+  { n: "10", title: "Asylum", ft: "Nsogbu Malaika", prod: "NinoxaFlame",
     story: "The stuff we have seen, heard and witnessed on the road, told from where we stand, with Nsogbu Malaika from Tema, Ghana. It is madness over here, and it will send you mad." },
 ]
 

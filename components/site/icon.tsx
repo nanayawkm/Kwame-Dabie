@@ -23,6 +23,13 @@ export function GvoFlag({ className, light = false }: { className?: string; ligh
   )
 }
 
+/** A story frame with an up arrow: "post this to your story". */
+export const StoryIcon = () => (
+  <svg className="i-story" viewBox="0 0 24 24" aria-hidden="true">
+    <path fillRule="evenodd" d="M7 1.5h10A2.5 2.5 0 0 1 19.5 4v16a2.5 2.5 0 0 1-2.5 2.5H7A2.5 2.5 0 0 1 4.5 20V4A2.5 2.5 0 0 1 7 1.5zm0 2.2a.3.3 0 0 0-.3.3v16c0 .17.13.3.3.3h10a.3.3 0 0 0 .3-.3V4a.3.3 0 0 0-.3-.3H7zm5 3.3 4 4-1.5 1.5-1.45-1.45V16.5h-2.1v-5.45L9.5 12.5 8 11l4-4z" />
+  </svg>
+)
+
 export const PlayIcon = () => (
   <svg className="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l16 9-16 9z" /></svg>
 )

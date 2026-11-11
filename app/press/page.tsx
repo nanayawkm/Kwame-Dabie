@@ -40,7 +40,7 @@ export default function PressPage() {
               <span className="lbl arc-file">Electronic press kit</span>
               <h2 className="kit-t" id="kit-t">Dabie Bomaye [Tape]</h2>
               <p className="lbl proj-meta"><span><b>PDF</b></span><span>5 pages</span><span>5.7 MB</span><span>Oct 2026</span></p>
-              <p className="kit-d">The project, all ten tracks with their stories and moods, full credits, links and contacts.</p>
+              <p className="kit-d">The project, all ten tracks and their stories, full credits, links and contacts.</p>
               <a className="btn" href={EPK_PDF} download="Dabie Bomaye - EPK.pdf">Download the EPK</a>
             </div>
           </article>

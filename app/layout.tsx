@@ -8,6 +8,7 @@ import Loader from "@/components/site/loader"
 import SiteHeader from "@/components/site/site-header"
 import Footer from "@/components/site/footer"
 import TitleWatcher from "@/components/site/title-watcher"
+import ScrollManager from "@/components/site/scroll-manager"
 import { PlayerProvider } from "@/components/site/player"
 import { CardProvider } from "@/components/site/story-cards"
 
@@ -90,7 +91,7 @@ const structuredData = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${displayFont.variable} ${bodyFont.variable} ${twiFallback.variable}`} suppressHydrationWarning>
+    <html lang="en" data-scroll-behavior="smooth" className={`${displayFont.variable} ${bodyFont.variable} ${twiFallback.variable}`} suppressHydrationWarning>
       <head>
         {/* Returning visitors in the same session skip the loader before first paint. */}
         <script dangerouslySetInnerHTML={{ __html: "try{if(sessionStorage.getItem('seen'))document.documentElement.classList.add('seen')}catch(e){}" }} />
@@ -106,6 +107,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           </CardProvider>
         </PlayerProvider>
         <div id="chant" aria-hidden="true">Bomaye!</div>
+        <ScrollManager />
         <TitleWatcher />
         <Analytics />
       </body>

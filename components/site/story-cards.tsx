@@ -156,7 +156,7 @@ async function drawCard(req: CardReq, bg: BgKey): Promise<HTMLCanvasElement> {
   }
   x.fillStyle = "#9A9D9E"
   x.font = `600 30px ${F}`
-  spaced(x, t.mood.toUpperCase(), 80, moodY, 7)
+  spaced(x, `PROD. BY ${t.prod.toUpperCase()}`, 80, moodY, 7) // a credit, not a description
   footer(footerTop)
   return c
 }

@@ -534,3 +534,43 @@ main.shake{animation:shake .45s linear}
 .lost .btn{display:inline-flex;min-width:260px}
 /* condensed Noto for the Twi letters, so ɛ/ɔ match Barlow Condensed's width */
 .arc-t,.gas-lyric,.proj-t,[lang="tw"]{font-stretch:62.5%}
+
+/* ---------- tracklist: actions people can't miss ---------- */
+.card-btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:52px;padding:0 22px 0 16px;background:var(--bone);color:var(--ink);border:0;
+  font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:.14em;text-transform:uppercase;transition:transform .15s,background .2s,color .2s}
+.card-btn .i-story{width:22px;height:22px;flex:none;fill:currentColor}
+.card-btn:hover{background:#fff;color:var(--ink);border-color:transparent}
+.card-btn:active{transform:scale(.97);background:var(--blood);color:#fff}
+.card-btn--red{background:var(--blood);color:#fff}
+.card-btn--red:hover{background:#ff2a2a;color:#fff}
+.card-btn--red:active{background:var(--bone);color:var(--ink)}
+.panel .card-btn{justify-self:start;margin-top:6px}
+
+.tl-share{display:grid;grid-template-columns:clamp(84px,22vw,124px) minmax(0,1fr);gap:16px clamp(18px,4vw,36px);align-items:center;margin:0 0 18px;
+  padding:clamp(16px,4vw,26px);border:1px solid rgba(244,244,242,.18);background:linear-gradient(135deg,rgba(252,0,0,.12),rgba(252,0,0,0) 60%)}
+.tl-share > .card-btn{grid-column:2;justify-self:start}
+.tl-mock{position:relative;display:block;width:100%;aspect-ratio:9/16;padding:14% 10% 0;background:#151515;border:1px solid rgba(244,244,242,.35);
+  transform:rotate(-4deg);box-shadow:0 14px 30px rgba(0,0,0,.5);transition:transform .35s var(--ease);grid-row:span 2;align-self:start}
+.tl-share:hover .tl-mock{transform:rotate(0) translateY(-3px)}
+.tl-mock img{width:100%;aspect-ratio:1;object-fit:cover}
+.tl-mock i{display:block;height:3px;margin-top:7%;background:rgba(244,244,242,.45)}
+.tl-mock i:nth-of-type(2){width:80%}
+.tl-mock i:nth-of-type(3){width:90%}
+.tl-mock i:nth-of-type(4){width:60%}
+.tl-mock b{position:absolute;left:10%;bottom:8%;width:34%;height:3px;background:var(--blood)}
+.tl-share-h{margin:6px 0;font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(28px,7vw,44px);line-height:.92}
+.tl-share-d{margin:0;color:rgba(244,244,242,.8);font-size:15px;max-width:44ch}
+.tl-hint{margin:0 0 22px;color:#9A9D9E}
+@media (max-width:600px){
+  .tl-mock{grid-row:auto}
+  .tl-share > .card-btn{grid-column:1/-1;width:100%}
+  .panel .card-btn{width:100%}
+}
+
+/* track rows read as buttons: a boxed +, red when open */
+.trk{grid-template-columns:clamp(40px,11vw,76px) minmax(0,1fr) 40px;border-radius:0;transition:background .2s}
+.trk:active{background:rgba(244,244,242,.05)}
+.plus{width:40px;height:40px;margin-top:.1em;border:1px solid rgba(244,244,242,.34);transition:background .2s,border-color .2s,color .2s}
+.plus::before,.plus::after{left:11px;right:11px}
+.trk:hover .plus{border-color:var(--bone)}
+.trk[aria-expanded="true"] .plus{background:var(--blood);border-color:var(--blood);color:#fff}
