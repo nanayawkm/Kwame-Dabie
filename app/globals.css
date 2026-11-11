@@ -132,23 +132,28 @@ html.seen #loader{display:none}
   .logo-btn{margin:0 0 18px;width:min(32vw,460px)}
 }
 
-/* ---------- rename: the visitor's scroll strikes the old name, the new one slams in ---------- */
-.rename{--p:1;position:relative}
+/* ---------- rename: the evolution. DABIE is in both names; scroll turns KWAME DABIE into DABIE BOMAYE ---------- */
+.rename{--p:1;--a:1;--b:1;--c:1;position:relative}
 .rn-pin{position:relative;overflow:hidden;padding-block:clamp(72px,16vw,160px) clamp(56px,12vw,120px)}
 .rn-lbl{display:grid;margin:0;color:var(--blood-ink)}
 .rn-lbl > span{grid-area:1/1}
 .rn-l1{opacity:0}
-.rn{position:relative;margin:18px 0 0;font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(84px,29vw,300px);line-height:.8;letter-spacing:-.015em}
-.rn-old{display:block;position:relative;width:fit-content;color:#B9BBBB;transition:color .35s ease}
-.strike{position:absolute;left:-3%;right:-3%;top:46%;height:.11em;background:var(--blood);transform:rotate(-3deg);transform-origin:left}
-.strike-2{transform-origin:right}
-.rn-stamp{position:relative;display:block;width:min(88%,620px);margin:-.32em 0 0 auto;transform:rotate(-4deg)}
+.rn{position:relative;display:grid;align-items:center;justify-items:center;margin:18px 0 0;font-family:var(--display);font-weight:800;text-transform:uppercase;
+  font-size:clamp(84px,29vw,300px);line-height:.8;letter-spacing:-.015em}
+.rn > *{grid-area:1/1}
+.rn-type{position:relative;width:100%;height:1.6em;visibility:hidden}
+.rn-w{position:absolute;left:0;right:0;top:0;text-align:center;white-space:nowrap}
+.rn-dabie,.rn-bomaye{top:.8em}
+.rn-bomaye{color:var(--blood)}
+.rn-burst{width:min(72vw,560px);aspect-ratio:1;border-radius:50%;pointer-events:none;opacity:0;
+  background:radial-gradient(circle,rgba(252,0,0,.5),rgba(252,0,0,.12) 45%,rgba(252,0,0,0) 68%)}
+.rn-stamp{position:relative;display:block;width:min(88%,620px);transform:rotate(-4deg)}
 .rn-stamp img{width:100%;height:auto}
 .rn-caption{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:28px}
 .rn-fuse,.rn-run{display:none}
 
 @media (prefers-reduced-motion:no-preference){
-  /* the pin holds for one screen of scrolling (the runway); --p runs 0 to 1 across it */
+  /* the pin holds for one screen of scrolling (the runway); JS sets --p (0 to 1) and the three word phases --a --b --c */
   .rn-pin{position:sticky;top:0;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-block:96px 48px}
   .rn-run{display:block;height:110svh}
   .rename.live .rn-fuse{display:block;position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--blood);
@@ -157,21 +162,23 @@ html.seen #loader{display:none}
 
   .rename.live .rn-l1{opacity:1;color:var(--ink);transition:opacity .25s}
   .rename.live .rn-l2{opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s}
-  .rename.live .rn-pin .wrap{transform:translateY(min(34vw,260px));transition:transform .3s cubic-bezier(.3,1.4,.5,1)}
-  .rename.live.hit .rn-pin .wrap{transform:none}
-  .rename.live .rn-old{color:var(--ink)}
-  .rename.live .strike{transform:rotate(-3deg) scaleX(clamp(0,calc((var(--p) - .06) / .18),1))}
-  .rename.live .strike-2{transform:rotate(-3deg) scaleX(clamp(0,calc((var(--p) - .24) / .18),1))}
-  .rename.live .rn-stamp{opacity:0;transform:rotate(-14deg) scale(1.9);transition:transform .2s ease-in,opacity .15s linear}
+  .rename.live .rn-type{visibility:visible;transition:opacity .2s,transform .3s}
+  .rename.live .rn-kwame{opacity:calc(1 - var(--a));transform:translateX(calc(var(--a) * -70%))}
+  .rename.live .rn-dabie{transform:translateY(calc(var(--b) * -.8em))}
+  .rename.live .rn-bomaye{opacity:var(--c);transform:translateY(calc((1 - var(--c)) * .5em))}
+  .rename.live .rn-stamp{opacity:0;transform:rotate(-4deg) scale(.55);transition:transform .2s ease-in,opacity .15s linear}
   .rename.live .rn-caption{opacity:0;transform:translateY(10px);transition:opacity .3s,transform .3s}
 
+  /* the evolution: plain type swells and dissolves, the logo grows out of it in a red burst */
   .rename.live.hit .rn-l1{opacity:0}
-  .rename.live.hit .rn-l2{opacity:1;transform:none;transition-delay:.25s}
-  .rename.live.hit .rn-old{color:#B9BBBB}
-  .rename.live.hit .rn-stamp{opacity:1;transform:rotate(-4deg) scale(1);transition:transform .3s cubic-bezier(.3,1.7,.5,1),opacity .06s linear}
-  .rename.live.hit .rn{animation:rn-shake .38s linear .2s}
-  .rename.live.hit .rn-caption{opacity:1;transform:none;transition-delay:.45s}
+  .rename.live.hit .rn-l2{opacity:1;transform:none;transition-delay:.3s}
+  .rename.live.hit .rn-type{opacity:0;transform:scale(1.14)}
+  .rename.live.hit .rn-burst{animation:rn-burst .8s ease-out .04s}
+  .rename.live.hit .rn-stamp{opacity:1;transform:rotate(-4deg) scale(1);transition:transform .5s cubic-bezier(.3,1.7,.5,1) .06s,opacity .12s linear .06s}
+  .rename.live.hit .rn{animation:rn-shake .38s linear .18s}
+  .rename.live.hit .rn-caption{opacity:1;transform:none;transition-delay:.5s}
 }
+@keyframes rn-burst{0%{opacity:0;transform:scale(.2)}25%{opacity:1}100%{opacity:0;transform:scale(2.3)}}
 @keyframes rn-shake{0%,100%{transform:none}20%{transform:translate(-7px,3px)}40%{transform:translate(6px,-3px)}60%{transform:translate(-4px,2px)}80%{transform:translate(2px,-1px)}}
 
 /* ---------- the project ---------- */

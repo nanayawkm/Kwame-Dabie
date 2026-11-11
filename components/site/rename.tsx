@@ -3,10 +3,12 @@
 import { useEffect, useRef } from "react"
 import { buzz, reducedMotion } from "@/lib/client"
 
+const seg = (p: number, a: number, b: number) => Math.min(1, Math.max(0, (p - a) / (b - a)))
+
 /**
- * The rename, driven by the visitor's own scroll: the section holds on screen, their thumb draws the strikes
- * through KWAME DABIE, and past halfway the new logo slams in. Scrolling back rewinds it.
- * Without JS or with reduced motion it renders finished.
+ * The evolution, driven by the visitor's scroll. DABIE is in both names: the section holds on screen while
+ * KWAME falls away, DABIE moves up, BOMAYE rises under it, and past halfway the plain type evolves into the logo.
+ * Scrolling back rewinds it. Without JS or with reduced motion it renders the finished form.
  */
 export default function Rename() {
   const ref = useRef<HTMLElement>(null)
@@ -21,11 +23,13 @@ export default function Rename() {
     let hit = false
     const update = () => {
       raf = 0
-      const len = runway.offsetHeight || 1
-      const p = Math.min(1, Math.max(0, -rn.getBoundingClientRect().top / len))
+      const p = Math.min(1, Math.max(0, -rn.getBoundingClientRect().top / (runway.offsetHeight || 1)))
       rn.style.setProperty("--p", p.toFixed(3))
-      if (!hit && p >= 0.48) { hit = true; rn.classList.add("hit"); buzz(22) }
-      else if (hit && p < 0.36) { hit = false; rn.classList.remove("hit") } // rewinds, so it can be replayed
+      rn.style.setProperty("--a", seg(p, 0.06, 0.26).toFixed(3)) // KWAME leaves
+      rn.style.setProperty("--b", seg(p, 0.14, 0.32).toFixed(3)) // DABIE moves up
+      rn.style.setProperty("--c", seg(p, 0.24, 0.42).toFixed(3)) // BOMAYE rises
+      if (!hit && p >= 0.48) { hit = true; rn.classList.add("hit"); buzz([18, 40, 30]) }
+      else if (hit && p < 0.38) { hit = false; rn.classList.remove("hit") }
     }
     const onScroll = () => { if (!raf) raf = requestAnimationFrame(update) }
     update()
@@ -44,19 +48,23 @@ export default function Rename() {
         <div className="wrap">
           <p className="lbl rn-lbl">
             <span className="rn-l1" aria-hidden="true">You knew him as</span>
-            <span className="rn-l2">New name. Same fight.</span>
+            <span className="rn-l2">Evolved. Same fight.</span>
           </p>
           <h2 className="rn" id="rn-h">
-            <span className="rn-old"><span>Kwame</span><span className="strike" aria-hidden="true" /></span>
-            <span className="rn-old" style={{ marginTop: ".02em" }}><span>Dabie</span><span className="strike strike-2" aria-hidden="true" /></span>
-            <span className="sr">is now</span>
+            <span className="sr">Kwame Dabie evolved into Dabie Bomaye</span>
+            <span className="rn-type" aria-hidden="true">
+              <span className="rn-w rn-kwame">Kwame</span>
+              <span className="rn-w rn-dabie">Dabie</span>
+              <span className="rn-w rn-bomaye">Bomaye</span>
+            </span>
+            <span className="rn-burst" aria-hidden="true" />
             <span className="rn-stamp">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/media/logo.webp" alt="Dabie Bomaye" width={1100} height={999} loading="lazy" decoding="async" />
+              <img src="/media/logo.webp" alt="" width={1100} height={999} loading="lazy" decoding="async" />
             </span>
           </h2>
           <div className="rn-caption lbl">
-            <span>Formerly Kwame Dabie</span>
+            <span>Evolved from Kwame Dabie</span>
             <span>Tema, Ghana</span>
           </div>
         </div>
