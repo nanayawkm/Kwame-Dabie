@@ -1,610 +1,71 @@
-import Image from "next/image"
-import { Play } from "lucide-react"
-import { Suspense, lazy } from "react"
-import StreamingPlatforms from "@/components/streaming-platforms"
-import HeroSection from "@/components/hero-section"
-import PreSaveButton from "@/components/pre-save-button"
-import QuubeLogo from "@/components/quube-logo"
-import type { Metadata } from "next"
+import Link from "next/link"
+import Hero from "@/components/site/hero"
+import Rename from "@/components/site/rename"
+import Tracklist from "@/components/site/tracklist"
+import Trailer from "@/components/site/trailer"
+import Gallery from "@/components/site/gallery"
+import LoopVideo from "@/components/site/loop-video"
 
-// Lazy load heavy components for better performance
-const CoverFlowCarousel = lazy(() => import("@/components/cover-flow-carousel"))
-const GalleryCarousel = lazy(() => import("@/components/gallery-carousel"))
-const EPAnnouncementCarousel = lazy(() => import("@/components/ep-announcement-carousel"))
-
-// Loading component for lazy-loaded sections
-const SectionLoading = ({ height = "h-60" }: { height?: string }) => (
-  <div className={`flex items-center justify-center ${height} w-full`}>
-    <div className="animate-pulse text-gold-500">Loading...</div>
-  </div>
-)
-
-// Page-specific metadata
-export const metadata: Metadata = {
-  title: "Kwame Dabie | Official Website - Ghana's Rising Hip-Hop Star from Tema",
-  description: "Stream Kwame Dabie's latest hits WWW, Troubles & Gas. Official website of Ghana's top emerging hip-hop artist from Tema. Authentic Ghanaian trap, Afrobeats fusion. GVO - Gargantuan Vibes Only.",
-  keywords: [
-    "Kwame Dabie official website", "Kwame Dabie Ghana rapper", "Ghana hip hop artist",
-    "Tema rapper Ghana", "Ghanaian Afrobeats artist", "African hip hop star",
-    "WWW Kwame Dabie stream", "Troubles Kwame Dabie", "Gas Kwame Dabie",
-    "Ghana trap music", "Afrobeats hip hop fusion", "GVO Gargantuan Vibes Only",
-    "Ghana music artist official", "African rap artist", "West African hip hop"
-  ],
-  openGraph: {
-    title: "Kwame Dabie | Ghana's Rising Hip-Hop Star - Official Website",
-    description: "🎵 Stream WWW, Troubles & Gas 🇬🇭 Ghana's hottest hip-hop artist 🔥 Official music, bio & latest releases",
-    url: "https://kwamedabie.com",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Kwame Dabie - Ghana's Rising Hip-Hop Star from Tema"
-      }
-    ]
-  },
-  twitter: {
-    title: "Kwame Dabie | Ghana's Rising Hip-Hop Star",
-    description: "🎵 Stream WWW, Troubles & Gas 🇬🇭 Ghana's hottest hip-hop artist 🔥 GVO - Gargantuan Vibes Only"
-  }
-}
-
+/** The homepage has one job: get people to stream the tape. */
 export default function Home() {
   return (
-    <div className="min-h-screen bg-black text-white">
-      {/* Enhanced SEO content for better "Kwame Dabie" rankings */}
-      <div className="sr-only">
-        <h1>Kwame Dabie - Official Website | Ghana's Premier Hip-Hop Artist</h1>
-        <p>
-          <strong>Kwame Dabie</strong> is Ghana's rising hip-hop star and one of Africa's most promising rap artists from Tema, Ghana. 
-          Known for his unique blend of <em>Ghanaian trap music, Afrobeats fusion, and authentic African hip-hop</em> with lyrics in 
-          English, Twi, and Pidgin-English. Kwame Dabie (GVO - Gargantuan Vibes Only) is revolutionizing the Ghana music scene with 
-          his distinctive sound and authentic storytelling. Stream Kwame Dabie's latest tracks "WWW", "Troubles" and "Gas" on all 
-          major streaming platforms. Official Kwame Dabie music, biography, news, tour dates, and exclusive content.
-        </p>
-        
-        <h2>About Kwame Dabie - Ghana Hip-Hop Artist</h2>
-        <p>
-          <strong>Kwame Dabie</strong> is a talented Ghanaian hip-hop artist and rapper from <strong>Tema, Ghana</strong>, 
-          representing the new generation of African hip-hop. His music seamlessly blends traditional Ghanaian influences 
-          with modern trap beats and Afrobeats elements, creating a unique sound that resonates across Africa and beyond. 
-          Known for his authentic narratives touching on ambition, societal issues, and everyday experiences, Kwame Dabie 
-          delivers raw energy and lyrical finesse in <em>English, Twi, and Pidgin-English</em>.
-        </p>
-        
-        <h2>Kwame Dabie Latest Music & Discography</h2>
-        <p>
-          Stream <strong>Kwame Dabie's hit singles</strong> including his latest release "WWW" (2025), "Troubles" (February 2025), 
-          and the popular "Gas" (2024) featuring collaborations with top Ghanaian artists. Kwame Dabie has released four rap EPs, 
-          establishing himself as one of Ghana's most consistent and innovative hip-hop artists. His music showcases the evolution 
-          of Ghanaian trap music and Afrobeats fusion, making him a standout figure in the African music scene. 
-          Find all Kwame Dabie songs, music videos, streaming links, and exclusive content on his official website.
-        </p>
-        
-        <h2>Kwame Dabie - GVO (Gargantuan Vibes Only)</h2>
-        <p>
-          GVO (Gargantuan Vibes Only) represents Kwame Dabie's brand and musical philosophy of delivering exceptional, 
-          larger-than-life musical experiences. Based in Tema, Ghana, GVO embodies the spirit of contemporary African hip-hop 
-          while staying true to Ghanaian roots. Kwame Dabie continues to build his legacy as a premier Ghana rap artist, 
-          with aspirations to dominate charts across Africa and establish Ghana on the global hip-hop map.
-        </p>
-        
-        <h2>Stream Kwame Dabie Music</h2>
-        <p>
-          Listen to Kwame Dabie on Spotify, Apple Music, YouTube Music, Audiomack, Boomplay, and all major streaming platforms. 
-          Follow @kwamedabie on Instagram, Twitter, TikTok, and YouTube for the latest updates, behind-the-scenes content, 
-          and new release announcements. Experience authentic Ghanaian hip-hop, African trap music, and Afrobeats fusion 
-          from one of Ghana's most promising rap talents.
-        </p>
-      </div>
+    <>
+      <Hero />
+      <Rename />
 
-      {/* Main Content */}
-      <main>
-        {/* Hero Section */}
-        <section aria-label="Hero Section">
-          <HeroSection />
-        </section>
-
-        {/* EP Announcement Section */}
-        <section id="ep-announcement" className="w-full bg-gradient-to-b from-black via-green-900/10 to-black py-8 sm:py-12 md:py-16 lg:py-20 border-t border-green-900/30" aria-label="TƐ! Single Announcement">
-          <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              {/* Section Header */}
-              <div className="text-center mb-8 sm:mb-10 md:mb-16 reveal">
-                <div className="inline-block bg-gold-500/10 border border-gold-500/30 rounded-full px-4 sm:px-6 md:px-8 py-2 sm:py-3 mb-4 sm:mb-6">
-                  <span className="text-gold-500 text-sm sm:text-base md:text-lg font-bold uppercase tracking-wider">New Single Alert</span>
-                </div>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading text-gold-500 section-heading mb-4 sm:mb-6 text-graffiti px-2">
-                  TƐ!
-                </h2>
-              </div>
-
-              {/* EP Carousel */}
-              <div className="mb-8 sm:mb-12 md:mb-16 reveal delay-200">
-                <Suspense fallback={<SectionLoading height="h-80" />}>
-                  <EPAnnouncementCarousel />
-                </Suspense>
-              </div>
-
-              {/* Pre-Save Now Call to Action */}
-              <div className="text-center reveal delay-400">
-                <div className="max-w-2xl mx-auto px-4">
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-heading text-white mb-4 sm:mb-6">
-                    Be the first to experience the evolution
-                  </h3>
-                  
-                  <a
-                    href="https://tiememusicdistro.lnk.to/tkV7gI"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group inline-block w-full sm:w-auto"
-                  >
-                    <button className="relative w-full sm:w-auto bg-gradient-to-r from-gold-500 via-yellow-500 to-gold-500 hover:from-yellow-400 hover:via-gold-500 hover:to-yellow-400 text-black font-bold py-4 px-8 sm:py-5 sm:px-12 md:py-6 md:px-16 rounded-full text-xl sm:text-2xl md:text-3xl lg:text-4xl uppercase tracking-wider transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-[0_0_40px_rgba(212,175,55,0.6)] border-2 border-gold-400 touch-manipulation" style={{animation: 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite'}}>
-                      {/* Ping effect */}
-                      <span className="absolute -inset-3 bg-gold-400 rounded-full opacity-30 -z-10" style={{animation: 'ping 4s cubic-bezier(0, 0, 0.2, 1) infinite'}}></span>
-                      
-                      
-                      <span className="relative z-10">
-                        LISTEN NOW
-                      </span>
-                    </button>
-                  </a>
-                  
-                  <p className="text-gray-400 text-sm md:text-base mt-4">
-                    Available on all major streaming platforms
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Streaming Platforms Section */}
-        <section id="streaming-platforms" className="w-full bg-black py-6 sm:py-8 border-t border-b border-green-900/30" aria-label="Streaming Platforms">
-          <div className="container mx-auto px-4">
-            <StreamingPlatforms />
-          </div>
-        </section>
-
-        {/* Music Section */}
-        <section id="music" className="w-full bg-black py-8 sm:py-12 md:py-16" aria-label="Music">
-          <div className="container mx-auto px-4">
-            {/* Latest Music Section */}
-            <article className="mb-12 sm:mb-16">
-              <div className="flex flex-col md:flex-row items-center md:items-start justify-between mb-6 sm:mb-8 reveal">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading text-gold-500 section-heading relative after:content-[''] after:absolute after:w-12 after:h-1 after:bg-gold-500 after:-bottom-3 after:left-0 md:after:left-1/2 md:after:-translate-x-1/2 mb-6 md:mb-0">
-                  LATEST MUSIC
-                </h2>
-              </div>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
-                {/* Guantanamo Bay Freestyle Card - Latest Release */}
-                <a
-                  href="https://fanlink.tv/guantanamobayfreestyle"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative overflow-hidden rounded-xl bg-black/50 border border-green-900/30 hover:border-gold-500/50 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.2)] touch-manipulation"
-                  aria-label="Listen to Guantanamo Bay Freestyle by Kwame Dabie"
-                >
-                  <div className="aspect-square relative">
-                    <Image
-                      src="/images/GUANTANAMO_BAY_FREESTYLE_COVER.jpg"
-                      alt="Guantanamo Bay Freestyle by Kwame Dabie - Latest Single"
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      className="object-contain transition-transform duration-500 group-hover:scale-105"
-                      priority
-                      quality={90}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <button className="bg-gold-500 text-black rounded-full p-3 sm:p-4 transform scale-0 group-hover:scale-100 transition-transform duration-300 hover:bg-gold-400" aria-label="Play Guantanamo Bay Freestyle">
-                        <Play className="w-6 h-6 sm:w-8 sm:h-8" />
-                      </button>
-                    </div>
-                  </div>
-                  <div className="p-4 sm:p-6">
-                    <h3 className="text-lg sm:text-xl font-bold text-gold-500 mb-2">Guantanamo Bay Freestyle</h3>
-                    <p className="text-gold-400 text-sm sm:text-base">Latest single</p>
-                  </div>
-                </a>
-
-                {/* TƐ! Card - Latest Release */}
-                <a
-                  href="https://tiememusicdistro.lnk.to/tkV7gI"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative overflow-hidden rounded-xl bg-black/50 border border-green-900/30 hover:border-gold-500/50 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.2)] touch-manipulation"
-                  aria-label="Pre-save TƐ! by Kwame Dabie"
-                >
-                  <div className="aspect-square relative">
-                    <Image 
-                      src="/images/upcoming/dabie_t3_cover.jpg" 
-                      alt="TƐ! - Latest Single by Kwame Dabie" 
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      className="object-contain transition-transform duration-500 group-hover:scale-105"
-                      priority
-                      quality={90}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <button className="bg-gold-500 text-black rounded-full p-3 sm:p-4 transform scale-0 group-hover:scale-100 transition-transform duration-300 hover:bg-gold-400" aria-label="Pre-save TƐ!">
-                        <Play className="w-6 h-6 sm:w-8 sm:h-8" />
-                      </button>
-                    </div>
-                  </div>
-                  <div className="p-4 sm:p-6">
-                    <h3 className="text-lg sm:text-xl font-bold text-gold-500 mb-2">TƐ!</h3>
-                    <p className="text-gold-400 text-sm sm:text-base">Coming soon</p>
-                  </div>
-                </a>
-
-                {/* WWW Card - Latest Release */}
-                <a
-                  href="https://fanlink.tv/WWW-KwameDabie"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative overflow-hidden rounded-xl bg-black/50 border border-green-900/30 hover:border-gold-500/50 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.2)] touch-manipulation"
-                  aria-label="Listen to WWW by Kwame Dabie"
-                >
-                  <div className="aspect-square relative">
-                    <Image 
-                      src="/images/upcoming/WWW - cover.JPG" 
-                      alt="WWW - Latest Single by Kwame Dabie" 
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      className="object-contain transition-transform duration-500 group-hover:scale-105"
-                      priority
-                      quality={90}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <button className="bg-gold-500 text-black rounded-full p-3 sm:p-4 transform scale-0 group-hover:scale-100 transition-transform duration-300 hover:bg-gold-400" aria-label="Play WWW">
-                        <Play className="w-6 h-6 sm:w-8 sm:h-8" />
-                      </button>
-                    </div>
-                  </div>
-                  <div className="p-4 sm:p-6">
-                    <h3 className="text-lg sm:text-xl font-bold text-gold-500 mb-2">WWW</h3>
-                    <p className="text-gold-400 text-sm sm:text-base">Latest single</p>
-                  </div>
-                </a>
-
-                <a 
-                  href="https://fanlink.tv/kwamedabie-troubles"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative overflow-hidden rounded-xl bg-black/50 border border-green-900/30 hover:border-gold-500/50 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.2)] touch-manipulation"
-                  aria-label="Listen to Troubles by Kwame Dabie"
-                >
-                  <div className="aspect-square relative">
-                    <Image
-                      src="/images/musicc/Troubles Cover.JPG"
-                      alt="Troubles by Kwame Dabie - Latest Single"
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      className="object-contain transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
-                      quality={90}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <button className="bg-gold-500 text-black rounded-full p-3 sm:p-4 transform scale-0 group-hover:scale-100 transition-transform duration-300 hover:bg-gold-400" aria-label="Play Troubles">
-                        <Play className="w-6 h-6 sm:w-8 sm:h-8" />
-                      </button>
-                    </div>
-                  </div>
-                  <div className="p-4 sm:p-6">
-                    <h3 className="text-lg sm:text-xl font-bold text-gold-500 mb-2">Troubles</h3>
-                  </div>
-                </a>
-
-                <a 
-                  href="https://fanlink.tv/gas-kwamedabie-joey"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative overflow-hidden rounded-xl bg-black/50 border border-green-900/30 hover:border-gold-500/50 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.2)] touch-manipulation"
-                  aria-label="Listen to Gas by Kwame Dabie"
-                >
-                  <div className="aspect-square relative">
-                    <Image
-                      src="/images/musicc/Gas - Cover.JPG"
-                      alt="Gas by Kwame Dabie - Hip-Hop Single"
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      className="object-contain transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
-                      quality={90}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <button className="bg-gold-500 text-black rounded-full p-3 sm:p-4 transform scale-0 group-hover:scale-100 transition-transform duration-300 hover:bg-gold-400" aria-label="Play Gas">
-                        <Play className="w-6 h-6 sm:w-8 sm:h-8" />
-                      </button>
-                    </div>
-                  </div>
-                  <div className="p-4 sm:p-6">
-                    <h3 className="text-lg sm:text-xl font-bold text-gold-500 mb-2">Gas</h3>
-                  </div>
-                </a>
-
-                {/* More Music Card */}
-                <a
-                  href="https://linktr.ee/kwamedabie"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative overflow-hidden rounded-xl bg-black/50 border border-green-900/30 hover:border-gold-500/50 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.2)] touch-manipulation flex flex-col items-center justify-center"
-                  aria-label="Discover more music by Kwame Dabie"
-                >
-                  <div className="flex flex-col items-center justify-center h-full p-8">
-                    <div className="relative w-24 h-24 mb-4">
-                      <Image
-                        src="/images/gallery/GVO png .png"
-                        alt="GVO - Gargantuan Vibes Only Logo"
-                        fill
-                        className="object-contain"
-                        loading="lazy"
-                        quality={90}
-                      />
-                    </div>
-                    <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-gold-500 transition-colors duration-300">More Music</h3>
-                    <p className="text-gray-400 text-center">Discover all releases, singles, and more!</p>
-                  </div>
-                </a>
-              </div>
-            </article>
-
-            {/* Albums and EPs Section */}
-            <article className="reveal">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading text-gold-500 section-heading relative after:content-[''] after:absolute after:w-12 after:h-1 after:bg-gold-500 after:-bottom-3 after:left-0 md:after:left-1/2 md:after:-translate-x-1/2 mb-6 sm:mb-8 text-center reveal-bottom">
-                ALBUMS & EPs
-              </h2>
-              <div className="max-w-5xl mx-auto px-4 sm:px-0 reveal-bottom delay-200">
-                <Suspense fallback={<SectionLoading height="h-96" />}>
-                  <CoverFlowCarousel />
-                </Suspense>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        {/* About Section */}
-        <section id="about" className="w-full bg-black py-8 sm:py-12 md:py-16" aria-label="About Kwame Dabie">
-          <div className="container mx-auto px-4">
-            <article className="flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-12">
-              <div className="lg:w-1/2 reveal-left">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading text-gold-500 section-heading relative after:content-[''] after:absolute after:w-12 after:h-1 after:bg-gold-500 after:-bottom-3 after:left-0 mb-6 sm:mb-8">
-                  ABOUT KWAME DABIE
-                </h2>
-                <div className="space-y-3 sm:space-y-4 text-gray-300 font-main text-sm sm:text-base">
-                  <p>
-                    <strong>Kwame Dabie</strong> is an emerging powerhouse in Ghana's hip-hop landscape, representing <strong>Tema</strong> with a distinctive blend of raw energy and lyrical finesse. His music seamlessly weaves <em>English, Twi, and Pidgin-English</em>, delivering authentic narratives that touch on ambition, societal tensions, and everyday humor—all grounded in truth.
-                  </p>
-                  <p>
-                    With a signature sound rooted in <strong>trap</strong>, Dabie's style is melodic and wavy—bold yet healing, 
-                    smooth yet impactful. He's already released <strong>four rap EPs</strong>, each adding depth and range to his 
-                    growing discography.
-                  </p>
-                  <p>
-                    Following the success of <em>"Gas"</em> in 2024, his most recent single, <em>"Troubles,"</em> dropped in February 
-                    2025, reinforcing his momentum and proving his consistency in the <strong>Ghanaian music scene</strong>.
-                  </p>
-                  <p>
-                    <strong>Kwame Dabie</strong> isn't just making music—he's building a legacy. With aspirations to dominate 
-                    charts across Africa and beyond, he continues to deliver what he proudly calls <em>"gargantuan 
-                    vibes"</em>—music that resonates, sticks, and speaks volumes.
-                  </p>
-                </div>
-              </div>
-              <div className="lg:w-1/2 relative reveal-right delay-300">
-                <div className="relative aspect-[4/3] rounded-xl overflow-hidden">
-                  <Image
-                    src="/images/albums/about kwame.jpg"
-                    alt="Kwame Dabie - Ghanaian Hip-Hop Artist performing live"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    loading="lazy"
-                    quality={85}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                </div>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        {/* Gallery Section */}
-        <section id="gallery" className="w-full bg-gradient-to-b from-black to-green-900/30 py-8 sm:py-12 md:py-16" aria-label="Gallery">
-          <div className="container mx-auto px-4">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading text-gold-500 section-heading relative after:content-[''] after:absolute after:w-12 after:h-1 after:bg-gold-500 after:-bottom-3 after:left-0 md:after:left-1/2 md:after:-translate-x-1/2 mb-8 sm:mb-12 text-center reveal">
-              GALLERY
+      <section className="project" id="project" data-tone="light" aria-labelledby="pj-h">
+        <div className="wrap project-grid">
+          <div>
+            <p className="lbl" style={{ margin: 0, color: "var(--blood-ink)" }}>The project</p>
+            <h2 className="thesis" id="pj-h">
+              <span className="thesis-lead">Dabie Bomaye is</span> a tape about one thing: <span className="red">the fight.</span>
             </h2>
-            <div className="max-w-5xl mx-auto px-4 sm:px-0 reveal delay-300">
-              <Suspense fallback={<SectionLoading height="h-96" />}>
-                <GalleryCarousel />
-              </Suspense>
+            <div className="prose">
+              <p>Self-titled because it is him: a hip hop artist from Tema, Ghana, going hard, never giving up and chasing whatever he is aiming for.</p>
+              <p>Ten tracks. One mission. From the opening cut, where life shows you that in the end it is just you and your God, to the closing track, <span className="tn">Asylum</span>, where the madness of the road catches up with you, the project follows a man on the move: no crying, no complaining, only getting up and going again.</p>
+              <p>It runs through repetition and obsession (<span className="tn">O&amp;O</span>, <span className="tn">Addict</span>), the journey from Tema to the capital in search of capital, and the hunger for money by any route. <strong>The more you repeat something, the more dangerous you become at it.</strong></p>
             </div>
           </div>
-        </section>
-
-        {/* Social Media Section */}
-        <section className="w-full bg-green-900/30 py-8 sm:py-12 md:py-16" aria-label="Social Media">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading text-gold-500 mb-6 sm:mb-8 text-graffiti reveal">CONNECT WITH KWAME DABIE</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto">
-              <a 
-                href="https://www.instagram.com/kwamedabie" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="bg-black/50 rounded-lg overflow-hidden group transform transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.3)] border border-green-900/30 hover:border-gold-500 p-6 flex flex-col items-center reveal delay-100"
-                aria-label="Follow Kwame Dabie on Instagram"
-              >
-                <svg className="w-12 h-12 text-gold-500 group-hover:text-white mb-4 transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9s.68.82.9 1.38c.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38s-.82.68-1.38.9c-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9s-.68-.82-.9-1.38c-.16-.43-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38s.82-.68 1.38-.9c.43-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07zm0-2.16c-3.26 0-3.67.01-4.95.07-1.28.06-2.15.26-2.91.56-.79.3-1.46.71-2.13 1.38-.67.67-1.08 1.34-1.38 2.13-.3.76-.5 1.63-.56 2.91-.06 1.28-.07 1.69-.07 4.95s.01 3.67.07 4.95c.06 1.28.26 2.15.56 2.91.3.79.71 1.46 1.38 2.13.67.67 1.34 1.08 2.13 1.38.76.3 1.63.5 2.91.56 1.28.06 1.69.07 4.95.07s3.67-.01 4.95-.07c1.28-.06 2.15-.26 2.91-.56.79-.3 1.46-.71 2.13-1.38.67-.67 1.08-1.34 1.38-2.13.3-.76.5-1.63.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.28-.26-2.15-.56-2.91-.3-.79-.71-1.46-1.38-2.13-.67-.67-1.34-1.08-2.13-1.38-.76-.3-1.63-.5-2.91-.56-1.28-.06-1.69-.07-4.95-.07zm0 5.84c-3.4 0-6.16 2.76-6.16 6.16s2.76 6.16 6.16 6.16 6.16-2.76 6.16-6.16-2.76-6.16-6.16-6.16zm0 10.15c-2.2 0-3.99-1.79-3.99-3.99s1.79-3.99 3.99-3.99 3.99 1.79 3.99 3.99-1.79 3.99-3.99 3.99zm7.85-10.4c0-.8-.65-1.44-1.44-1.44s-1.44.65-1.44 1.44.65 1.44 1.44 1.44 1.44-.65 1.44-1.44z"/>
-                </svg>
-                <h3 className="text-gold-500 group-hover:text-white text-xl font-bold mb-2 transition-colors duration-300">Instagram</h3>
-                <p className="text-gray-400 text-sm">@kwamedabie</p>
-              </a>
-              
-              <a 
-                href="https://www.tiktok.com/@kwamedabie" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="bg-black/50 rounded-lg overflow-hidden group transform transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.3)] border border-green-900/30 hover:border-gold-500 p-6 flex flex-col items-center reveal delay-200"
-                aria-label="Follow Kwame Dabie on TikTok"
-              >
-                <svg className="w-12 h-12 text-gold-500 group-hover:text-white mb-4 transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
-                </svg>
-                <h3 className="text-gold-500 group-hover:text-white text-xl font-bold mb-2 transition-colors duration-300">TikTok</h3>
-                <p className="text-gray-400 text-sm">@kwamedabie</p>
-              </a>
-              
-              <a 
-                href="https://www.twitter.com/kwamedabie" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="bg-black/50 rounded-lg overflow-hidden group transform transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.3)] border border-green-900/30 hover:border-gold-500 p-6 flex flex-col items-center reveal delay-300"
-                aria-label="Follow Kwame Dabie on Twitter"
-              >
-                <svg className="w-12 h-12 text-gold-500 group-hover:text-white mb-4 transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-                </svg>
-                <h3 className="text-gold-500 group-hover:text-white text-xl font-bold mb-2 transition-colors duration-300">Twitter</h3>
-                <p className="text-gray-400 text-sm">@kwamedabie</p>
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* Additional structured content for SEO */}
-        <section className="sr-only" itemScope itemType="https://schema.org/Person">
-          <h2 itemProp="name">Kwame Dabie</h2>
-          <p itemProp="description">
-            Kwame Dabie is a talented Ghanaian hip-hop artist and rapper from Tema, Ghana. 
-            Known professionally as Kwame Dabie and associated with GVO (Gargantuan Vibes Only), 
-            he has established himself in the Ghana hip-hop scene with his distinctive musical style.
-          </p>
-          <span itemProp="jobTitle">Hip-Hop Artist & Rapper</span>
-          <span itemProp="nationality">Ghanaian</span>
-          <div itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
-            <span itemProp="addressLocality">Tema</span>
-            <span itemProp="addressCountry">Ghana</span>
-          </div>
-          <a itemProp="url" href="https://kwamedabie.com">Official Website</a>
-        </section>
-      </main>
-
-      {/* Footer */}
-      <footer className="w-full bg-black py-8 sm:py-12 border-t border-green-900/30 font-main">
-        <div className="px-4 sm:px-6 md:px-8 lg:px-16">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12">
-            <div>
-              <div className="relative h-16 sm:h-20 w-64 sm:w-80 mb-6 sm:mb-8">
-                <Image
-                  src="/images/gallery/Dabie Logo png White.PNG"
-                  alt="Kwame Dabie Logo"
-                  fill
-                  className="object-contain object-left"
-                />
-              </div>
-              <p className="text-gold-500 mb-4 text-sm sm:text-base">Gargantuan Vibes Only</p>
-              <div className="flex space-x-4">
-                <a href="https://www.facebook.com/kwamefuccindabie" target="_blank" rel="noopener noreferrer" className="text-gold-500 hover:text-white transition-colors duration-300">
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      fillRule="evenodd"
-                      d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </a>
-                <a href="https://www.twitter.com/kwamedabie" target="_blank" rel="noopener noreferrer" className="text-gold-500 hover:text-white transition-colors duration-300">
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-                  </svg>
-                </a>
-                <a href="https://www.instagram.com/kwamedabie" target="_blank" rel="noopener noreferrer" className="text-gold-500 hover:text-white transition-colors duration-300">
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9s.68.82.9 1.38c.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38s-.82.68-1.38.9c-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9s-.68-.82-.9-1.38c-.16-.43-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38s.82-.68 1.38-.9c.43-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07zm0-2.16c-3.26 0-3.67.01-4.95.07-1.28.06-2.15.26-2.91.56-.79.3-1.46.71-2.13 1.38-.67.67-1.08 1.34-1.38 2.13-.3.76-.5 1.63-.56 2.91-.06 1.28-.07 1.69-.07 4.95s.01 3.67.07 4.95c.06 1.28.26 2.15.56 2.91.3.79.71 1.46 1.38 2.13.67.67 1.34 1.08 2.13 1.38.76.3 1.63.5 2.91.56 1.28.06 1.69.07 4.95.07s3.67-.01 4.95-.07c1.28-.06 2.15-.26 2.91-.56.79-.3 1.46-.71 2.13-1.38.67-.67 1.08-1.34 1.38-2.13.3-.76.5-1.63.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.28-.26-2.15-.56-2.91-.3-.79-.71-1.46-1.38-2.13-.67-.67-1.34-1.08-2.13-1.38-.76-.3-1.63-.5-2.91-.56-1.28-.06-1.69-.07-4.95-.07zm0 5.84c-3.4 0-6.16 2.76-6.16 6.16s2.76 6.16 6.16 6.16 6.16-2.76 6.16-6.16-2.76-6.16-6.16-6.16zm0 10.15c-2.2 0-3.99-1.79-3.99-3.99s1.79-3.99 3.99-3.99 3.99 1.79 3.99 3.99-1.79 3.99-3.99 3.99zm7.85-10.4c0-.8-.65-1.44-1.44-1.44s-1.44.65-1.44 1.44.65 1.44 1.44 1.44 1.44-.65 1.44-1.44z"/>
-                  </svg>
-                </a>
-                <a href="https://www.youtube.com/@kwamedabie" target="_blank" rel="noopener noreferrer" className="text-gold-500 hover:text-white transition-colors duration-300">
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      fillRule="evenodd"
-                      d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.417-4.814a2.507 2.507 0 0 1 1.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-bold mb-4 text-gold-500">QUICK LINKS</h3>
-              <ul className="space-y-2">
-                <li>
-                  <a href="/#" className="text-gold-500 hover:text-white transition-colors duration-300">
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a href="/#about" className="text-gold-500 hover:text-white transition-colors duration-300">
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a href="/#music" className="text-gold-500 hover:text-white transition-colors duration-300">
-                    Music
-                  </a>
-                </li>
-                <li>
-                  <a href="/#gallery" className="text-gold-500 hover:text-white transition-colors duration-300">
-                    Gallery
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-bold mb-4 text-gold-500">CONTACT</h3>
-              <ul className="space-y-2">
-                <li className="text-gold-500 hover:text-white transition-colors duration-300">
-                  <a href="mailto:dabietunes@gmail.com">dabietunes@gmail.com</a>
-                </li>
-                <li className="text-gold-500 hover:text-white transition-colors duration-300">
-                  <a href="mailto:connect.gvo@gmail.com">connect.gvo@gmail.com</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-green-900/30 pt-6 sm:pt-8 text-center">
-            <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-              <p className="text-gold-500 text-xs sm:text-sm">© 2025 Kwame Dabie. All rights reserved.</p>
-              <a 
-                href="https://quube.tech" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="flex items-center gap-2 hover:opacity-80 transition-opacity"
-              >
-                <span className="text-gold-500 text-xs sm:text-sm">Designed and Developed by Quube</span>
-                <Image
-                  src="/images/musicc/Quube_logo_new.PNG"
-                  alt="Quube Logo"
-                  width={40}
-                  height={40}
-                  className="object-contain"
-                />
-              </a>
-            </div>
+          <div>
+            <figure className="cover" style={{ margin: 0 }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/media/cover.jpg" alt="Dabie Bomaye cover art: Dabie crouched on stone steps in black, four masked figures behind him, a GVO flag at the top right" width={1000} height={1000} loading="lazy" decoding="async" />
+              <figcaption className="lbl">Cover art</figcaption>
+            </figure>
+            <dl className="spec">
+              <dt className="lbl">Format</dt><dd>10-track tape</dd>
+              <dt className="lbl">Release</dt><dd>12 Nov 2026</dd>
+              <dt className="lbl">Singles</dt><dd>Roadman 2 &nbsp;/&nbsp; Addict</dd>
+              <dt className="lbl">Mix &amp; master</dt><dd>JoeyOnTheTrack &amp; Spotless</dd>
+              <dt className="lbl">Label</dt><dd>© 2026 GVO</dd>
+            </dl>
           </div>
         </div>
-      </footer>
-    </div>
+      </section>
+
+      <section className="descent" data-tone="light" aria-label="Quote">
+        <div className="wrap">
+          <blockquote>The more you repeat something, the more dangerous you become at it.</blockquote>
+          <cite className="lbl" style={{ color: "var(--blood-ink)" }}>Dabie Bomaye</cite>
+        </div>
+      </section>
+
+      <Tracklist />
+      <Trailer />
+      <Gallery />
+
+      {/* The archive is its own page; the homepage gets one strip. */}
+      <section className="vault dark" data-tone="dark" aria-labelledby="vt-h">
+        <Link className="vault-link" href="/archive">
+          <span className="vault-media"><LoopVideo /></span>
+          <span className="vault-copy wrap">
+            <span className="lbl red">Before Bomaye</span>
+            <span className="vault-h" id="vt-h">The Kwame<br />Dabie era</span>
+            <span className="vault-d">The Gas visuals, five projects and five singles from the old name.</span>
+            <span className="vault-go">Enter the archive →</span>
+          </span>
+        </Link>
+      </section>
+    </>
   )
 }
-
