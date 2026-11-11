@@ -71,7 +71,7 @@ const structuredData = {
       image: `${SITE}/media/hero.jpg`,
       logo: `${SITE}/media/logo.webp`,
       foundingLocation: { "@type": "Place", name: "Tema, Ghana" },
-      sameAs: [LINKS.instagram, LINKS.x, LINKS.tiktok, LINKS.youtube],
+      sameAs: [LINKS.spotify, LINKS.instagram, LINKS.x, LINKS.tiktok, LINKS.youtube],
       recordLabel: { "@type": "Organization", name: "GVO", alternateName: "Gargantuan Vibes Only" },
       album: {
         "@type": "MusicAlbum",

@@ -12,6 +12,7 @@ export const LINKS = {
   x: "https://x.com/dabiebomaye",
   tiktok: "https://www.tiktok.com/@dabiebomaye",
   youtube: "https://www.youtube.com/@DabieBomaye",
+  spotify: "https://open.spotify.com/artist/6blCu4zz2JMXCoc2692gti",
   quube: "https://quube.tech",
 }
 
@@ -107,6 +108,7 @@ export const STREAM_PLATFORMS = [
 ] as const
 
 export const FOLLOW = [
+  { icon: "spotify", name: "Spotify", handle: "Dabie Bomaye", href: LINKS.spotify },
   { icon: "instagram", name: "Instagram", handle: "@dabiebomaye", href: LINKS.instagram },
   { icon: "x", name: "X", handle: "@dabiebomaye", href: LINKS.x },
   { icon: "tiktok", name: "TikTok", handle: "@dabiebomaye", href: LINKS.tiktok },
