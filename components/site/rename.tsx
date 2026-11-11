@@ -1,15 +1,12 @@
 "use client"
 
-import { useEffect, useRef, type CSSProperties } from "react"
+import { useEffect, useRef } from "react"
 import { reducedMotion } from "@/lib/client"
-
-// how each letter of KWAME tumbles as it falls away
-const FALL = [-14, 9, -6, 12, -10]
 
 /**
  * The evolution, as a short loop (pure CSS, see "rename" in globals.css). DABIE is in both names:
- * KWAME is shed letter by letter, DABIE moves up, BOMAYE rises, then a red blade cuts across and the
- * plain type becomes the logo, which holds before the loop restarts.
+ * KWAME DABIE builds in, KWAME burns away behind an ember edge, DABIE moves up, BOMAYE rises, then a red
+ * blade cuts across and the plain type becomes the logo, which holds before the loop restarts.
  * It starts from the top the first time it comes into view and pauses off screen.
  * Without JS or with reduced motion it shows the logo.
  */
@@ -35,11 +32,8 @@ export default function Rename() {
         <h2 className="rn" id="rn-h">
           <span className="sr">Kwame Dabie evolved into Dabie Bomaye</span>
           <span className="rn-type" aria-hidden="true">
-            <span className="rn-w rn-kwame">
-              {"Kwame".split("").map((c, i) => (
-                <span key={i} style={{ "--i": i, "--r": `${FALL[i]}deg` } as CSSProperties}>{c}</span>
-              ))}
-            </span>
+            <span className="rn-w rn-kwame">Kwame</span>
+            <span className="rn-w rn-ember">Kwame</span>
             <span className="rn-w rn-dabie">Dabie</span>
             <span className="rn-w rn-bomaye">Bomaye</span>
           </span>

@@ -128,7 +128,7 @@ html.seen #loader{display:none}
   .logo-btn{margin:0 0 18px;width:min(32vw,460px)}
 }
 
-/* ---------- rename: the evolution loop. KWAME is shed, DABIE survives, a red blade cuts the plain type into the logo ---------- */
+/* ---------- rename: the evolution loop. KWAME burns away, DABIE survives, a red blade cuts the plain type into the logo ---------- */
 .rename{overflow:hidden;padding-block:clamp(72px,16vw,160px) clamp(56px,12vw,120px)}
 .rn-lbl{margin:0;color:var(--blood-ink)}
 .rn{position:relative;display:grid;align-items:center;margin:18px 0 0;font-family:var(--display);font-weight:800;text-transform:uppercase;
@@ -136,48 +136,55 @@ html.seen #loader{display:none}
 .rn > *{grid-area:1/1}
 .rn-type{position:relative;height:1.6em;visibility:hidden}
 .rn-w{position:absolute;left:0;right:0;top:0;text-align:center;white-space:nowrap}
-.rn-kwame > span{display:inline-block}
 .rn-dabie,.rn-bomaye{top:.8em}
 .rn-bomaye{color:var(--blood)}
+.rn-ember{opacity:0;color:#FF4A1C;text-shadow:0 0 .03em #FF8A3D}
 .rn-stamp{display:flex;justify-content:center}
 .rn-stamp img{width:min(88%,620px);height:auto;transform:rotate(-4deg)}
 .rn-blade{align-self:stretch;background:var(--blood);opacity:0;pointer-events:none}
 .rn-caption{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:28px}
 
-/* the loop: 4.8s. 0-0.8s KWAME DABIE / 0.8-1.4 KWAME shed / 1.2-1.7 DABIE up, BOMAYE in / 1.95-2.35 the blade /
-   2.35-4.3 the logo holds / 4.3-4.8 back to KWAME DABIE. Clip edges are slanted 12% so the cut runs at an angle. */
+/* The loop, 5.6s, everything in reading order:
+   0-0.6s KWAME, then DABIE, build in / to 1.2s hold / 1.2-2.0 KWAME burns away left to right behind an ember edge /
+   2.0-2.5 DABIE moves up, BOMAYE rises / 2.65-3.05 the red blade cuts the plain type into the logo /
+   3.05-4.9 the logo holds / 4.9-5.3 it fades / a breath, then again.
+   The burn: masks 2.2x the word's width slide across it (a charred edge for the ink, a hot line for the ember). */
 @media (prefers-reduced-motion:no-preference){
   .rename.armed .rn-type{visibility:visible}
-  .rename.armed .rn-bomaye{opacity:0;transform:translateY(.45em)}
-  .rename.armed .rn-stamp{clip-path:polygon(0 0,0% 0,-12% 100%,0 100%)}
-
-  .rename.play .rn-kwame > span{animation:rn-shed 4.8s cubic-bezier(.5,0,.75,0) calc(var(--i) * 45ms) infinite both}
-  .rename.play .rn-dabie{animation:rn-up 4.8s cubic-bezier(.6,0,.2,1) infinite both}
-  .rename.play .rn-bomaye{animation:rn-in 4.8s cubic-bezier(.2,.8,.2,1) infinite both}
-  .rename.play .rn-type{animation:rn-cut-out 4.8s cubic-bezier(.7,0,.3,1) infinite both}
-  .rename.play .rn-stamp{animation:rn-cut-in 4.8s cubic-bezier(.7,0,.3,1) infinite both}
-  .rename.play .rn-blade{animation:rn-blade 4.8s cubic-bezier(.7,0,.3,1) infinite both}
-  .rename.play .rn-stamp img{animation:rn-land 4.8s linear infinite both}
+  .rename.armed:not(.play) .rn-type,.rename.armed:not(.play) .rn-stamp{visibility:hidden}
+  .rename.play .rn-kwame,.rename.play .rn-ember{-webkit-mask-size:220% 100%;mask-size:220% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+  .rename.play .rn-kwame{-webkit-mask-image:url("/media/burn-ink.png");mask-image:url("/media/burn-ink.png");animation:rn-kw 5.6s linear infinite both}
+  .rename.play .rn-ember{-webkit-mask-image:url("/media/burn-ember.png");mask-image:url("/media/burn-ember.png");animation:rn-ember 5.6s linear infinite both}
+  .rename.play .rn-dabie{animation:rn-dabie 5.6s cubic-bezier(.6,0,.2,1) infinite both}
+  .rename.play .rn-bomaye{animation:rn-bomaye 5.6s cubic-bezier(.2,.8,.2,1) infinite both}
+  .rename.play .rn-type{animation:rn-cut-out 5.6s cubic-bezier(.7,0,.3,1) infinite both}
+  .rename.play .rn-stamp{animation:rn-cut-in 5.6s cubic-bezier(.7,0,.3,1) infinite both}
+  .rename.play .rn-blade{animation:rn-blade 5.6s cubic-bezier(.7,0,.3,1) infinite both}
+  .rename.play .rn-stamp img{animation:rn-land 5.6s linear infinite both}
   .rename.play.off *{animation-play-state:paused}
 }
-@keyframes rn-shed{0%,16.7%{opacity:1;transform:none}26%{opacity:0;transform:translateY(.6em) rotate(var(--r))}90%{opacity:0;transform:translateY(.6em) rotate(var(--r))}90.1%,100%{opacity:1;transform:none}}
-@keyframes rn-up{0%,25%{transform:none}33%,90%{transform:translateY(-.8em)}90.1%,100%{transform:none}}
-@keyframes rn-in{0%,27%{opacity:0;transform:translateY(.45em)}35.5%,90%{opacity:1;transform:none}90.1%,100%{opacity:0;transform:translateY(.45em)}}
-@keyframes rn-cut-out{
-  0%,40.6%{clip-path:polygon(0% 0,100% 0,100% 100%,-12% 100%);opacity:1}
-  49%,92.9%{clip-path:polygon(112% 0,100% 0,100% 100%,100% 100%);opacity:1}
-  93%{clip-path:polygon(0% 0,100% 0,100% 100%,-12% 100%);opacity:0}
-  100%{clip-path:polygon(0% 0,100% 0,100% 100%,-12% 100%);opacity:1}}
+@keyframes rn-kw{
+  0%{opacity:0;transform:translateY(-.12em);-webkit-mask-position:100% 0;mask-position:100% 0}
+  5%{opacity:1;transform:none;-webkit-mask-position:100% 0;mask-position:100% 0}
+  21.4%{-webkit-mask-position:100% 0;mask-position:100% 0;animation-timing-function:cubic-bezier(.4,0,.75,1)}
+  35.7%,100%{opacity:1;transform:none;-webkit-mask-position:0% 0;mask-position:0% 0}}
+@keyframes rn-ember{
+  0%,21.3%{opacity:0;-webkit-mask-position:100% 0;mask-position:100% 0}
+  21.4%{opacity:1;-webkit-mask-position:100% 0;mask-position:100% 0;animation-timing-function:cubic-bezier(.4,0,.75,1)}
+  35.7%{opacity:1;-webkit-mask-position:0% 0;mask-position:0% 0}
+  35.8%,100%{opacity:0;-webkit-mask-position:0% 0;mask-position:0% 0}}
+@keyframes rn-dabie{0%,5%{opacity:0;transform:translateY(.12em)}10.7%,35.7%{opacity:1;transform:none}42.9%,100%{opacity:1;transform:translateY(-.8em)}}
+@keyframes rn-bomaye{0%,38.4%{opacity:0;transform:translateY(.45em)}44.6%,100%{opacity:1;transform:none}}
+@keyframes rn-cut-out{0%,47.3%{clip-path:polygon(0% 0,100% 0,100% 100%,-12% 100%)}54.5%,100%{clip-path:polygon(112% 0,100% 0,100% 100%,100% 100%)}}
 @keyframes rn-cut-in{
-  0%,40.6%{clip-path:polygon(0 0,0% 0,-12% 100%,0 100%);opacity:1}
-  49%,89.6%{clip-path:polygon(0 0,112% 0,100% 100%,0 100%);opacity:1}
-  93%{clip-path:polygon(0 0,112% 0,100% 100%,0 100%);opacity:0}
-  93.1%,100%{clip-path:polygon(0 0,0% 0,-12% 100%,0 100%);opacity:0}}
+  0%,47.3%{clip-path:polygon(0 0,0% 0,-12% 100%,0 100%);opacity:1}
+  54.5%,87.5%{clip-path:polygon(0 0,112% 0,100% 100%,0 100%);opacity:1}
+  94.6%,100%{clip-path:polygon(0 0,112% 0,100% 100%,0 100%);opacity:0}}
 @keyframes rn-blade{
-  0%,40.6%{clip-path:polygon(-1.5% 0,0% 0,-12% 100%,-13.5% 100%);opacity:1}
-  49%{clip-path:polygon(110.5% 0,112% 0,100% 100%,98.5% 100%);opacity:1}
-  49.1%,100%{opacity:0}}
-@keyframes rn-land{0%,48%{transform:rotate(-4deg) scale(1.07)}50.5%{transform:translate(-6px,3px) rotate(-4deg)}52%{transform:translate(5px,-2px) rotate(-4deg)}53.5%{transform:translate(-2px,1px) rotate(-4deg)}55%,100%{transform:rotate(-4deg)}}
+  0%,47.3%{clip-path:polygon(-1.5% 0,0% 0,-12% 100%,-13.5% 100%);opacity:1}
+  54.5%{clip-path:polygon(110.5% 0,112% 0,100% 100%,98.5% 100%);opacity:1}
+  54.6%,100%{opacity:0}}
+@keyframes rn-land{0%,53.8%{transform:rotate(-4deg) scale(1.07)}56%{transform:translate(-6px,3px) rotate(-4deg)}57.4%{transform:translate(5px,-2px) rotate(-4deg)}58.6%{transform:translate(-2px,1px) rotate(-4deg)}59.8%,100%{transform:rotate(-4deg)}}
 
 /* ---------- the project ---------- */
 .project{padding-block:clamp(40px,10vw,110px)}
@@ -198,7 +205,7 @@ html.seen #loader{display:none}
 @media (min-width:900px){.project-grid{grid-template-columns:1.1fr .9fr;gap:72px;align-items:start}}
 
 /* ---------- descent: daylight into the dark ---------- */
-.descent{background:url("/media/grain-paper.png") 0 0/200px 200px repeat,linear-gradient(to bottom,var(--paper) 0%,var(--paper) 30%,#7a7b7b 66%,var(--ink) 100%);padding-block:clamp(56px,14vw,140px) clamp(140px,34vw,300px)}
+.descent{--pb:clamp(180px,42vw,380px);background:url("/media/grain-paper.png") 0 0/200px 200px repeat,linear-gradient(to top,var(--ink) 0,#7a7b7b calc(var(--pb) * .5),var(--paper) calc(var(--pb) + 24px));padding-block:clamp(56px,14vw,140px) var(--pb)}
 .descent blockquote{margin:0;max-width:16ch;font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:clamp(34px,9.5vw,80px);line-height:.92;text-wrap:balance}
 .descent cite{display:block;margin-top:18px;font-style:normal}
 
@@ -265,7 +272,7 @@ html.seen #loader{display:none}
 .vis{position:relative;overflow:hidden;padding-block:clamp(40px,8vw,72px) clamp(64px,12vw,120px)}
 .vis > .wrap{position:relative;z-index:1}
 /* ambient: a tiny live copy of the playing frame, blurred across the whole section (desktop) */
-.vis-amb{position:absolute;inset:-12%;width:124%;height:124%;filter:blur(60px) saturate(0) brightness(.55);opacity:0;transition:opacity 1.4s ease;pointer-events:none}
+.vis-amb{position:absolute;inset:-12%;width:124%;height:124%;filter:blur(60px) saturate(0) brightness(.3);opacity:0;transition:opacity 1.4s ease;pointer-events:none}
 .vis.amb-on .vis-amb{opacity:1}
 .vis-grid{display:grid;gap:24px}
 .vis-copy .sec-h{margin-bottom:18px}
@@ -279,7 +286,7 @@ html.seen #loader{display:none}
   .vis-side .btn{width:auto;min-width:260px}
 }
 .vis-note{max-width:40ch;margin:0;color:rgba(244,244,242,.82);font-size:17px}
-.vis-specs{display:flex;flex-wrap:wrap;gap:8px 20px;margin:16px 0 0;color:var(--ash)}
+.vis-specs{display:flex;flex-wrap:wrap;gap:8px 20px;margin:16px 0 0;color:rgba(244,244,242,.78)}
 .player{position:relative;aspect-ratio:9/16;background:#111;overflow:hidden;touch-action:manipulation;
   width:calc(100% + var(--gl) + var(--gr));max-width:none;margin-left:calc(-1 * var(--gl))}
 @media (min-width:600px){.player{width:min(100%,58svh);margin-inline:auto}}
