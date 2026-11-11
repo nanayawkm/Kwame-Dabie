@@ -1,7 +1,8 @@
 import Link from "next/link"
 import { EMAIL, FOLLOW, LINKS, STREAM_PLATFORMS } from "@/lib/content"
 import CopyButton from "./copy-button"
-import Icon, { Arrow, GvoFlag } from "./icon"
+import Icon, { Arrow } from "./icon"
+import GvoFlag from "./gvo-flag"
 
 const CHANT = Array.from({ length: 12 }, (_, i) => <span key={i}>Bomaye</span>)
 
@@ -12,7 +13,7 @@ export default function Footer() {
       <div className="ticker" aria-hidden="true"><div className="ticker-track">{CHANT}</div></div>
       <div className="wrap">
         <div className="foot-gvo">
-          <GvoFlag className="gvo-flag" light />
+          <GvoFlag className="gvo-flag gvo--light" />
           <div>
             <p className="lbl red" style={{ margin: 0 }}>The label. The crew. The flag.</p>
             <h2>Gargantuan<br />Vibes Only</h2>

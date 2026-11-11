@@ -56,21 +56,11 @@ html.seen #loader{display:none}
   padding:calc(env(safe-area-inset-top, 0px) + 12px) var(--gr) 12px var(--gl)}
 .nav > *{pointer-events:auto}
 .flag-btn{display:flex;align-items:center;gap:10px;padding:6px 6px 6px 0;min-height:48px}
-.flag-btn svg{width:58px;height:44px;overflow:visible}
-.flag-cloth{fill:var(--ink);transition:fill .3s}
-.flag-txt{fill:var(--bone);font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.06em;transition:fill .3s}
-.flag-pole{fill:var(--ink);transition:fill .3s}
-.flag-g{transform-box:fill-box;transform-origin:0 50%}
-.flag-btn:active .flag-g{animation:wave .7s ease}
-@media (hover:hover){.flag-btn:hover .flag-g{animation:wave .7s ease}}
 .flag-btn .flag-word{font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:.32em;text-transform:uppercase;transition:color .3s}
-@keyframes wave{0%,100%{transform:skewY(0) scaleX(1)}30%{transform:skewY(-5deg) scaleX(.94)}65%{transform:skewY(3deg) scaleX(1.02)}}
 .pill{display:inline-flex;align-items:center;gap:9px;min-height:40px;padding:0 14px;background:var(--ink);color:var(--bone);
   font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.22em;text-transform:uppercase;transition:background .3s,color .3s}
 .pill::before{content:"";width:7px;height:7px;background:var(--blood);border-radius:50%}
 .pill:active{background:var(--blood);color:#fff}
-.nav[data-tone="dark"] .flag-cloth,.nav[data-tone="dark"] .flag-pole{fill:var(--bone)}
-.nav[data-tone="dark"] .flag-txt{fill:var(--ink)}
 .nav[data-tone="dark"] .flag-word{color:var(--bone)}
 .nav[data-tone="dark"] .pill{background:var(--bone);color:var(--ink)}
 
@@ -410,12 +400,7 @@ html.seen #loader{display:none}
 .arc-k{color:#55585a;font-size:11px}
 
 /* ---------- GVO ---------- */
-.gvo{padding-block:clamp(64px,14vw,130px) 0;overflow:hidden}
 .gvo-flag{width:min(62vw,380px);height:auto;display:block;margin:0 0 26px}
-.gvo-flag .flag-g{animation:wave-slow 5s ease-in-out infinite}
-@keyframes wave-slow{0%,100%{transform:skewY(0) scaleX(1)}50%{transform:skewY(-2.5deg) scaleX(.97)}}
-.gvo h2{margin:8px 0 14px;font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(44px,12vw,110px);line-height:.86}
-.gvo p{max-width:48ch;margin:0;color:#3a3c3c}
 .ticker{margin-top:clamp(48px,12vw,100px);border-block:1px solid rgba(10,10,10,.2);overflow:hidden;white-space:nowrap;padding-block:10px}
 .ticker-track{display:inline-flex;animation:tick 26s linear infinite}
 .ticker span{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(48px,14vw,120px);line-height:1;padding-right:.35em}
@@ -653,3 +638,12 @@ a:focus-visible .i-arrow--left{transform:translateX(-4px) rotate(180deg)}
 /* ---------- grain: a texture in the paper and the black, like the logo's; never on top of anything ---------- */
 body,#loader{background-image:url("/media/grain-paper.png");background-size:200px 200px}
 .dark,.menu,.hero{background-image:url("/media/grain-ink.png");background-size:200px 200px}
+
+/* ---------- the GVO flag: the real one from the shoot (matte black cloth, bold GVO, thin stick, red tip) ---------- */
+.gvo{--flag-cloth:var(--ink);--flag-ink:var(--bone);--flag-pole:#2A2A2A;--fold:.26;overflow:visible}
+.gvo--light,.nav[data-tone="dark"] .gvo{--flag-cloth:var(--bone);--flag-ink:var(--ink);--flag-pole:#BDBDB9;--fold:.14}
+.gvo-cloth{fill:var(--flag-cloth);transition:fill .3s}
+.gvo-pole{fill:var(--flag-pole);transition:fill .3s}
+.gvo-tip{fill:var(--blood)}
+.gvo-t{fill:var(--flag-ink);stroke:var(--flag-ink);stroke-width:.55;paint-order:stroke;font-family:var(--body);font-weight:600;font-size:25px;letter-spacing:1.2px;transition:fill .3s,stroke .3s}
+.flag-btn .gvo{width:60px;height:46px;flex:none}

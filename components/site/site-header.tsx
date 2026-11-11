@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { LINKS } from "@/lib/content"
 import { buzz, event, useIsOut } from "@/lib/client"
+import GvoFlag from "./gvo-flag"
 
 const MENU = [
   { href: "/#project", label: "The tape" },
@@ -84,13 +85,7 @@ export default function SiteHeader() {
           aria-label={open ? "Close menu" : "Open menu"}
           onClick={() => setMenu(!open)}
         >
-          <svg viewBox="0 0 64 48" aria-hidden="true">
-            <rect className="flag-pole" x="1" y="1" width="3" height="46" />
-            <g className="flag-g">
-              <path className="flag-cloth" d="M4 3 C18 1 34 6 61 4 L58 10 L62 15 L59 21 L61 27 C42 30 24 26 4 29 Z" />
-              <text className="flag-txt" x="32" y="21" textAnchor="middle">GVO</text>
-            </g>
-          </svg>
+          <GvoFlag mode="tap" />
           <span className="flag-word">{open ? "Close" : "Menu"}</span>
         </button>
         <a className="pill" href={LINKS.tape} target="_blank" rel="noopener" onClick={() => event("stream_click", { from: "header" })}>
