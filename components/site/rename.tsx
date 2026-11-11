@@ -1,76 +1,59 @@
 "use client"
 
-import { useEffect, useRef } from "react"
-import { buzz, reducedMotion } from "@/lib/client"
+import { useEffect, useRef, type CSSProperties } from "react"
+import { reducedMotion } from "@/lib/client"
 
-const seg = (p: number, a: number, b: number) => Math.min(1, Math.max(0, (p - a) / (b - a)))
+// how each letter of KWAME tumbles as it falls away
+const FALL = [-14, 9, -6, 12, -10]
 
 /**
- * The evolution, driven by the visitor's scroll. DABIE is in both names: the section holds on screen while
- * KWAME falls away, DABIE moves up, BOMAYE rises under it, and past halfway the plain type evolves into the logo.
- * Scrolling back rewinds it. Without JS or with reduced motion it renders the finished form.
+ * The evolution, as a short loop (pure CSS, see "rename" in globals.css). DABIE is in both names:
+ * KWAME is shed letter by letter, DABIE moves up, BOMAYE rises, then a red blade cuts across and the
+ * plain type becomes the logo, which holds before the loop restarts.
+ * It starts from the top the first time it comes into view and pauses off screen.
+ * Without JS or with reduced motion it shows the logo.
  */
 export default function Rename() {
   const ref = useRef<HTMLElement>(null)
-  const run = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const rn = ref.current
-    const runway = run.current
-    if (!rn || !runway || reducedMotion()) return
-    rn.classList.add("live")
-    let raf = 0
-    let hit = false
-    const update = () => {
-      raf = 0
-      const p = Math.min(1, Math.max(0, -rn.getBoundingClientRect().top / (runway.offsetHeight || 1)))
-      rn.style.setProperty("--p", p.toFixed(3))
-      rn.style.setProperty("--a", seg(p, 0.06, 0.26).toFixed(3)) // KWAME leaves
-      rn.style.setProperty("--b", seg(p, 0.14, 0.32).toFixed(3)) // DABIE moves up
-      rn.style.setProperty("--c", seg(p, 0.24, 0.42).toFixed(3)) // BOMAYE rises
-      if (!hit && p >= 0.48) { hit = true; rn.classList.add("hit"); buzz([18, 40, 30]) }
-      else if (hit && p < 0.38) { hit = false; rn.classList.remove("hit") }
-    }
-    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update) }
-    update()
-    window.addEventListener("scroll", onScroll, { passive: true })
-    window.addEventListener("resize", onScroll)
-    return () => {
-      window.removeEventListener("scroll", onScroll)
-      window.removeEventListener("resize", onScroll)
-      cancelAnimationFrame(raf)
-    }
+    if (!rn || reducedMotion()) return
+    rn.classList.add("armed")
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) rn.classList.add("play")
+      rn.classList.toggle("off", !e.isIntersecting)
+    }, { threshold: 0.4 })
+    io.observe(rn)
+    return () => io.disconnect()
   }, [])
 
   return (
     <section className="rename" id="name" data-tone="light" aria-labelledby="rn-h" ref={ref}>
-      <div className="rn-pin">
-        <div className="wrap">
-          <p className="lbl rn-lbl">
-            <span className="rn-l1" aria-hidden="true">You knew him as</span>
-            <span className="rn-l2">Evolved. Same fight.</span>
-          </p>
-          <h2 className="rn" id="rn-h">
-            <span className="sr">Kwame Dabie evolved into Dabie Bomaye</span>
-            <span className="rn-type" aria-hidden="true">
-              <span className="rn-w rn-kwame">Kwame</span>
-              <span className="rn-w rn-dabie">Dabie</span>
-              <span className="rn-w rn-bomaye">Bomaye</span>
+      <div className="wrap">
+        <p className="lbl rn-lbl">Evolved. Same fight.</p>
+        <h2 className="rn" id="rn-h">
+          <span className="sr">Kwame Dabie evolved into Dabie Bomaye</span>
+          <span className="rn-type" aria-hidden="true">
+            <span className="rn-w rn-kwame">
+              {"Kwame".split("").map((c, i) => (
+                <span key={i} style={{ "--i": i, "--r": `${FALL[i]}deg` } as CSSProperties}>{c}</span>
+              ))}
             </span>
-            <span className="rn-burst" aria-hidden="true" />
-            <span className="rn-stamp">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/media/logo.webp" alt="" width={1100} height={999} loading="lazy" decoding="async" />
-            </span>
-          </h2>
-          <div className="rn-caption lbl">
-            <span>Evolved from Kwame Dabie</span>
-            <span>Tema, Ghana</span>
-          </div>
+            <span className="rn-w rn-dabie">Dabie</span>
+            <span className="rn-w rn-bomaye">Bomaye</span>
+          </span>
+          <span className="rn-stamp">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/media/logo.webp" alt="" width={1100} height={999} loading="lazy" decoding="async" />
+          </span>
+          <span className="rn-blade" aria-hidden="true" />
+        </h2>
+        <div className="rn-caption lbl">
+          <span>Evolved from Kwame Dabie</span>
+          <span>Tema, Ghana</span>
         </div>
-        <span className="rn-fuse" aria-hidden="true" />
       </div>
-      <div className="rn-run" ref={run} aria-hidden="true" />
     </section>
   )
 }

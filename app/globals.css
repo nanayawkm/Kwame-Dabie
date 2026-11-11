@@ -128,54 +128,56 @@ html.seen #loader{display:none}
   .logo-btn{margin:0 0 18px;width:min(32vw,460px)}
 }
 
-/* ---------- rename: the evolution. DABIE is in both names; scroll turns KWAME DABIE into DABIE BOMAYE ---------- */
-.rename{--p:1;--a:1;--b:1;--c:1;position:relative}
-.rn-pin{position:relative;overflow:hidden;padding-block:clamp(72px,16vw,160px) clamp(56px,12vw,120px)}
-.rn-lbl{display:grid;margin:0;color:var(--blood-ink)}
-.rn-lbl > span{grid-area:1/1}
-.rn-l1{opacity:0}
-.rn{position:relative;display:grid;align-items:center;justify-items:center;margin:18px 0 0;font-family:var(--display);font-weight:800;text-transform:uppercase;
+/* ---------- rename: the evolution loop. KWAME is shed, DABIE survives, a red blade cuts the plain type into the logo ---------- */
+.rename{overflow:hidden;padding-block:clamp(72px,16vw,160px) clamp(56px,12vw,120px)}
+.rn-lbl{margin:0;color:var(--blood-ink)}
+.rn{position:relative;display:grid;align-items:center;margin:18px 0 0;font-family:var(--display);font-weight:800;text-transform:uppercase;
   font-size:clamp(84px,29vw,300px);line-height:.8;letter-spacing:-.015em}
 .rn > *{grid-area:1/1}
-.rn-type{position:relative;width:100%;height:1.6em;visibility:hidden}
+.rn-type{position:relative;height:1.6em;visibility:hidden}
 .rn-w{position:absolute;left:0;right:0;top:0;text-align:center;white-space:nowrap}
+.rn-kwame > span{display:inline-block}
 .rn-dabie,.rn-bomaye{top:.8em}
 .rn-bomaye{color:var(--blood)}
-.rn-burst{width:min(72vw,560px);aspect-ratio:1;border-radius:50%;pointer-events:none;opacity:0;
-  background:radial-gradient(circle,rgba(252,0,0,.5),rgba(252,0,0,.12) 45%,rgba(252,0,0,0) 68%)}
-.rn-stamp{position:relative;display:block;width:min(88%,620px);transform:rotate(-4deg)}
-.rn-stamp img{width:100%;height:auto}
+.rn-stamp{display:flex;justify-content:center}
+.rn-stamp img{width:min(88%,620px);height:auto;transform:rotate(-4deg)}
+.rn-blade{align-self:stretch;background:var(--blood);opacity:0;pointer-events:none}
 .rn-caption{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:28px}
-.rn-fuse,.rn-run{display:none}
 
+/* the loop: 4.8s. 0-0.8s KWAME DABIE / 0.8-1.4 KWAME shed / 1.2-1.7 DABIE up, BOMAYE in / 1.95-2.35 the blade /
+   2.35-4.3 the logo holds / 4.3-4.8 back to KWAME DABIE. Clip edges are slanted 12% so the cut runs at an angle. */
 @media (prefers-reduced-motion:no-preference){
-  /* the pin holds for one screen of scrolling (the runway); JS sets --p (0 to 1) and the three word phases --a --b --c */
-  .rn-pin{position:sticky;top:0;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-block:96px 48px}
-  .rn-run{display:block;height:110svh}
-  .rename.live .rn-fuse{display:block;position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--blood);
-    transform-origin:left;transform:scaleX(min(1,calc(var(--p) / .48)))}
-  .rename.live.hit .rn-fuse{opacity:0;transition:opacity .4s ease .3s}
+  .rename.armed .rn-type{visibility:visible}
+  .rename.armed .rn-bomaye{opacity:0;transform:translateY(.45em)}
+  .rename.armed .rn-stamp{clip-path:polygon(0 0,0% 0,-12% 100%,0 100%)}
 
-  .rename.live .rn-l1{opacity:1;color:var(--ink);transition:opacity .25s}
-  .rename.live .rn-l2{opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s}
-  .rename.live .rn-type{visibility:visible;transition:opacity .2s,transform .3s}
-  .rename.live .rn-kwame{opacity:calc(1 - var(--a));transform:translateX(calc(var(--a) * -70%))}
-  .rename.live .rn-dabie{transform:translateY(calc(var(--b) * -.8em))}
-  .rename.live .rn-bomaye{opacity:var(--c);transform:translateY(calc((1 - var(--c)) * .5em))}
-  .rename.live .rn-stamp{opacity:0;transform:rotate(-4deg) scale(.55);transition:transform .2s ease-in,opacity .15s linear}
-  .rename.live .rn-caption{opacity:0;transform:translateY(10px);transition:opacity .3s,transform .3s}
-
-  /* the evolution: plain type swells and dissolves, the logo grows out of it in a red burst */
-  .rename.live.hit .rn-l1{opacity:0}
-  .rename.live.hit .rn-l2{opacity:1;transform:none;transition-delay:.3s}
-  .rename.live.hit .rn-type{opacity:0;transform:scale(1.14)}
-  .rename.live.hit .rn-burst{animation:rn-burst .8s ease-out .04s}
-  .rename.live.hit .rn-stamp{opacity:1;transform:rotate(-4deg) scale(1);transition:transform .5s cubic-bezier(.3,1.7,.5,1) .06s,opacity .12s linear .06s}
-  .rename.live.hit .rn{animation:rn-shake .38s linear .18s}
-  .rename.live.hit .rn-caption{opacity:1;transform:none;transition-delay:.5s}
+  .rename.play .rn-kwame > span{animation:rn-shed 4.8s cubic-bezier(.5,0,.75,0) calc(var(--i) * 45ms) infinite both}
+  .rename.play .rn-dabie{animation:rn-up 4.8s cubic-bezier(.6,0,.2,1) infinite both}
+  .rename.play .rn-bomaye{animation:rn-in 4.8s cubic-bezier(.2,.8,.2,1) infinite both}
+  .rename.play .rn-type{animation:rn-cut-out 4.8s cubic-bezier(.7,0,.3,1) infinite both}
+  .rename.play .rn-stamp{animation:rn-cut-in 4.8s cubic-bezier(.7,0,.3,1) infinite both}
+  .rename.play .rn-blade{animation:rn-blade 4.8s cubic-bezier(.7,0,.3,1) infinite both}
+  .rename.play .rn-stamp img{animation:rn-land 4.8s linear infinite both}
+  .rename.play.off *{animation-play-state:paused}
 }
-@keyframes rn-burst{0%{opacity:0;transform:scale(.2)}25%{opacity:1}100%{opacity:0;transform:scale(2.3)}}
-@keyframes rn-shake{0%,100%{transform:none}20%{transform:translate(-7px,3px)}40%{transform:translate(6px,-3px)}60%{transform:translate(-4px,2px)}80%{transform:translate(2px,-1px)}}
+@keyframes rn-shed{0%,16.7%{opacity:1;transform:none}26%{opacity:0;transform:translateY(.6em) rotate(var(--r))}90%{opacity:0;transform:translateY(.6em) rotate(var(--r))}90.1%,100%{opacity:1;transform:none}}
+@keyframes rn-up{0%,25%{transform:none}33%,90%{transform:translateY(-.8em)}90.1%,100%{transform:none}}
+@keyframes rn-in{0%,27%{opacity:0;transform:translateY(.45em)}35.5%,90%{opacity:1;transform:none}90.1%,100%{opacity:0;transform:translateY(.45em)}}
+@keyframes rn-cut-out{
+  0%,40.6%{clip-path:polygon(0% 0,100% 0,100% 100%,-12% 100%);opacity:1}
+  49%,92.9%{clip-path:polygon(112% 0,100% 0,100% 100%,100% 100%);opacity:1}
+  93%{clip-path:polygon(0% 0,100% 0,100% 100%,-12% 100%);opacity:0}
+  100%{clip-path:polygon(0% 0,100% 0,100% 100%,-12% 100%);opacity:1}}
+@keyframes rn-cut-in{
+  0%,40.6%{clip-path:polygon(0 0,0% 0,-12% 100%,0 100%);opacity:1}
+  49%,89.6%{clip-path:polygon(0 0,112% 0,100% 100%,0 100%);opacity:1}
+  93%{clip-path:polygon(0 0,112% 0,100% 100%,0 100%);opacity:0}
+  93.1%,100%{clip-path:polygon(0 0,0% 0,-12% 100%,0 100%);opacity:0}}
+@keyframes rn-blade{
+  0%,40.6%{clip-path:polygon(-1.5% 0,0% 0,-12% 100%,-13.5% 100%);opacity:1}
+  49%{clip-path:polygon(110.5% 0,112% 0,100% 100%,98.5% 100%);opacity:1}
+  49.1%,100%{opacity:0}}
+@keyframes rn-land{0%,48%{transform:rotate(-4deg) scale(1.07)}50.5%{transform:translate(-6px,3px) rotate(-4deg)}52%{transform:translate(5px,-2px) rotate(-4deg)}53.5%{transform:translate(-2px,1px) rotate(-4deg)}55%,100%{transform:rotate(-4deg)}}
 
 /* ---------- the project ---------- */
 .project{padding-block:clamp(40px,10vw,110px)}
