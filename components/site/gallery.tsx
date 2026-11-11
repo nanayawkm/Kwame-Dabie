@@ -15,24 +15,37 @@ export default function Gallery() {
   useEffect(() => {
     setJs(true)
     const el = track.current!
-    let raf = 0
+    let t: ReturnType<typeof setTimeout> | undefined
     const step = () => {
       const s = el.children
       return s.length > 1 ? (s[1] as HTMLElement).offsetLeft - (s[0] as HTMLElement).offsetLeft : el.clientWidth
     }
-    const onScroll = () => {
-      cancelAnimationFrame(raf)
-      raf = requestAnimationFrame(() => {
-        const end = el.scrollLeft + el.clientWidth >= el.scrollWidth - 4
-        const i = end ? GALLERY.length - 1 : Math.max(0, Math.min(GALLERY.length - 1, Math.round(el.scrollLeft / step())))
-        if (i !== curRef.current) buzz(6)
-        curRef.current = i
-        setCur(i)
-        setAtEnd(end)
-      })
+    // Update only once the swipe has settled. Changing the page mid-swipe makes iPhone Safari re-snap the
+    // gallery to the photo it was on, which undid swipes (especially going back).
+    let touching = false
+    const settle = () => {
+      clearTimeout(t)
+      if (touching) return // finger still down: wait for it to lift
+      const end = el.scrollLeft + el.clientWidth >= el.scrollWidth - 4
+      const i = end ? GALLERY.length - 1 : Math.max(0, Math.min(GALLERY.length - 1, Math.round(el.scrollLeft / step())))
+      if (i !== curRef.current) buzz(6)
+      curRef.current = i
+      setCur(i)
+      setAtEnd(end)
     }
+    const onScroll = () => { clearTimeout(t); t = setTimeout(settle, 160) }
+    const down = () => { touching = true }
+    const up = () => { touching = false; onScroll() }
     el.addEventListener("scroll", onScroll, { passive: true })
-    return () => { el.removeEventListener("scroll", onScroll); cancelAnimationFrame(raf) }
+    el.addEventListener("scrollend", settle)
+    el.addEventListener("touchstart", down, { passive: true })
+    el.addEventListener("touchend", up, { passive: true })
+    el.addEventListener("touchcancel", up, { passive: true })
+    return () => {
+      el.removeEventListener("scroll", onScroll); el.removeEventListener("scrollend", settle)
+      el.removeEventListener("touchstart", down); el.removeEventListener("touchend", up); el.removeEventListener("touchcancel", up)
+      clearTimeout(t)
+    }
   }, [])
 
   const go = (i: number) => {
