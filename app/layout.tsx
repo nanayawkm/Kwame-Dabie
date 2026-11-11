@@ -18,7 +18,7 @@ const SITE =
   (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "https://kwamedabie.com")
 
 const DESCRIPTION =
-  "Dabie Bomaye (formerly Kwame Dabie), hip hop artist from Tema, Ghana. The self-titled tape DABIE BOMAYE: 10 tracks, out 12.11.2026 on GVO. Stream it, watch the trailer, make your story card."
+  "Dabie Bomaye (formerly Kwame Dabie), hip hop artist from Tema, Ghana. The self-titled tape DABIE BOMAYE: 10 tracks, out 12.11.2026 on GVO. Stream it, watch the trailer, share it to your story."
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),

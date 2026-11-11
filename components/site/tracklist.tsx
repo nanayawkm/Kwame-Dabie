@@ -44,14 +44,14 @@ export default function Tracklist() {
           </button>
           <div className="tl-share-copy">
             <p className="lbl red" style={{ margin: 0 }}>Post it</p>
-            <h3 className="tl-share-h">Make your tape card</h3>
-            <p className="tl-share-d">The cover and all ten tracks, sized for your Instagram, Snapchat or WhatsApp status.</p>
+            <h3 className="tl-share-h">Share the tape</h3>
+            <p className="tl-share-d">Get an image of the cover and all ten tracks, ready to post on your Instagram, Snapchat or WhatsApp status.</p>
           </div>
           <button className="card-btn card-btn--red" type="button" onClick={() => cards.open({ kind: "tape" })}>
-            <StoryIcon /> Make a tape card
+            <StoryIcon /> Share on social media
           </button>
         </div>
-        <p className="tl-hint lbl">Tap any track for its story and its own story card. Press <svg className="i-tri" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l16 9-16 9z" /></svg> on Roadman 2 for a preview.</p>
+        <p className="tl-hint lbl">Tap any track for its story and to share it. Press <svg className="i-tri" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l16 9-16 9z" /></svg> on Roadman 2 for a preview.</p>
         <ol className="tracks">
           {TRACKS.map((t) => {
             const isOpen = openN === t.n
@@ -95,7 +95,7 @@ export default function Tracklist() {
                   <span className="lbl prod">Prod. by {t.prod}</span>
                   <p>{t.story}</p>
                   <button className="card-btn" type="button" onClick={() => cards.open({ kind: "track", track: t })}>
-                    <StoryIcon /> Make a story card
+                    <StoryIcon /> Share on social media
                   </button>
                 </div>
               </li>

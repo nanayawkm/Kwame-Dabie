@@ -250,7 +250,7 @@ export function CardProvider({ children }: { children: ReactNode }) {
         onClick={(e) => { if (e.target === dlg.current) dlg.current?.close() }}
       >
         <div className="dlg-top">
-          <span className="lbl" id="dlgTitle">{req?.kind === "track" ? `Story card / ${req.track.n}` : "Tape card"}</span>
+          <span className="lbl" id="dlgTitle">{req?.kind === "track" ? `Share / ${req.track.n} ${req.track.title}` : "Share the tape"}</span>
           <button className="dlg-x" type="button" onClick={() => dlg.current?.close()}>Close</button>
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
