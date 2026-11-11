@@ -34,11 +34,7 @@ img{display:block;max-width:100%;height:auto}
 .red{color:var(--blood)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-/* grain, matching the texture inside the logo */
-body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.16;
-  /* a pre-drawn tile, not a live SVG noise filter: iOS Safari could not repaint the filter while scrolling
-     and left half the screen grained and half smooth */
-  background:url("/media/grain.png") 0 0/200px 200px repeat;transform:translateZ(0);backface-visibility:hidden}
+/* grain lives in the backgrounds only (see "grain" at the end): text, buttons, photos and video stay clean */
 
 /* ---------- loader: counts the ten tracks, then the flash ---------- */
 #loader{position:fixed;inset:0;z-index:100;background:var(--paper);display:grid;place-content:center;justify-items:center;gap:18px;
@@ -200,7 +196,7 @@ html.seen #loader{display:none}
 @media (min-width:900px){.project-grid{grid-template-columns:1.1fr .9fr;gap:72px;align-items:start}}
 
 /* ---------- descent: daylight into the dark ---------- */
-.descent{background:linear-gradient(to bottom,var(--paper) 0%,var(--paper) 30%,#7a7b7b 66%,var(--ink) 100%);padding-block:clamp(56px,14vw,140px) clamp(140px,34vw,300px)}
+.descent{background:url("/media/grain-paper.png") 0 0/200px 200px repeat,linear-gradient(to bottom,var(--paper) 0%,var(--paper) 30%,#7a7b7b 66%,var(--ink) 100%);padding-block:clamp(56px,14vw,140px) clamp(140px,34vw,300px)}
 .descent blockquote{margin:0;max-width:16ch;font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:clamp(34px,9.5vw,80px);line-height:.92;text-wrap:balance}
 .descent cite{display:block;margin-top:18px;font-style:normal}
 
@@ -644,3 +640,7 @@ a:focus-visible .i-arrow--left{transform:translateX(-4px) rotate(180deg)}
 /* tap areas: small text links keep their look but get a 44px-tall hit area */
 .hero-sub a,.foot-press,.foot-base a,.proj-t{position:relative}
 .hero-sub a::before,.foot-press::before,.foot-base a::before,.proj-t::before{content:"";position:absolute;inset:-12px -4px}
+
+/* ---------- grain: a texture in the paper and the black, like the logo's; never on top of anything ---------- */
+body,#loader{background-image:url("/media/grain-paper.png");background-size:200px 200px}
+.dark,.menu,.hero{background-image:url("/media/grain-ink.png");background-size:200px 200px}
