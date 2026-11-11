@@ -7,6 +7,8 @@ import { RELEASE_UTC } from "@/lib/content"
 /** A short vibration on Android; silently ignored everywhere else. */
 export function buzz(pattern: number | number[]) {
   try {
+    // browsers refuse (and log an error) until the visitor has tapped something
+    if ((navigator as Navigator & { userActivation?: { hasBeenActive: boolean } }).userActivation?.hasBeenActive === false) return
     navigator.vibrate?.(pattern)
   } catch {}
 }
