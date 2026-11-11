@@ -322,26 +322,26 @@ html.seen #loader{display:none}
 .car-top .sec-h{margin-bottom:0}
 .car-count{font-family:var(--display);font-weight:700;font-size:clamp(22px,6vw,34px);letter-spacing:.04em;font-variant-numeric:tabular-nums;color:var(--ash);white-space:nowrap}
 .car-count b{color:var(--blood);font-weight:700}
-.car-track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;list-style:none;margin:0;
-  padding:0 var(--gr) 0 var(--gl);scroll-padding-inline:var(--gl) var(--gr);scrollbar-width:none;-webkit-overflow-scrolling:touch}
-.car-track::-webkit-scrollbar{display:none}
-.car-track:focus-visible{outline-offset:-2px}
-.car-slide{flex:0 0 84%;min-width:0;scroll-snap-align:start}
-@media (min-width:700px){.car-slide{flex-basis:46%}}
-@media (min-width:1100px){.car-slide{flex-basis:31%}.car-track{padding-left:max(var(--gl),calc((100vw - 1180px)/2 + 16px));scroll-padding-left:max(var(--gl),calc((100vw - 1180px)/2 + 16px))}}
-.car-slide img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 25%;background:#151515;user-select:none;-webkit-user-drag:none}
-.car-cap{display:flex;justify-content:space-between;gap:12px;margin-top:10px;color:var(--ash)}
+/* endless gallery: every frame is laid out around the centre by JS (transform + opacity by distance) */
+.car-stage{--sw:min(68vw,400px);position:relative;height:calc(var(--sw) * 1.25 + 44px);overflow:hidden;touch-action:pan-y;
+  user-select:none;-webkit-user-select:none;cursor:grab}
+.car-stage.dragging{cursor:grabbing}
+.car-stage:focus-visible{outline:2px solid var(--blood);outline-offset:-2px}
+@media (min-width:700px){.car-stage{--sw:min(40vw,420px)}}
+@media (min-width:1100px){.car-stage{--sw:min(28vw,400px)}}
+.car-list{list-style:none;margin:0;padding:0;position:absolute;inset:0}
+.car-slide{position:absolute;top:0;left:50%;width:var(--sw);margin-left:calc(var(--sw) / -2);transform-origin:50% 40%;will-change:transform,opacity}
+.car-slide:not(:first-child){opacity:0} /* until JS lays them out */
+.car-slide img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 25%;background:#151515;pointer-events:none;-webkit-user-drag:none}
+.car-cap{display:flex;justify-content:space-between;gap:12px;margin-top:10px;color:var(--ash);transition:opacity .3s}
 .car-cap span:last-child{color:var(--bone)}
-/* with JS on, only the slide in focus is developed; the rest stay in the flash */
-.car.js .car-slide img{transition:filter .8s cubic-bezier(.2,.7,.2,1)}
-.car.js .car-slide:not(.on) img{filter:brightness(1.9) contrast(.5)}
+.car-slide:not(.on) .car-cap{opacity:0}
 .car-foot{display:flex;align-items:center;gap:16px;margin-top:22px}
 .car-bar{flex:1;height:2px;background:rgba(244,244,242,.16)}
 .car-bar i{display:block;height:100%;width:10%;background:var(--blood);transition:width .45s var(--ease)}
 .car-btn{width:48px;height:48px;display:grid;place-items:center;border:1px solid rgba(244,244,242,.35);transition:background .2s,color .2s,border-color .2s}
 .car-btn:active{background:var(--bone);color:var(--ink);border-color:var(--bone)}
 @media (hover:hover){.car-btn:hover{background:var(--bone);color:var(--ink);border-color:var(--bone)}}
-.car-btn:disabled{opacity:.3;pointer-events:none}
 .car-btn svg{width:20px;height:12px;fill:currentColor}
 
 /* ---------- archive ---------- */
@@ -639,11 +639,9 @@ a:focus-visible .i-arrow--left{transform:translateX(-4px) rotate(180deg)}
 body,#loader{background-image:url("/media/grain-paper.png");background-size:200px 200px}
 .dark,.menu,.hero{background-image:url("/media/grain-ink.png");background-size:200px 200px}
 
-/* ---------- the GVO flag: the real one from the shoot (matte black cloth, bold GVO, thin stick, red tip) ---------- */
-.gvo{--flag-cloth:var(--ink);--flag-ink:var(--bone);--flag-pole:#2A2A2A;--fold:.26;overflow:visible}
-.gvo--light,.nav[data-tone="dark"] .gvo{--flag-cloth:var(--bone);--flag-ink:var(--ink);--flag-pole:#BDBDB9;--fold:.14}
+/* ---------- the GVO flag: the one from the shoot, cloth only (matte black cloth, bold GVO) ---------- */
+.gvo{--flag-cloth:var(--ink);--flag-ink:var(--bone);--fold:.26;overflow:visible}
+.gvo--light,.nav[data-tone="dark"] .gvo{--flag-cloth:var(--bone);--flag-ink:var(--ink);--fold:.14}
 .gvo-cloth{fill:var(--flag-cloth);transition:fill .3s}
-.gvo-pole{fill:var(--flag-pole);transition:fill .3s}
-.gvo-tip{fill:var(--blood)}
 .gvo-t{fill:var(--flag-ink);stroke:var(--flag-ink);stroke-width:.55;paint-order:stroke;font-family:var(--body);font-weight:600;font-size:25px;letter-spacing:1.2px;transition:fill .3s,stroke .3s}
-.flag-btn .gvo{width:60px;height:46px;flex:none}
+.flag-btn .gvo{width:58px;height:34px;flex:none}
