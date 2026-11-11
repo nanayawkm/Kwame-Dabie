@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { EMAIL, EPK_PDF, LINKS, PRESS_BIO } from "@/lib/content"
 import CopyButton from "@/components/site/copy-button"
+import { Arrow } from "@/components/site/icon"
 
 export const metadata: Metadata = {
   title: "Press",
@@ -21,7 +22,7 @@ export default function PressPage() {
   return (
     <section className="press page-top" id="press" data-tone="light" aria-labelledby="pr-h">
       <div className="wrap">
-        <Link className="back lbl" href="/">← Back to the tape</Link>
+        <Link className="back lbl" href="/"><Arrow dir="left" /> Back to the tape</Link>
         <div className="press-head">
           <div>
             <p className="lbl" style={{ margin: 0, color: "var(--blood-ink)" }}>For press, DJs, promoters &amp; bookers</p>
@@ -81,7 +82,7 @@ export default function PressPage() {
             </li>
           ))}
         </ul>
-        <a className="proj-go" href={LINKS.pressPhotos} target="_blank" rel="noopener">Open the full photo folder ↗</a>
+        <a className="proj-go" href={LINKS.pressPhotos} target="_blank" rel="noopener">Open the full photo folder <Arrow dir="out" /></a>
 
         <div className="arc-file-h">
           <span className="arc-tab">Contact</span>

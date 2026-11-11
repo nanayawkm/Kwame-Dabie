@@ -5,6 +5,7 @@ import Tracklist from "@/components/site/tracklist"
 import Trailer from "@/components/site/trailer"
 import Gallery from "@/components/site/gallery"
 import LoopVideo from "@/components/site/loop-video"
+import { Arrow } from "@/components/site/icon"
 
 /** The homepage has one job: get people to stream the tape. */
 export default function Home() {
@@ -62,7 +63,7 @@ export default function Home() {
             <span className="lbl red">Before Bomaye</span>
             <span className="vault-h" id="vt-h">The Kwame<br />Dabie era</span>
             <span className="vault-d">The Gas visuals, five projects and five singles from the old name.</span>
-            <span className="vault-go">Enter the archive →</span>
+            <span className="vault-go">Enter the archive <Arrow /></span>
           </span>
         </Link>
       </section>

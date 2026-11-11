@@ -3,6 +3,7 @@ import Link from "next/link"
 import { PROJECTS, SINGLES } from "@/lib/content"
 import GasFeature from "@/components/site/gas-feature"
 import TouchLive from "@/components/site/touch-live"
+import { Arrow } from "@/components/site/icon"
 
 export const metadata: Metadata = {
   title: "The Kwame Dabie Era",
@@ -15,7 +16,7 @@ export default function ArchivePage() {
   return (
     <section className="archive page-top" id="archive" data-tone="light" aria-labelledby="ar-h">
       <div className="wrap">
-        <Link className="back lbl" href="/">← Back to the tape</Link>
+        <Link className="back lbl" href="/"><Arrow dir="left" /> Back to the tape</Link>
         <div className="arc-head">
           <div>
             <p className="lbl" style={{ margin: 0, color: "var(--blood-ink)" }}>Before Bomaye</p>
@@ -60,7 +61,7 @@ export default function ArchivePage() {
                     <p className="lbl fp-mix">{p.mix}</p>
                   </details>
                 )}
-                <a className="proj-go" href={p.link} target="_blank" rel="noopener">Stream ↗</a>
+                <a className="proj-go" href={p.link} target="_blank" rel="noopener">Stream <Arrow dir="out" /></a>
               </div>
             </li>
           ))}
@@ -69,7 +70,7 @@ export default function ArchivePage() {
         <div className="arc-file-h">
           <span className="arc-tab">File B</span>
           <h2>Singles</h2>
-          <span className="lbl cnt">{String(SINGLES.length).padStart(2, "0")} singles<span className="swipe"> &nbsp;·&nbsp; swipe →</span></span>
+          <span className="lbl cnt">{String(SINGLES.length).padStart(2, "0")} singles<span className="swipe"> &nbsp;·&nbsp; swipe <Arrow /></span></span>
         </div>
         <ul className="sgl">
           {SINGLES.map((s) => (

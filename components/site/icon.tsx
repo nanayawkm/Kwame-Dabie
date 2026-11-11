@@ -30,6 +30,14 @@ export const StoryIcon = () => (
   </svg>
 )
 
+/** The site's one arrow: heavy shaft, 45° chevron head, blade-cut tail. Text arrows (↗ ▶) turn into emoji on iPhones. */
+export const ARROW_D = "M4.2 10.3H15.4L10.7 5.6L13 3.3L21.7 12L13 20.7L10.7 18.4L15.4 13.7H2Z"
+export const Arrow = ({ dir = "right" }: { dir?: "right" | "left" | "out" | "down" }) => (
+  <svg className={`i-arrow i-arrow--${dir}`} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d={ARROW_D} />
+  </svg>
+)
+
 export const PlayIcon = () => (
   <svg className="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l16 9-16 9z" /></svg>
 )

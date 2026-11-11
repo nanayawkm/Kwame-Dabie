@@ -3,7 +3,7 @@
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react"
 import { LINKS, type Track } from "@/lib/content"
 import { buzz, event } from "@/lib/client"
-import { PauseIcon, PlayIcon } from "./icon"
+import { Arrow, PauseIcon, PlayIcon } from "./icon"
 
 type PlayerCtx = {
   current: Track | null
@@ -110,7 +110,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
           rel="noopener"
           onClick={() => event("stream_click", { from: "player", track: current?.title ?? "" })}
         >
-          Stream ↗
+          Stream <Arrow dir="out" />
         </a>
         <button className="pbar-x" type="button" aria-label="Close player" onClick={() => { pause(); setShow(false) }}>×</button>
       </div>

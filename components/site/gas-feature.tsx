@@ -4,6 +4,7 @@ import { useState } from "react"
 import { LINKS } from "@/lib/content"
 import { event } from "@/lib/client"
 import LoopVideo from "./loop-video"
+import { Arrow } from "./icon"
 
 /**
  * The featured file: a silent loop as the cover; tapping loads the real YouTube player in place,
@@ -39,7 +40,7 @@ export default function GasFeature() {
         <div className="gas-meta">
           <span className="arc-t" style={{ fontSize: 28 }}>Gas [Visuals]</span>
           <span className="lbl proj-meta"><span><b>Single</b></span><span>2024</span><span>Prod. JoeyOnTheTrack</span><span>On False Prophets</span></span>
-          <a className="proj-go" href={`https://www.youtube.com/watch?v=${id}`} target="_blank" rel="noopener">Watch on YouTube ↗</a>
+          <a className="proj-go" href={`https://www.youtube.com/watch?v=${id}`} target="_blank" rel="noopener">Watch on YouTube <Arrow dir="out" /></a>
         </div>
       </figcaption>
     </figure>

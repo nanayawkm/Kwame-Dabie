@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { EMAIL, FOLLOW, LINKS, STREAM_PLATFORMS } from "@/lib/content"
 import CopyButton from "./copy-button"
-import Icon, { GvoFlag } from "./icon"
+import Icon, { Arrow, GvoFlag } from "./icon"
 
 const CHANT = Array.from({ length: 12 }, (_, i) => <span key={i}>Bomaye</span>)
 
@@ -43,7 +43,7 @@ export default function Footer() {
           <div>
             <p className="lbl red" style={{ margin: 0 }}>Contact &amp; booking</p>
             <div className="mail"><span id="mail">{EMAIL}</span><CopyButton text={EMAIL} selectId="mail" what="email" /></div>
-            <Link className="foot-press lbl" href="/press">Press kit &amp; photos →</Link>
+            <Link className="foot-press lbl" href="/press">Press kit &amp; photos <Arrow /></Link>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className="foot-logo" src="/media/logo.webp" alt="Dabie Bomaye" width={1100} height={999} loading="lazy" decoding="async" />
           </div>

@@ -51,7 +51,7 @@ export default function Tracklist() {
             <StoryIcon /> Make a tape card
           </button>
         </div>
-        <p className="tl-hint lbl">Tap any track for its story and its own story card. Press <span className="red">▶</span> on Roadman 2 for a preview.</p>
+        <p className="tl-hint lbl">Tap any track for its story and its own story card. Press <svg className="i-tri" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l16 9-16 9z" /></svg> on Roadman 2 for a preview.</p>
         <ol className="tracks">
           {TRACKS.map((t) => {
             const isOpen = openN === t.n
