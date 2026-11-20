@@ -42,10 +42,6 @@ export default function Rename() {
           </span>
           <span className="rn-blade" aria-hidden="true" />
         </h2>
-        <div className="opener rn-credit">
-          <span className="opener-dash" aria-hidden="true" />
-          <p className="lbl opener-credit">Evolved. Same fight.</p>
-        </div>
       </div>
     </section>
   )

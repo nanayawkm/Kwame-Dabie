@@ -675,8 +675,6 @@ body,#loader{background-image:url("/media/grain-paper.png");background-size:200p
 .vis-open .opener{margin-bottom:clamp(20px,5vw,36px)}
 .vis-copy{text-align:center}.vis-note{margin-inline:auto}
 @media (min-width:900px){.vis-copy{text-align:left}.vis-note{margin-inline:0}}
-.rn-credit{margin:clamp(18px,5vw,32px) 0 0}
-.rn-credit .opener-dash{margin-top:0}
 .car .opener .car-count{margin-top:10px}
 .press-head{grid-template-columns:1fr !important;justify-items:center;text-align:center}
 .press-head .opener{margin:0}
