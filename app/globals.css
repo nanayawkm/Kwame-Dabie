@@ -126,10 +126,10 @@ html.seen #loader{display:none}
 .rename{overflow:hidden;padding-block:clamp(72px,16vw,160px) clamp(56px,12vw,120px)}
 .rn-lbl{margin:0;color:var(--blood)}
 .rn{position:relative;display:grid;align-items:center;margin:18px 0 0;font-family:var(--display);font-weight:800;text-transform:uppercase;
-  font-size:clamp(65.5px,22.6vw,234px);line-height:.8;letter-spacing:-.01em;font-stretch:var(--w-head)}
+  font-size:clamp(46px,16.6vw,206px);line-height:.8;letter-spacing:-.01em;font-stretch:var(--w-head)}
 .rn > *{grid-area:1/1}
 .rn-type{position:relative;height:1.6em;visibility:hidden}
-.rn-w{position:absolute;left:0;right:0;top:0;text-align:center;white-space:nowrap;color:var(--bone)}
+.rn-w{position:absolute;left:0;right:0;top:0;text-align:center;white-space:nowrap;color:var(--ink)}
 .rn-dabie,.rn-bomaye{top:.8em}
 .rn-w.rn-bomaye{color:var(--blood)}
 .rn-w.rn-ember{opacity:0;color:#FF4A1C;text-shadow:0 0 .03em #FF8A3D}
@@ -168,7 +168,7 @@ html.seen #loader{display:none}
   35.8%,100%{opacity:0;-webkit-mask-position:0% 0;mask-position:0% 0}}
 @keyframes rn-dabie{0%,5%{opacity:0;transform:translateY(.12em)}10.7%,35.7%{opacity:1;transform:none}42.9%,100%{opacity:1;transform:translateY(-.8em)}}
 @keyframes rn-bomaye{0%,38.4%{opacity:0;transform:translateY(.45em)}44.6%,100%{opacity:1;transform:none}}
-@keyframes rn-cut-out{0%,47.3%{clip-path:polygon(0% 0,100% 0,100% 100%,-12% 100%)}54.5%,100%{clip-path:polygon(112% 0,100% 0,100% 100%,100% 100%)}}
+@keyframes rn-cut-out{0%{opacity:0;clip-path:polygon(0% 0,100% 0,100% 100%,-12% 100%)}0.8%,47.3%{opacity:1;clip-path:polygon(0% 0,100% 0,100% 100%,-12% 100%)}54.4%{opacity:1;clip-path:polygon(112% 0,100% 0,100% 100%,100% 100%)}54.5%,100%{opacity:0;clip-path:polygon(112% 0,100% 0,100% 100%,100% 100%)}}
 @keyframes rn-cut-in{
   0%,47.3%{clip-path:polygon(0 0,0% 0,-12% 100%,0 100%);opacity:1}
   54.5%,87.5%{clip-path:polygon(0 0,112% 0,100% 100%,0 100%);opacity:1}

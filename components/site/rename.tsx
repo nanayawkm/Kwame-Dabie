@@ -26,7 +26,7 @@ export default function Rename() {
   }, [])
 
   return (
-    <section className="rename dark" id="name" data-tone="dark" aria-labelledby="rn-h" ref={ref}>
+    <section className="rename" id="name" data-tone="light" aria-labelledby="rn-h" ref={ref}>
       <div className="wrap">
         <h2 className="rn" id="rn-h">
           <span className="sr">Kwame Dabie evolved into Dabie Bomaye</span>
