@@ -760,3 +760,18 @@ html.fx .descent .echo{transition:transform .9s var(--ease),opacity .9s ease}
 html.fx .descent blockquote.in .e1{opacity:.2;transform:translate(.035em,-.07em);transition-delay:.2s}
 html.fx .descent blockquote.in .e2{opacity:.1;transform:translate(.07em,-.14em);transition-delay:.45s}
 @media (prefers-reduced-motion:reduce){[data-beat]{transform:none}}
+
+/* ---------- the "stream it" nudge: slides up above the player bar on the third song; never covers the page ---------- */
+.nudge{position:fixed;z-index:57;left:var(--gl);right:var(--gr);bottom:calc(env(safe-area-inset-bottom, 0px) + 84px);display:grid;gap:10px;
+  padding:20px 18px 18px;background:#161616;color:var(--bone);border:1px solid rgba(244,244,242,.3);box-shadow:0 -8px 28px rgba(0,0,0,.35);
+  opacity:0;transform:translateY(18px);pointer-events:none;transition:opacity .35s ease,transform .45s var(--ease)}
+.nudge.show{opacity:1;transform:none;pointer-events:auto}
+@media (min-width:700px){.nudge{left:auto;width:400px}}
+html .nudge .opener-dash{margin:0 0 4px;transform:none}
+.nudge-h{margin:0;font-family:var(--display);font-weight:800;font-stretch:var(--w-head);text-transform:uppercase;font-size:24px;line-height:.95;padding-right:36px}
+.nudge-d{margin:0;color:rgba(244,244,242,.78);font-size:15px;line-height:1.45}
+.nudge-icons{display:flex;gap:12px;margin:4px 0 6px}
+.nudge-icons .ico{width:20px;height:20px;color:rgba(244,244,242,.85)}
+.nudge .btn{min-height:52px}
+.nudge-x{position:absolute;top:8px;right:8px;width:40px;height:40px;display:grid;place-items:center;font-size:24px;line-height:1;color:var(--ash)}
+@media (prefers-reduced-motion:reduce){.nudge{transition:opacity .2s ease;transform:none}}

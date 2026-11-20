@@ -1,9 +1,9 @@
 "use client"
 
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react"
-import { LINKS, TRACKS, type Track } from "@/lib/content"
+import { LINKS, STREAM_PLATFORMS, TRACKS, type Track } from "@/lib/content"
 import { buzz, event, reducedMotion } from "@/lib/client"
-import { Arrow, PauseIcon, PlayIcon } from "./icon"
+import Icon, { Arrow, PauseIcon, PlayIcon } from "./icon"
 
 /** Beat and levels for each preview, measured ahead of time (12.5 per second, one base-36 digit each).
  * Reading these against the playback position, instead of analysing the audio live, keeps previews working on
@@ -53,6 +53,9 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
   const [progress, setProgress] = useState(0)
   const [show, setShow] = useState(false)
   const [tape, setTape] = useState(false)
+  // "stream it" nudge: appears as the third different song starts, once per visit, never blocks anything
+  const [nudge, setNudge] = useState<Track | null>(null)
+  const played = useRef(new Set<string>())
   const tapeRef = useRef(false)
   const currentRef = useRef<Track | null>(null)
 
@@ -81,7 +84,15 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
     }
     videos.current.forEach((fn) => fn())
     a.play()
-      .then(() => { setShow(true); buzz(8); event("preview_play", { track: t.title, mode: tapeRef.current ? "tape" : "single" }) })
+      .then(() => {
+        setShow(true); buzz(8); event("preview_play", { track: t.title, mode: tapeRef.current ? "tape" : "single" })
+        played.current.add(t.n)
+        if (played.current.size === 3) {
+          let seen = false
+          try { seen = sessionStorage.getItem("db:nudge") === "1"; sessionStorage.setItem("db:nudge", "1") } catch {}
+          if (!seen) { setNudge(t); event("stream_nudge", { action: "shown", track: t.title }) }
+        }
+      })
       .catch(() => {})
   }, [])
 
@@ -215,8 +226,26 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
         >
           Stream <Arrow dir="out" />
         </a>
-        <button className="pbar-x" type="button" aria-label="Close player" onClick={() => { pause(); setTapeMode(false); setShow(false) }}>×</button>
+        <button className="pbar-x" type="button" aria-label="Close player" onClick={() => { pause(); setTapeMode(false); setShow(false); setNudge(null) }}>×</button>
       </div>
+      <aside className={`nudge${nudge && show ? " show" : ""}`} aria-label="Stream the tape" inert={!(nudge && show)}>
+        <button className="nudge-x" type="button" aria-label="Close" onClick={() => { event("stream_nudge", { action: "dismissed" }); setNudge(null) }}>×</button>
+        <span className="opener-dash" aria-hidden="true" />
+        <p className="nudge-h">Heard enough to know?</p>
+        <p className="nudge-d">Stream {nudge?.title ?? "it"} in full, with the rest of the tape.</p>
+        <span className="nudge-icons" aria-label="On Spotify, Apple Music, Audiomack, Boomplay, YouTube Music, Deezer and Tidal">
+          {STREAM_PLATFORMS.map((pl) => <Icon key={pl.icon} name={pl.icon} />)}
+        </span>
+        <a
+          className="btn"
+          href={LINKS.tape}
+          target="_blank"
+          rel="noopener"
+          onClick={() => { event("stream_nudge", { action: "clicked", track: nudge?.title ?? "" }); event("stream_click", { from: "nudge" }); setNudge(null) }}
+        >
+          Stream the tape
+        </a>
+      </aside>
     </Ctx.Provider>
   )
 }
