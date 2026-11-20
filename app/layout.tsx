@@ -11,11 +11,8 @@ import TitleWatcher from "@/components/site/title-watcher"
 import ScrollManager from "@/components/site/scroll-manager"
 import { PlayerProvider } from "@/components/site/player"
 import { CardProvider } from "@/components/site/story-cards"
+import { SITE } from "@/lib/site"
 
-// Set NEXT_PUBLIC_SITE_URL once the new domain is live; until then Vercel's production URL is used.
-const SITE =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "https://kwamedabie.com")
 
 const DESCRIPTION =
   "Dabie Bomaye (formerly Kwame Dabie), hip hop artist from Tema, Ghana. The self-titled tape DABIE BOMAYE: 10 tracks, out 12.11.2026 on GVO. Stream it, watch the trailer, share it to your story."

@@ -684,3 +684,4 @@ body,#loader{background-image:url("/media/grain-paper.png");background-size:200p
 .archive .arc-intro{margin:0 auto;text-align:center}
 .lost .wrap{display:flex;flex-direction:column;align-items:center;text-align:center}
 .foot-gvo .foot-gvo-d{margin:14px auto 0}
+@media (min-width:900px){.mail span{font-size:20px;font-stretch:100%;overflow-wrap:normal}}

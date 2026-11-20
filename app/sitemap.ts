@@ -1,8 +1,6 @@
 import type { MetadataRoute } from "next"
+import { SITE } from "@/lib/site"
 
-const SITE =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "https://kwamedabie.com")
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()
