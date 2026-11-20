@@ -39,7 +39,7 @@ export const TRACKS: Track[] = [
     story: "The mission is one. Not the time to cry, not the time to stall: just get up, move and get done what you have to do." },
   { n: "04", title: "Sani Abacha", ft: "Funky319", prod: "MJayDidThis", preview: "/media/previews/04-sani-abacha.mp3",
     story: "Named after the late Nigerian head of state known for amassing vast wealth illegally. A record about getting money, plenty of money, by any route necessary. Features Funky319, a rapper from Côte d'Ivoire." },
-  { n: "05", title: "O&O", prod: "KBTheAlchemist",
+  { n: "05", title: "O&O", prod: "KBTheAlchemist", preview: "/media/previews/05-o-and-o.mp3",
     story: "Over and over. An earlier single. Doing whatever you have to do again and again, and never stopping." },
   { n: "06", title: "Addict", prod: "JoeyOnTheTrack", preview: "/media/previews/06-addict.mp3",
     story: "Lead single, released October 2026. The more you do something, the more addicted and dangerous you become at it. Repetition as perfection." },
