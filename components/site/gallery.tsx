@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { GALLERY } from "@/lib/content"
 import { buzz, reducedMotion } from "@/lib/client"
+import Opener from "./opener"
 
 const N = GALLERY.length
 const mod = (n: number) => ((n % N) + N) % N
@@ -128,12 +129,15 @@ export default function Gallery() {
   return (
     <section className="crew dark" id="gallery" data-tone="dark" aria-labelledby="cr-h">
       <div className="car" aria-roledescription="carousel" aria-labelledby="cr-h">
-        <div className="wrap car-top">
-          <div>
-            <p className="lbl red" style={{ margin: 0 }}>Gallery &nbsp;/&nbsp; {N} frames</p>
-            <h2 className="sec-h" id="cr-h">Dabie</h2>
-          </div>
-          <span className="car-count" aria-hidden="true"><b>{String(cur + 1).padStart(2, "0")}</b> / {String(N).padStart(2, "0")}</span>
+        <div className="wrap">
+          <Opener
+            id="cr-h"
+            hClass="sec-h"
+            credit={<>Gallery &nbsp;/&nbsp; {N} frames</>}
+            after={<span className="car-count" aria-hidden="true"><b>{String(cur + 1).padStart(2, "0")}</b> / {String(N).padStart(2, "0")}</span>}
+          >
+            Dabie
+          </Opener>
         </div>
         <div
           className="car-stage"

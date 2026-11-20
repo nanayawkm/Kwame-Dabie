@@ -6,6 +6,7 @@ import Trailer from "@/components/site/trailer"
 import Gallery from "@/components/site/gallery"
 import LoopVideo from "@/components/site/loop-video"
 import { Arrow } from "@/components/site/icon"
+import Opener from "@/components/site/opener"
 
 /** The homepage has one job: get people to stream the tape. */
 export default function Home() {
@@ -15,12 +16,13 @@ export default function Home() {
       <Rename />
 
       <section className="project" id="project" data-tone="light" aria-labelledby="pj-h">
+        <div className="wrap">
+          <Opener id="pj-h" hClass="thesis" credit="The project">
+            <span className="thesis-lead">Dabie Bomaye is</span> a tape about one thing: <span className="red">the fight.</span>
+          </Opener>
+        </div>
         <div className="wrap project-grid">
           <div>
-            <p className="lbl" style={{ margin: 0, color: "var(--blood-ink)" }}>The project</p>
-            <h2 className="thesis" id="pj-h">
-              <span className="thesis-lead">Dabie Bomaye is</span> a tape about one thing: <span className="red">the fight.</span>
-            </h2>
             <div className="prose">
               <p>Self-titled because it is him: a hip hop artist from Tema, Ghana, going hard, never giving up and chasing whatever he is aiming for.</p>
               <p>Ten tracks. One mission. From the opening cut, where life shows you that in the end it is just you and your God, to the closing track, <span className="tn">Asylum</span>, where the madness of the road catches up with you, the project follows a man on the move: no crying, no complaining, only getting up and going again.</p>
@@ -46,8 +48,11 @@ export default function Home() {
 
       <section className="descent" data-tone="light" aria-label="Quote">
         <div className="wrap">
-          <blockquote>The more you repeat something, the more dangerous you become at it.</blockquote>
-          <cite className="lbl" style={{ color: "var(--blood-ink)" }}>Dabie Bomaye</cite>
+          <figure className="opener" style={{ margin: 0 }}>
+            <blockquote>The more you repeat something, the more dangerous you become at it.</blockquote>
+            <span className="opener-dash" aria-hidden="true" />
+            <cite className="lbl opener-credit">Dabie Bomaye</cite>
+          </figure>
         </div>
       </section>
 
@@ -59,9 +64,10 @@ export default function Home() {
       <section className="vault dark" data-tone="dark" aria-labelledby="vt-h">
         <Link className="vault-link" href="/music">
           <span className="vault-media"><LoopVideo /></span>
-          <span className="vault-copy wrap">
-            <span className="lbl red">Keep listening</span>
+          <span className="vault-copy wrap opener">
             <span className="vault-h" id="vt-h">More<br />music</span>
+            <span className="opener-dash" aria-hidden="true" />
+            <span className="lbl opener-credit">Keep listening</span>
             <span className="vault-d">The Gas visuals, five projects and five singles from before the tape.</span>
             <span className="vault-go">Hear more <Arrow /></span>
           </span>

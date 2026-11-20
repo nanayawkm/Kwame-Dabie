@@ -650,3 +650,37 @@ body,#loader{background-image:url("/media/grain-paper.png");background-size:200p
 
 /* narrow phones: the wide type needs a little less tracking, and long buttons may wrap */
 @media (max-width:380px){.btn{letter-spacing:.08em;font-size:15px;text-align:left}.btn > *{min-width:0}}
+
+/* ---------- section openings: the release artwork's credit block. Heading centred, the short red dash, the label as a credit ---------- */
+.opener{display:flex;flex-direction:column;align-items:center;text-align:center;margin:0 0 clamp(28px,7vw,48px)}
+.opener > h1,.opener > h2,.opener > blockquote{margin:0;max-width:100%}
+.opener-dash{display:block;flex:none;width:34px;height:3px;background:var(--blood);margin:16px 0 12px}
+.opener-credit{margin:0;color:var(--ash-ink)}
+.dark .opener-credit,.vault .opener-credit{color:rgba(244,244,242,.72)}
+.page-h{margin:10px 0 0;font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(43.7px,12.9vw,117px);line-height:.82;letter-spacing:-.01em;font-stretch:var(--w-head)}
+.sub-h{margin:0 0 4px;font-family:var(--display);font-weight:800;font-size:clamp(23.4px,6.24vw,37.4px);line-height:.9;text-transform:uppercase;font-stretch:var(--w-head)}
+.opener--sub{margin-top:clamp(52px,11vw,88px)}
+.foot-gvo-h{margin:8px 0 12px;font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(34.3px,9.36vw,78px);line-height:.86;font-stretch:var(--w-head);margin:0}
+.foot-gvo-d{margin:0;max-width:46ch;color:rgba(244,244,242,.75);margin:14px auto 0;max-width:40ch}
+.foot-gvo{grid-template-columns:1fr !important;justify-items:center;text-align:center}
+.foot-gvo .opener{margin:0}
+.thesis{margin:0;text-wrap:balance}
+.thesis-lead{display:block}
+.descent blockquote{margin-inline:auto}
+.descent cite{margin:0}
+.vault-copy.opener{justify-items:center}
+.vault-copy .opener-dash{margin:6px 0 0}
+.vault-go{justify-self:center}
+.vault-d{margin-inline:auto}
+.vis-open .opener{margin-bottom:clamp(20px,5vw,36px)}
+.vis-copy{text-align:center}.vis-note{margin-inline:auto}
+@media (min-width:900px){.vis-copy{text-align:left}.vis-note{margin-inline:0}}
+.rn-credit{margin:clamp(18px,5vw,32px) 0 0}
+.rn-credit .opener-dash{margin-top:0}
+.car .opener .car-count{margin-top:10px}
+.press-head{grid-template-columns:1fr !important;justify-items:center;text-align:center}
+.press-head .opener{margin:0}
+.press-intro{margin-inline:auto}
+.archive .arc-intro{margin:0 auto;text-align:center}
+.lost .wrap{display:flex;flex-direction:column;align-items:center;text-align:center}
+.foot-gvo .foot-gvo-d{margin:14px auto 0}

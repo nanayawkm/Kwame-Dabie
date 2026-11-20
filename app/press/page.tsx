@@ -3,6 +3,7 @@ import Link from "next/link"
 import { EMAIL, EPK_PDF, LINKS, PRESS_BIO } from "@/lib/content"
 import CopyButton from "@/components/site/copy-button"
 import { Arrow } from "@/components/site/icon"
+import Opener from "@/components/site/opener"
 
 export const metadata: Metadata = {
   title: "Press",
@@ -24,10 +25,7 @@ export default function PressPage() {
       <div className="wrap">
         <Link className="back lbl" href="/"><Arrow dir="left" /> Back to the tape</Link>
         <div className="press-head">
-          <div>
-            <p className="lbl" style={{ margin: 0, color: "var(--blood-ink)" }}>For press, DJs, promoters &amp; bookers</p>
-            <h1 className="press-h" id="pr-h">Press</h1>
-          </div>
+          <Opener as="h1" id="pr-h" hClass="press-h" credit="For press, DJs, promoters & bookers">Press</Opener>
           <p className="press-intro">Everything you need to write about, play or book Dabie Bomaye: the press kit, a bio you can paste, the facts, photos and who to email.</p>
         </div>
 
@@ -66,11 +64,7 @@ export default function PressPage() {
           </article>
         </div>
 
-        <div className="arc-file-h">
-          <span className="arc-tab">Photos</span>
-          <h2>Press photos</h2>
-          <span className="lbl cnt">Full resolution</span>
-        </div>
+        <Opener className="opener--sub" hClass="sub-h" credit="Full resolution">Press photos</Opener>
         <ul className="press-photos">
           {PHOTOS.map((p, i) => (
             <li key={p.src}>
@@ -84,10 +78,7 @@ export default function PressPage() {
         </ul>
         <a className="proj-go" href={LINKS.pressPhotos} target="_blank" rel="noopener">Open the full photo folder <Arrow dir="out" /></a>
 
-        <div className="arc-file-h">
-          <span className="arc-tab">Contact</span>
-          <h2>Press &amp; booking</h2>
-        </div>
+        <Opener className="opener--sub" hClass="sub-h" credit="Contact">Press &amp; booking</Opener>
         <div className="press-contact">
           <div className="press-mail"><span id="pressMail">{EMAIL}</span><CopyButton text={EMAIL} label="Copy email" className="copy-l" selectId="pressMail" what="press_email" /></div>
           <p>Interviews, features, radio, shows and bookings. Journalists can request the private pre-release stream of the tape by email.</p>

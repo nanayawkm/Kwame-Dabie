@@ -28,7 +28,6 @@ export default function Rename() {
   return (
     <section className="rename dark" id="name" data-tone="dark" aria-labelledby="rn-h" ref={ref}>
       <div className="wrap">
-        <p className="lbl rn-lbl">Evolved. Same fight.</p>
         <h2 className="rn" id="rn-h">
           <span className="sr">Kwame Dabie evolved into Dabie Bomaye</span>
           <span className="rn-type" aria-hidden="true">
@@ -43,6 +42,10 @@ export default function Rename() {
           </span>
           <span className="rn-blade" aria-hidden="true" />
         </h2>
+        <div className="opener rn-credit">
+          <span className="opener-dash" aria-hidden="true" />
+          <p className="lbl opener-credit">Evolved. Same fight.</p>
+        </div>
       </div>
     </section>
   )

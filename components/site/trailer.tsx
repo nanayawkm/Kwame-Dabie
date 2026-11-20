@@ -5,6 +5,7 @@ import { LINKS } from "@/lib/content"
 import { buzz, event, reducedMotion, saveData } from "@/lib/client"
 import { usePlayer } from "./player"
 import { PauseIcon, PlayIcon } from "./icon"
+import Opener from "./opener"
 
 /**
  * The trailer: autoplays muted once it fills most of the view, one tap for sound, pauses when you leave.
@@ -141,10 +142,11 @@ export default function Trailer() {
   return (
     <section className="vis dark" id="trailer" data-tone="dark" aria-labelledby="vz-h" ref={root}>
       <canvas className="vis-amb" width={64} height={36} aria-hidden="true" />
+      <div className="wrap vis-open">
+        <Opener id="vz-h" hClass="sec-h" credit="Watch">Trailer</Opener>
+      </div>
       <div className="wrap vis-grid">
         <div className="vis-copy">
-          <p className="lbl red" style={{ margin: 0 }}>Watch</p>
-          <h2 className="sec-h" id="vz-h">Trailer</h2>
           <p className="vis-note">The sea, the flag and the crew. Fifty-three seconds from the world of the tape.</p>
         </div>
         <div className="player muted">

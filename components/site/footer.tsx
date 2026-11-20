@@ -3,6 +3,7 @@ import { EMAIL, FOLLOW, LINKS, STREAM_PLATFORMS } from "@/lib/content"
 import CopyButton from "./copy-button"
 import Icon, { Arrow } from "./icon"
 import GvoFlag from "./gvo-flag"
+import Opener from "./opener"
 
 const CHANT = Array.from({ length: 12 }, (_, i) => <span key={i}>Bomaye</span>)
 
@@ -14,11 +15,9 @@ export default function Footer() {
       <div className="wrap">
         <div className="foot-gvo">
           <GvoFlag className="gvo-flag gvo--light" />
-          <div>
-            <p className="lbl red" style={{ margin: 0 }}>The label. The crew. The flag.</p>
-            <h2>Gargantuan<br />Vibes Only</h2>
-            <p>GVO is the force behind Dabie Bomaye.</p>
-          </div>
+          <Opener hClass="foot-gvo-h" credit="The label. The crew. The flag." after={<p className="foot-gvo-d">GVO is the force behind Dabie Bomaye.</p>}>
+            Gargantuan<br />Vibes Only
+          </Opener>
         </div>
         <div className="foot-grid">
           <div>

@@ -6,6 +6,7 @@ import { buzz, reducedMotion } from "@/lib/client"
 import { usePlayer } from "./player"
 import { useCards } from "./story-cards"
 import { PauseIcon, PlayIcon, StoryIcon } from "./icon"
+import Opener from "./opener"
 
 export default function Tracklist() {
   const [openN, setOpenN] = useState<string | null>(null)
@@ -33,8 +34,7 @@ export default function Tracklist() {
   return (
     <section className="tracks-sec dark" id="tracklist" data-tone="dark" aria-labelledby="tl-h">
       <div className="wrap">
-        <p className="lbl red" style={{ margin: 0 }}>The tracks</p>
-        <h2 className="sec-h" id="tl-h">Tracklist</h2>
+        <Opener id="tl-h" hClass="sec-h" credit="The tracks">Tracklist</Opener>
         <div className="tl-share">
           <button className="tl-mock" type="button" aria-hidden="true" tabIndex={-1} onClick={() => cards.open({ kind: "tape" })}>
             {/* eslint-disable-next-line @next/next/no-img-element */}

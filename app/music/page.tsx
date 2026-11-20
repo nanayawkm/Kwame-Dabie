@@ -4,6 +4,7 @@ import { PROJECTS, SINGLES } from "@/lib/content"
 import GasFeature from "@/components/site/gas-feature"
 import TouchLive from "@/components/site/touch-live"
 import { Arrow } from "@/components/site/icon"
+import Opener from "@/components/site/opener"
 
 export const metadata: Metadata = {
   title: "More Music",
@@ -17,21 +18,12 @@ export default function MusicPage() {
     <section className="archive page-top" id="music" data-tone="light" aria-labelledby="ar-h">
       <div className="wrap">
         <Link className="back lbl" href="/"><Arrow dir="left" /> Back to the tape</Link>
-        <div className="arc-head">
-          <div>
-            <p className="lbl" style={{ margin: 0, color: "var(--blood-ink)" }}>Keep listening</p>
-            <h1 id="ar-h">More<br />music</h1>
-          </div>
-        </div>
+        <Opener as="h1" id="ar-h" hClass="page-h" credit="Keep listening">More<br />music</Opener>
         <p className="arc-intro">Five projects and five singles from before the tape, and the Gas visuals.</p>
 
         <GasFeature />
 
-        <div className="arc-file-h">
-          <span className="arc-tab">01</span>
-          <h2>Albums &amp; EPs</h2>
-          <span className="lbl cnt">{String(PROJECTS.length).padStart(2, "0")} projects</span>
-        </div>
+        <Opener className="opener--sub" hClass="sub-h" credit={<>{String(PROJECTS.length).padStart(2, "0")} projects</>}>Albums &amp; EPs</Opener>
         <ul className="proj">
           {PROJECTS.map((p) => (
             <li key={p.id} className="arc">
@@ -66,11 +58,7 @@ export default function MusicPage() {
           ))}
         </ul>
 
-        <div className="arc-file-h">
-          <span className="arc-tab">02</span>
-          <h2>Singles</h2>
-          <span className="lbl cnt">{String(SINGLES.length).padStart(2, "0")} singles<span className="swipe"> &nbsp;·&nbsp; swipe <Arrow /></span></span>
-        </div>
+        <Opener className="opener--sub" hClass="sub-h" credit={<>{String(SINGLES.length).padStart(2, "0")} singles<span className="swipe"> &nbsp;·&nbsp; swipe <Arrow /></span></>}>Singles</Opener>
         <ul className="sgl">
           {SINGLES.map((s) => (
             <li key={s.id} className="arc">
