@@ -16,7 +16,7 @@ export default function Opener({
   as?: "h1" | "h2"
   id?: string
   hClass: string
-  credit: ReactNode
+  credit?: ReactNode
   className?: string
   after?: ReactNode
   children: ReactNode
@@ -25,7 +25,7 @@ export default function Opener({
     <header className={`opener${className ? " " + className : ""}`}>
       <H id={id} className={hClass}>{children}</H>
       <span className="opener-dash" aria-hidden="true" />
-      <p className="lbl opener-credit">{credit}</p>
+      {credit ? <p className="lbl opener-credit">{credit}</p> : null}
       {after}
     </header>
   )

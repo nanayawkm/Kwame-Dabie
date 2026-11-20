@@ -15,7 +15,7 @@ export default function Footer() {
       <div className="wrap">
         <div className="foot-gvo">
           <GvoFlag className="gvo-flag gvo--light" />
-          <Opener hClass="foot-gvo-h" credit="The label. The crew. The flag." after={<p className="foot-gvo-d">GVO is the force behind Dabie Bomaye.</p>}>
+          <Opener hClass="foot-gvo-h" after={<p className="foot-gvo-d">GVO is the force behind Dabie Bomaye.</p>}>
             Gargantuan<br />Vibes Only
           </Opener>
         </div>
