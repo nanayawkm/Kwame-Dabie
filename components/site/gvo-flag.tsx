@@ -3,44 +3,65 @@
 import { useEffect, useId, useRef } from "react"
 import { reducedMotion } from "@/lib/client"
 
-// The GVO flag from the shoot, cloth only: a plain rectangle of matte black cloth with bold white GVO.
-// The cloth ripples by morphing between these outlines (same commands, so SVG can tween them).
-const CLOTH = [
-  "M9 9 C38 6 66 13 116 9 C115 26 117 44 115 62 C74 66 44 58 9 62 Z",
-  "M9 9 C40 12 70 5 115 11 C117 28 114 45 116 63 C76 60 42 66 9 62 Z",
-  "M9 9 C36 4 64 14 117 8 C114 25 118 43 114 61 C72 67 46 57 9 62 Z",
-]
-const LOOP = [CLOTH[0], CLOTH[1], CLOTH[2], CLOTH[0]].join(";")
-const EASE = { calcMode: "spline", keyTimes: "0;0.33;0.66;1", keySplines: "0.45 0 0.55 1;0.45 0 0.55 1;0.45 0 0.55 1" } as const
+/*
+ * The GVO flag from the shoot, cloth only: matte black cloth, bold white GVO.
+ *
+ * It waves like real cloth: a wave travels from the hoist (the left edge, held still) out to the fly end,
+ * growing as it goes. The outline is computed from that travelling wave at 24 moments of one cycle, so the
+ * loop is seamless. The fold shading is a repeating light/dark band that moves exactly one wavelength per
+ * cycle (in step with the wave) and fades out towards the hoist. GVO rides the cloth's height and tilt.
+ */
+const X0 = 9, X1 = 116, TOP = 9, BOTTOM = 62 // the cloth at rest
+const WAVELENGTH = 74 // about one and a half waves across the flag
+const FRAMES = 24
+const STEPS = 22 // points along each edge
 
-// The footer flag waves on its own: bigger outlines, so a wave visibly travels through the cloth.
-const WAVE = [
-  "M9 9 C38 6 66 13 116 9 C115 26 117 44 115 62 C74 66 44 58 9 62 Z",
-  "M9 9 C36 16 70 1 114 13 C117 30 112 47 115 66 C78 58 40 70 9 62 Z",
-  "M9 9 C42 2 62 18 117 6 C112 22 119 41 113 59 C70 70 48 54 9 62 Z",
-  "M9 9 C38 14 68 4 115 11 C118 28 113 46 116 64 C76 61 44 64 9 62 Z",
-]
-const WAVE_LOOP = [...WAVE, WAVE[0]].join(";")
-const WAVE_EASE = { calcMode: "spline", keyTimes: "0;0.25;0.5;0.75;1", keySplines: "0.45 0 0.55 1;0.45 0 0.55 1;0.45 0 0.55 1;0.45 0 0.55 1" } as const
+const reach = (x: number) => Math.pow((x - X0) / (X1 - X0), 1.25) // 0 at the hoist, 1 at the fly end
+const wave = (x: number, phase: number, amp: number) => amp * reach(x) * Math.sin((2 * Math.PI * (x - X0)) / WAVELENGTH - phase)
+const r2 = (n: number) => Math.round(n * 100) / 100
+
+function outline(phase: number, amp: number) {
+  const top: string[] = [], bottom: string[] = []
+  for (let i = 0; i <= STEPS; i++) {
+    const x = X0 + ((X1 - X0) * i) / STEPS
+    // the bottom edge lags the top a little, as cloth does
+    top.push(`${r2(x)} ${r2(TOP + wave(x, phase, amp))}`)
+    bottom.push(`${r2(x)} ${r2(BOTTOM + wave(x, phase + 0.35, amp))}`)
+  }
+  return `M${top.join(" L")} L${bottom.reverse().join(" L")} Z`
+}
+
+function motion(amp: number) {
+  const phases = Array.from({ length: FRAMES + 1 }, (_, i) => (2 * Math.PI * i) / FRAMES)
+  const cx = 62, dx = 0.5
+  return {
+    rest: outline(0, amp),
+    path: phases.map((p) => outline(p, amp)).join(";"),
+    // GVO follows the cloth at its centre: up and down with the wave, tilting with its slope
+    lift: phases.map((p) => `0 ${r2(wave(cx, p, amp) * 0.9)}`).join(";"),
+    tilt: phases.map((p) => r2(((Math.atan((wave(cx + dx, p, amp) - wave(cx - dx, p, amp)) / (2 * dx)) * 180) / Math.PI) * 0.45)).join(";"),
+  }
+}
+
+const SWAY = motion(4.6) // footer: waves on its own
+const TAP = motion(3) // menu: a smaller wave when scrolled or tapped
 
 /**
  * mode "sway": waves on its own, all the time it is on screen (footer); pauses off screen.
- * mode "tap": waves while the page scrolls, and ripples when its button is hovered or tapped (header).
+ * mode "tap": waves while the page scrolls, and when its button is hovered or tapped (header).
  * Colours come from CSS: --flag-cloth, --flag-ink, --fold (fold shading strength).
  */
 export default function GvoFlag({ className, mode = "sway" }: { className?: string; mode?: "sway" | "tap" }) {
   const ref = useRef<SVGSVGElement>(null)
   const uid = useId().replace(/:/g, "")
   const sway = mode === "sway"
-  const dur = sway ? "3.2s" : "0.9s"
-  const ease = sway ? WAVE_EASE : EASE
-  const begin = mode === "sway" ? "0s" : "indefinite"
-  const repeat = mode === "sway" ? "indefinite" : "1"
+  const m = sway ? SWAY : TAP
+  const anim = { dur: sway ? "1.6s" : "0.9s", begin: sway ? "0s" : "indefinite", repeatCount: sway ? "indefinite" : "1" } as const
 
   useEffect(() => {
     const svg = ref.current
     if (!svg) return
-    if (mode === "sway") {
+    if (sway) {
       if (reducedMotion()) { svg.pauseAnimations(); return }
       const io = new IntersectionObserver(([e]) => (e.isIntersecting ? svg.unpauseAnimations() : svg.pauseAnimations()))
       io.observe(svg)
@@ -57,41 +78,52 @@ export default function GvoFlag({ className, mode = "sway" }: { className?: stri
     }
     host.addEventListener("pointerenter", ripple)
     host.addEventListener("click", ripple)
-    // keeps waving while the page scrolls: each ripple ends where the next begins, so they chain seamlessly
+    // keeps waving while the page scrolls: each wave cycle ends where the next begins, so they chain seamlessly
     window.addEventListener("scroll", ripple, { passive: true })
     return () => {
       host.removeEventListener("pointerenter", ripple); host.removeEventListener("click", ripple)
       window.removeEventListener("scroll", ripple)
     }
-  }, [mode])
+  }, [sway])
 
   return (
-    <svg ref={ref} className={`gvo ${className ?? ""}`} viewBox={sway ? "5 0 116 73" : "6 2 114 67"} aria-hidden="true" focusable="false">
+    <svg ref={ref} className={`gvo ${className ?? ""}`} viewBox={sway ? "5 2 116 69" : "6 3 114 66"} aria-hidden="true" focusable="false">
       <defs>
         <clipPath id={`c${uid}`}>
-          <path d={CLOTH[0]}>
-            <animate data-ripple attributeName="d" values={sway ? WAVE_LOOP : LOOP} dur={dur} begin={begin} repeatCount={repeat} {...ease} />
+          <path d={m.rest}>
+            <animate data-ripple attributeName="d" values={m.path} calcMode="linear" {...anim} />
           </path>
         </clipPath>
-        {/* soft folds across matte cloth; they drift as the cloth moves */}
-        <linearGradient id={`f${uid}`} x1="0" x2="1" y1="0" y2=".15">
-          <stop offset="0" stopColor="#000" stopOpacity="0" />
-          <stop offset=".18" stopColor="#fff" style={{ stopOpacity: "calc(var(--fold) * .15)" }} />
-          <stop offset=".34" stopColor="#000" style={{ stopOpacity: "var(--fold)" }} />
-          <stop offset=".52" stopColor="#fff" style={{ stopOpacity: "calc(var(--fold) * .2)" }} />
-          <stop offset=".7" stopColor="#000" style={{ stopOpacity: "calc(var(--fold) * .85)" }} />
-          <stop offset=".86" stopColor="#fff" style={{ stopOpacity: "calc(var(--fold) * .12)" }} />
-          <stop offset="1" stopColor="#000" style={{ stopOpacity: "calc(var(--fold) * .7)" }} />
-          <animateTransform data-ripple attributeName="gradientTransform" type="translate" values={sway ? "0 0;.16 0;-.1 0;.07 0;0 0" : "0 0;.1 0;-.06 0;0 0"} dur={dur} begin={begin} repeatCount={repeat} {...ease} />
+        {/* the folds: light and dark bands one wavelength apart, travelling with the wave */}
+        <linearGradient id={`f${uid}`} gradientUnits="userSpaceOnUse" x1={X0} y1="0" x2={X0 + WAVELENGTH} y2="0" spreadMethod="repeat">
+          <stop offset="0" stopColor="#000" style={{ stopOpacity: "var(--fold)" }} />
+          <stop offset=".3" stopColor="#000" style={{ stopOpacity: "calc(var(--fold) * .25)" }} />
+          <stop offset=".55" stopColor="#fff" style={{ stopOpacity: "calc(var(--fold) * .35)" }} />
+          <stop offset=".8" stopColor="#000" style={{ stopOpacity: "calc(var(--fold) * .3)" }} />
+          <stop offset="1" stopColor="#000" style={{ stopOpacity: "var(--fold)" }} />
+          <animateTransform data-ripple attributeName="gradientTransform" type="translate" values={`0 0;${WAVELENGTH} 0`} calcMode="linear" {...anim} />
         </linearGradient>
+        {/* folds fade out towards the hoist, where the cloth barely moves */}
+        <linearGradient id={`h${uid}`} gradientUnits="userSpaceOnUse" x1={X0} y1="0" x2={X0 + 60} y2="0">
+          <stop offset="0" stopColor="#fff" stopOpacity="0" />
+          <stop offset="1" stopColor="#fff" stopOpacity="1" />
+        </linearGradient>
+        <mask id={`m${uid}`} maskUnits="userSpaceOnUse" x="0" y="0" width="130" height="80">
+          <rect width="130" height="80" fill={`url(#h${uid})`} />
+        </mask>
       </defs>
       <g clipPath={`url(#c${uid})`}>
-        <rect className="gvo-cloth" width="122" height="92" />
-        <text className="gvo-t" x="62" y="45.5" textAnchor="middle">
-          GVO
-          <animateTransform data-ripple attributeName="transform" type="translate" values={sway ? "0 0;-.6 2.2;.8 -1.6;-.3 1.2;0 0" : "0 0;.6 1.2;-.5 -.9;0 0"} dur={dur} begin={begin} repeatCount={repeat} {...ease} />
-        </text>
-        <rect width="122" height="92" fill={`url(#f${uid})`} />
+        <rect className="gvo-cloth" width="130" height="80" />
+        <g>
+          <animateTransform data-ripple attributeName="transform" type="translate" values={m.lift} calcMode="linear" {...anim} />
+          <g transform="translate(62 41)">
+            <g>
+              <animateTransform data-ripple attributeName="transform" type="skewY" values={m.tilt} calcMode="linear" {...anim} />
+              <text className="gvo-t" x="0" y="4.5" textAnchor="middle">GVO</text>
+            </g>
+          </g>
+        </g>
+        <rect width="130" height="80" fill={`url(#f${uid})`} mask={`url(#m${uid})`} />
       </g>
     </svg>
   )
