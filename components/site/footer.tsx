@@ -45,7 +45,7 @@ export default function Footer() {
             <div className="mail"><span id="mail">{EMAIL}</span><CopyButton text={EMAIL} selectId="mail" what="email" /></div>
             <Link className="foot-press lbl" href="/press">Press kit &amp; photos <Arrow /></Link>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="foot-logo" src="/media/logo.webp" alt="Dabie Bomaye" width={1100} height={999} loading="lazy" decoding="async" />
+            <img className="foot-logo" data-beat src="/media/logo.webp" alt="Dabie Bomaye" width={1100} height={999} loading="lazy" decoding="async" />
           </div>
         </div>
         <div className="foot-base lbl">

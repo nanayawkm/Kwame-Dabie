@@ -55,7 +55,7 @@ export default function Hero() {
       <div className="hero-fade" />
       <div className="hero-content wrap">
         <div className="hero-bottom">
-          <button className="logo-btn" onClick={onLogo} aria-label="Dabie Bomaye">
+          <button className="logo-btn" onClick={onLogo} aria-label="Dabie Bomaye" data-beat>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/media/logo.webp" alt="Dabie Bomaye logo" width={1100} height={999} />
           </button>

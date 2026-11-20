@@ -3,7 +3,7 @@
 import { useRef, useState } from "react"
 import { TRACKS } from "@/lib/content"
 import { buzz, reducedMotion } from "@/lib/client"
-import { usePlayer } from "./player"
+import { LevelBars, usePlayer } from "./player"
 import { useCards } from "./story-cards"
 import { PauseIcon, PlayIcon, StoryIcon } from "./icon"
 import Opener from "./opener"
@@ -65,8 +65,9 @@ export default function Tracklist() {
                   <span className="trk-n">{t.n}</span>
                   <span>
                     <span className="trk-t">{t.title}</span>
-                    {(t.ft || t.tags) && (
+                    {(t.ft || t.tags || isPlaying) && (
                       <span className="trk-meta">
+                        {isPlaying && <LevelBars />}
                         {t.ft && <span className="ft">Ft {t.ft}</span>}
                         {t.tags?.map((g) => <span key={g.label} className={`tag${g.hot ? " hot" : ""}`}>{g.label}</span>)}
                       </span>

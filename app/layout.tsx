@@ -12,6 +12,7 @@ import ScrollManager from "@/components/site/scroll-manager"
 import { PlayerProvider } from "@/components/site/player"
 import { CardProvider } from "@/components/site/story-cards"
 import { SITE } from "@/lib/site"
+import ScrollFx from "@/components/site/scroll-fx"
 
 
 const DESCRIPTION =
@@ -105,6 +106,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </PlayerProvider>
         <div id="chant" aria-hidden="true">Bomaye!</div>
         <ScrollManager />
+        <ScrollFx />
         <TitleWatcher />
         <Analytics />
       </body>

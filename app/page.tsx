@@ -49,7 +49,11 @@ export default function Home() {
       <section className="descent" data-tone="light" aria-label="Quote">
         <div className="wrap">
           <figure className="opener" style={{ margin: 0 }}>
-            <blockquote>The more you repeat something, the more dangerous you become at it.</blockquote>
+            <blockquote>
+              <span className="echo e2" aria-hidden="true">The more you repeat something, the more dangerous you become at it.</span>
+              <span className="echo e1" aria-hidden="true">The more you repeat something, the more dangerous you become at it.</span>
+              <span className="q">The more you repeat something, the more dangerous you become at it.</span>
+            </blockquote>
             <span className="opener-dash" aria-hidden="true" />
             <cite className="lbl opener-credit">Dabie Bomaye</cite>
           </figure>

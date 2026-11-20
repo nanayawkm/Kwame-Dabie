@@ -731,3 +731,34 @@ body,#loader{background-image:url("/media/grain-paper.png");background-size:200p
   .count .opener-dash{margin:8px 0 6px}
   .hero .btn{min-height:46px}
 }
+
+/* ---------- aliveness, kept calm: music-driven only while music plays, arrival moments once per visit ---------- */
+/* the logos pulse on the kick (the player sets --beat only while something plays) */
+[data-beat]{transform:scale(calc(1 + var(--beat, 0) * .04));will-change:transform}
+/* level bars */
+.lv{display:inline-flex;align-items:flex-end;gap:2px;height:14px;flex:none}
+.lv i{width:3px;height:100%;background:var(--blood);transform-origin:bottom}
+.lv i:nth-child(1){transform:scaleY(calc(.14 + var(--l0, 0) * .86))}
+.lv i:nth-child(2){transform:scaleY(calc(.14 + var(--l1, 0) * .86))}
+.lv i:nth-child(3){transform:scaleY(calc(.14 + var(--l2, 0) * .86))}
+.lv i:nth-child(4){transform:scaleY(calc(.14 + var(--l3, 0) * .86))}
+.pbar-lv{height:18px;margin-right:-2px}
+.pbar-lv i{width:3px}
+/* red dashes draw themselves once */
+html.fx .opener-dash{transform:scaleX(0);transition:transform .6s var(--ease) .12s}
+html.fx .opener-dash.in{transform:none}
+html.fx .list-h::before{transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease) .12s}
+html.fx .list-h.in::before{transform:none}
+/* "the fight." lands */
+.thesis .red{display:inline-block}
+html.fx .thesis .red:not(.in){opacity:0}
+html.fx .thesis .red.in{animation:fight-hit .62s cubic-bezier(.2,1.5,.4,1) .15s both}
+@keyframes fight-hit{0%{opacity:0;transform:scale(1.4)}45%{opacity:1;transform:scale(.97)}62%{transform:translateX(-4px)}78%{transform:translateX(3px)}100%{opacity:1;transform:none}}
+/* the quote repeats itself: two faint prints of the same line stack above it */
+.descent blockquote{position:relative}
+.descent .q{position:relative;display:block}
+.descent .echo{position:absolute;left:0;right:0;top:0;display:block;opacity:0;pointer-events:none;user-select:none}
+html.fx .descent .echo{transition:transform .9s var(--ease),opacity .9s ease}
+html.fx .descent blockquote.in .e1{opacity:.2;transform:translate(.035em,-.07em);transition-delay:.2s}
+html.fx .descent blockquote.in .e2{opacity:.1;transform:translate(.07em,-.14em);transition-delay:.45s}
+@media (prefers-reduced-motion:reduce){[data-beat]{transform:none}}

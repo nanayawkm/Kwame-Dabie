@@ -2,8 +2,22 @@
 
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react"
 import { LINKS, TRACKS, type Track } from "@/lib/content"
-import { buzz, event } from "@/lib/client"
+import { buzz, event, reducedMotion } from "@/lib/client"
 import { Arrow, PauseIcon, PlayIcon } from "./icon"
+
+/** Beat and levels for each preview, measured ahead of time (12.5 per second, one base-36 digit each).
+ * Reading these against the playback position, instead of analysing the audio live, keeps previews working on
+ * iPhones with the mute switch on or the screen locked. */
+type Levels = { fps: number; tracks: Record<string, { beat: string; lv: string[] }> }
+let levelsData: Levels | null = null
+let levelsLoading: Promise<void> | null = null
+const loadLevels = () => (levelsLoading ??= fetch("/media/previews/levels.json").then((r) => r.json()).then((d) => { levelsData = d }).catch(() => {}))
+const digit = (s: string, i: number) => parseInt(s[Math.min(Math.max(i, 0), s.length - 1)] || "0", 36) / 35
+
+/** Four thin bars that move with whatever is playing (driven by --l0..--l3 from the player). */
+export const LevelBars = ({ className = "" }: { className?: string }) => (
+  <span className={`lv ${className}`} data-levels aria-hidden="true"><i /><i /><i /><i /></span>
+)
 
 /** The tracks the "Play the tape" sampler runs through, in tape order. */
 const TAPE = TRACKS.filter((t) => t.preview)
@@ -48,6 +62,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
   const start = useCallback((t: Track) => {
     const a = audio.current
     if (!a || !t.preview) return
+    loadLevels()
     if (currentRef.current?.n !== t.n) {
       a.src = t.preview
       currentRef.current = t
@@ -102,6 +117,30 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
     }
   }, [step])
 
+  // While something plays: the logos pulse on the kick, the level bars move. Only while playing, only on the
+  // few elements that ask for it ([data-beat], [data-levels]), never on the whole page.
+  useEffect(() => {
+    const set = (beat: number, lv: number[]) => {
+      document.querySelectorAll<HTMLElement>("[data-beat]").forEach((el) => el.style.setProperty("--beat", beat.toFixed(3)))
+      document.querySelectorAll<HTMLElement>("[data-levels]").forEach((el) => lv.forEach((v, k) => el.style.setProperty(`--l${k}`, v.toFixed(3))))
+    }
+    if (!playing || reducedMotion()) { set(0, [0, 0, 0, 0]); return }
+    let raf = 0, beat = 0
+    const lv = [0, 0, 0, 0]
+    const tick = () => {
+      const a = audio.current, d = levelsData, tr = d && currentRef.current ? d.tracks[currentRef.current.n] : null
+      if (a && d && tr) {
+        const f = Math.floor(a.currentTime * d.fps)
+        beat = Math.max(digit(tr.beat, f), beat * 0.8) // hit fast, fall back gently
+        for (let k = 0; k < 4; k++) lv[k] += (digit(tr.lv[k], f) - lv[k]) * 0.45
+      }
+      set(beat, lv)
+      raf = requestAnimationFrame(tick)
+    }
+    raf = requestAnimationFrame(tick)
+    return () => { cancelAnimationFrame(raf); set(0, [0, 0, 0, 0]) }
+  }, [playing])
+
   // lock-screen / headphone next and previous move through the tape
   useEffect(() => {
     if (!("mediaSession" in navigator)) return
@@ -155,6 +194,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
           <PlayIcon />
           <PauseIcon />
         </button>
+        {playing && <LevelBars className="pbar-lv" />}
         <div className="pbar-meta">
           <span className="pbar-t">{current ? `${current.n} · ${current.title}` : ""}</span>
           <span className="lbl pbar-s">
