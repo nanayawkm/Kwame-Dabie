@@ -19,7 +19,7 @@ const DESCRIPTION =
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
-  title: { default: "Dabie Bomaye", template: "%s / Dabie Bomaye" },
+  title: { default: "Dabie Bomaye", template: "%s · Dabie Bomaye" },
   description: DESCRIPTION,
   applicationName: "Dabie Bomaye",
   authors: [{ name: "Dabie Bomaye" }],
@@ -30,14 +30,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "music.album",
     siteName: "Dabie Bomaye",
-    title: "Dabie Bomaye / The Tape",
+    title: "Dabie Bomaye · The Tape",
     description: "Formerly Kwame Dabie. The self-titled tape: 10 tracks, out 12.11.2026 on GVO.",
     url: "/",
     locale: "en_GB",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dabie Bomaye / The Tape",
+    title: "Dabie Bomaye · The Tape",
     description: "Formerly Kwame Dabie. 10 tracks, out 12.11.2026 on GVO.",
     creator: "@dabiebomaye",
     site: "@dabiebomaye",

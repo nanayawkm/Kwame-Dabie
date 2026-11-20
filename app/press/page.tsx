@@ -56,8 +56,8 @@ export default function PressPage() {
               <dt className="lbl">The name</dt>
               <dd className="spec-text">From the 1974 “Ali, bomaye” chant. To Dabie it means aggression, being out there, the traits of Ali.</dd>
               <dt className="lbl">Project</dt><dd>Dabie Bomaye, 10-track tape</dd>
-              <dt className="lbl">Release</dt><dd>12 Nov 2026 / GVO</dd>
-              <dt className="lbl">Singles</dt><dd>Roadman 2 (ft AraTheJay) / Addict</dd>
+              <dt className="lbl">Release</dt><dd>12 Nov 2026 · GVO</dd>
+              <dt className="lbl">Singles</dt><dd>Roadman 2 (ft AraTheJay) · Addict</dd>
               <dt className="lbl">Features</dt><dd>Funky319, AraTheJay, Nsogbu Malaika</dd>
               <dt className="lbl">Production</dt><dd>JoeyOnTheTrack, 420Tenney, KBTheAlchemist, Mr Kwamz, NinoxaFlame, MJayDidThis</dd>
             </dl>
@@ -71,7 +71,7 @@ export default function PressPage() {
               <a href={LINKS.pressPhotos} target="_blank" rel="noopener">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <span className="ph"><img src={p.src} alt={p.alt} loading="lazy" decoding="async" /></span>
-                <span className="lbl">{String(i + 1).padStart(2, "0")} / {p.label}</span>
+                <span className="lbl"><b className="red">{String(i + 1).padStart(2, "0")}</b> &nbsp;{p.label}</span>
               </a>
             </li>
           ))}

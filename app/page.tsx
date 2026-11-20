@@ -38,7 +38,7 @@ export default function Home() {
             <dl className="spec">
               <dt className="lbl">Format</dt><dd>10-track tape</dd>
               <dt className="lbl">Release</dt><dd>12 Nov 2026</dd>
-              <dt className="lbl">Singles</dt><dd>Roadman 2 &nbsp;/&nbsp; Addict</dd>
+              <dt className="lbl">Singles</dt><dd>Roadman 2 &nbsp;·&nbsp; Addict</dd>
               <dt className="lbl">Mix &amp; master</dt><dd>JoeyOnTheTrack &amp; Spotless</dd>
               <dt className="lbl">Label</dt><dd>© 2026 GVO</dd>
             </dl>

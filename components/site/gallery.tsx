@@ -133,7 +133,7 @@ export default function Gallery() {
           <Opener
             id="cr-h"
             hClass="sec-h"
-            credit={<>Gallery &nbsp;/&nbsp; {N} frames</>}
+            credit={<>Gallery &nbsp;·&nbsp; {N} frames</>}
             after={<span className="car-count" aria-hidden="true"><b>{String(cur + 1).padStart(2, "0")}</b> / {String(N).padStart(2, "0")}</span>}
           >
             Dabie
@@ -161,7 +161,7 @@ export default function Gallery() {
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={g.src} alt={g.alt} width={g.w} height={g.h} loading="lazy" decoding="async" draggable={false} style={g.pos ? { objectPosition: g.pos } : undefined} />
-                <p className="lbl car-cap"><span>Fig. {String(i + 1).padStart(2, "0")}</span><span>{g.caption}</span></p>
+                <p className="lbl car-cap"><span className="car-n">{String(i + 1).padStart(2, "0")}</span><span>{g.caption}</span></p>
               </li>
             ))}
           </ul>

@@ -21,7 +21,7 @@ export default function Footer() {
         </div>
         <div className="foot-grid">
           <div>
-            <p className="lbl red" style={{ margin: 0 }}>Stream the tape</p>
+            <p className="lbl list-h">Stream the tape</p>
             <ul className="links">
               {STREAM_PLATFORMS.map((p) => (
                 <li key={p.icon}>
@@ -31,7 +31,7 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <p className="lbl red" style={{ margin: 0 }}>Follow</p>
+            <p className="lbl list-h">Follow</p>
             <ul className="links">
               {FOLLOW.map((f) => (
                 <li key={f.icon}>
@@ -41,7 +41,7 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <p className="lbl red" style={{ margin: 0 }}>Contact &amp; booking</p>
+            <p className="lbl list-h">Contact &amp; booking</p>
             <div className="mail"><span id="mail">{EMAIL}</span><CopyButton text={EMAIL} selectId="mail" what="email" /></div>
             <Link className="foot-press lbl" href="/press">Press kit &amp; photos <Arrow /></Link>
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -49,7 +49,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="foot-base lbl">
-          <span>© 2026 GVO &nbsp;/&nbsp; Tema, Ghana</span>
+          <span>© 2026 GVO &nbsp;·&nbsp; Tema, Ghana</span>
           <a href={LINKS.quube} target="_blank" rel="noopener">Site by Quube</a>
         </div>
       </div>

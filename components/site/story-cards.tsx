@@ -82,7 +82,7 @@ async function drawCard(req: CardReq, bg: BgKey): Promise<HTMLCanvasElement> {
   const topLabels = () => {
     x.fillStyle = "#F4F4F2"
     x.font = `600 30px ${F}`
-    spaced(x, `THE TAPE  /  ${outLabel}`, 80, 262, 9)
+    spaced(x, `THE TAPE  ·  ${outLabel}`, 80, 262, 9)
     spaced(x, "GVO", W - 80, 262, 9, "right")
   }
   const footer = (top: number) => {
@@ -256,7 +256,7 @@ export function CardProvider({ children }: { children: ReactNode }) {
         onClick={(e) => { if (e.target === dlg.current) dlg.current?.close() }}
       >
         <div className="dlg-top">
-          <span className="lbl" id="dlgTitle">{req?.kind === "track" ? `Share / ${req.track.n} ${req.track.title}` : "Share the tape"}</span>
+          <span className="lbl" id="dlgTitle">{req?.kind === "track" ? `Share · ${req.track.n} ${req.track.title}` : "Share the tape"}</span>
           <button className="dlg-x" type="button" onClick={() => dlg.current?.close()}>Close</button>
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -271,7 +271,7 @@ export function CardProvider({ children }: { children: ReactNode }) {
         </div>
         <div className="dlg-actions">
           <button className="btn" type="button" disabled={busy || !card} onClick={share}>Share to your story</button>
-          <p className="lbl dlg-apps">Instagram &nbsp;/&nbsp; Snapchat &nbsp;/&nbsp; WhatsApp status</p>
+          <p className="lbl dlg-apps">Instagram &nbsp;·&nbsp; Snapchat &nbsp;·&nbsp; WhatsApp status</p>
           <button className="dlg-save" type="button" disabled={busy || !card} onClick={save}>Save image</button>
         </div>
         <p className="dlg-note" aria-live="polite">{status}</p>

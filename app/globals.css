@@ -110,7 +110,7 @@ html.seen #loader{display:none}
 .hero-sub{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:rgba(244,244,242,.7)}
 .hero-sub a{color:var(--bone);border-bottom:1px solid var(--blood);padding-bottom:2px}
 
-@media (min-width:900px){
+@media (min-width:900px),(orientation:landscape) and (max-height:500px) and (min-width:600px){
   /* one image: the photo fills the height on the right and fades into black under the copy */
   .hero-media{left:auto;right:0;width:clamp(58%,100svh,78%);height:100%}
   .hero-img{object-position:50% 28%}
@@ -685,3 +685,49 @@ body,#loader{background-image:url("/media/grain-paper.png");background-size:200p
 .lost .wrap{display:flex;flex-direction:column;align-items:center;text-align:center}
 .foot-gvo .foot-gvo-d{margin:14px auto 0}
 @media (min-width:900px){.mail span{font-size:20px;font-stretch:100%;overflow-wrap:normal}}
+
+/* ---------- hero on the system: centred like the cover; Out now / dash / credit ---------- */
+.hero-bottom{justify-items:center;text-align:center}
+.hero-bottom .btn{justify-self:stretch}
+.count{justify-items:center;gap:0}
+.count-digits{justify-content:center}
+.count .opener-dash{margin:14px 0 10px}
+.count-credit{color:rgba(244,244,242,.72)}
+.hero-sub{justify-content:center;gap:10px 26px}
+
+/* ---------- list headings and small panel labels: credits under a short red dash ---------- */
+.list-h{margin:0;color:rgba(244,244,242,.72)}
+.list-h::before{content:"";display:block;width:24px;height:3px;background:var(--blood);margin-bottom:10px}
+
+/* ---------- gallery captions: red number + name, centred under the frame ---------- */
+.car-cap{justify-content:center;gap:12px}
+.car-n{color:var(--blood);font-weight:700;font-stretch:var(--w-num);font-size:1.25em;letter-spacing:.04em}
+
+/* ---------- "Play the tape" ---------- */
+.tape-block{display:flex;align-items:center;gap:16px;width:100%;margin:0 0 18px;padding:14px;border:1px solid rgba(244,244,242,.22);text-align:left;color:var(--bone);transition:border-color .2s,background .2s}
+.tape-block:active,.tape-block.on{border-color:var(--blood);background:rgba(252,0,0,.08)}
+@media (hover:hover){.tape-block:hover{border-color:var(--blood)}}
+.tape-block .tape-ic{flex:none;width:58px;height:58px;display:grid;place-items:center;background:var(--blood);color:#fff}
+.tape-ic svg{width:20px;height:20px;fill:currentColor}
+.tape-block:not(.on) .i-pause,.tape-block.on .i-play,.tape-inline:not(.on) .i-pause,.tape-inline.on .i-play{display:none}
+.tape-tx{display:grid;gap:6px;min-width:0}
+.tape-tx b{font-family:var(--display);font-weight:800;font-stretch:var(--w-head);text-transform:uppercase;font-size:clamp(20px,5.4vw,30px);line-height:.95}
+.tape-tx .lbl{color:rgba(244,244,242,.72);overflow-wrap:anywhere}
+.tape-inline{display:inline-flex;align-items:center;gap:8px;color:var(--bone);border-bottom:1px solid var(--blood);padding-bottom:2px;position:relative;
+  font:inherit;letter-spacing:inherit;text-transform:inherit}
+.tape-inline::before{content:"";position:absolute;inset:-12px -4px}
+.tape-inline .tape-ic{width:14px;height:14px;display:grid;place-items:center;color:var(--blood)}
+.tape-inline .tape-ic svg{width:12px;height:12px}
+.tape-dur{opacity:.7}
+.pbar-skip{flex:none;width:40px;height:40px;display:grid;place-items:center;color:var(--bone)}
+.pbar-skip svg{width:16px;height:16px;fill:currentColor}
+.count-digits .out{font-stretch:var(--w-head);font-size:1.05em}
+/* a phone held sideways: the side-by-side hero, compacted so the stream button stays on screen */
+@media (orientation:landscape) and (max-height:500px) and (min-width:600px){
+  .hero-content{padding-top:64px;padding-bottom:16px}
+  .hero-bottom{gap:10px}
+  .logo-btn{width:min(26vw,190px);margin:0 auto 4px}
+  .count-digits{font-size:34px}
+  .count .opener-dash{margin:8px 0 6px}
+  .hero .btn{min-height:46px}
+}

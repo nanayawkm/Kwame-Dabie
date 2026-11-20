@@ -4,6 +4,7 @@ import Link from "next/link"
 import { useEffect, useRef } from "react"
 import { LINKS } from "@/lib/content"
 import { buzz, event, pad2, reducedMotion, useCountdown } from "@/lib/client"
+import TapeButton from "./tape-button"
 
 export default function Hero() {
   const img = useRef<HTMLImageElement>(null)
@@ -58,9 +59,8 @@ export default function Hero() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/media/logo.webp" alt="Dabie Bomaye logo" width={1100} height={999} />
           </button>
-          <p className="lbl hero-meta" style={{ margin: 0 }}>The new tape &nbsp;/&nbsp; 10 tracks &nbsp;/&nbsp; GVO</p>
+          <p className="lbl hero-meta" style={{ margin: 0 }}>The new tape &nbsp;·&nbsp; 10 tracks &nbsp;·&nbsp; GVO</p>
           <div className="count">
-            <span className="lbl">{cd.out ? "Released 12.11.2026" : <>Out 12.11.2026 &nbsp;·&nbsp; 00:00 GMT</>}</span>
             <div className="count-digits" aria-live="off">
               {!cd.ready ? (
                 <span>12.11.2026</span>
@@ -75,11 +75,14 @@ export default function Hero() {
                 </>
               )}
             </div>
+            <span className="opener-dash" aria-hidden="true" />
+            <span className="lbl count-credit">{cd.out ? "Released 12.11.2026" : <>Out 12.11.2026 &nbsp;·&nbsp; 00:00 GMT</>}</span>
           </div>
           <a className="btn" href={LINKS.tape} target="_blank" rel="noopener" onClick={() => event("stream_click", { from: "hero" })}>
             {cd.out ? "Stream the tape" : "Pre-save the tape"}
           </a>
           <div className="hero-sub lbl">
+            <TapeButton variant="inline" />
             <Link href="/#tracklist">See the tracklist</Link>
           </div>
         </div>

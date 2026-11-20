@@ -7,6 +7,7 @@ import { usePlayer } from "./player"
 import { useCards } from "./story-cards"
 import { PauseIcon, PlayIcon, StoryIcon } from "./icon"
 import Opener from "./opener"
+import TapeButton from "./tape-button"
 
 export default function Tracklist() {
   const [openN, setOpenN] = useState<string | null>(null)
@@ -35,6 +36,7 @@ export default function Tracklist() {
     <section className="tracks-sec dark" id="tracklist" data-tone="dark" aria-labelledby="tl-h">
       <div className="wrap">
         <Opener id="tl-h" hClass="sec-h" credit="The tracks">Tracklist</Opener>
+        <TapeButton />
         <div className="tl-share">
           <button className="tl-mock" type="button" aria-hidden="true" tabIndex={-1} onClick={() => cards.open({ kind: "tape" })}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -43,7 +45,7 @@ export default function Tracklist() {
             <b />
           </button>
           <div className="tl-share-copy">
-            <p className="lbl red" style={{ margin: 0 }}>Post it</p>
+            <p className="lbl list-h">Post it</p>
             <h3 className="tl-share-h">Share the tape</h3>
             <p className="tl-share-d">Get an image of the cover and all ten tracks, ready to post on your Instagram, Snapchat or WhatsApp status.</p>
           </div>
