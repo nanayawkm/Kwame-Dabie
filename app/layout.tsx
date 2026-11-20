@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next"
 import type { ReactNode } from "react"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
-import { bodyFont, displayFont, twiFallback } from "./fonts"
+import { archivo, twiFallback } from "./fonts"
 import { LINKS, TRACKS } from "@/lib/content"
 import Loader from "@/components/site/loader"
 import SiteHeader from "@/components/site/site-header"
@@ -91,7 +91,7 @@ const structuredData = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`${displayFont.variable} ${bodyFont.variable} ${twiFallback.variable}`} suppressHydrationWarning>
+    <html lang="en" data-scroll-behavior="smooth" className={`${archivo.variable} ${twiFallback.variable}`} suppressHydrationWarning>
       <head>
         {/* Returning visitors in the same session skip the loader before first paint. */}
         <script dangerouslySetInnerHTML={{ __html: "try{if(sessionStorage.getItem('seen'))document.documentElement.classList.add('seen')}catch(e){}" }} />

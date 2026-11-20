@@ -69,6 +69,9 @@ async function drawCard(req: CardReq, bg: BgKey): Promise<HTMLCanvasElement> {
   c.width = W
   c.height = H
   const x = c.getContext("2d")!
+  // the site's headline width (Archivo's width axis); browsers without canvas fontStretch draw it at normal width
+  const ctx = x as CanvasRenderingContext2D & { fontStretch?: string }
+  if ("fontStretch" in ctx) ctx.fontStretch = "semi-expanded"
   x.textAlign = "left"
   x.textBaseline = "alphabetic"
   x.fillStyle = "#0A0A0A"
@@ -113,7 +116,10 @@ async function drawCard(req: CardReq, bg: BgKey): Promise<HTMLCanvasElement> {
       x.fillStyle = "#FC0000"
       x.fillText(t.n, cx, cy)
       x.fillStyle = "#F4F4F2"
-      x.fillText(t.title.toUpperCase(), cx + 50, cy)
+      const title = t.title.toUpperCase()
+      let size = 32 // shrink a long title to fit its column
+      while (size > 20 && x.measureText(title).width > 420) { size -= 1; x.font = `700 ${size}px ${F}` }
+      x.fillText(title, cx + 50, cy)
     })
     footer(1470)
     return c

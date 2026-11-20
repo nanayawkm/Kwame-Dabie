@@ -8,7 +8,7 @@ import { Arrow } from "@/components/site/icon"
 export const metadata: Metadata = {
   title: "More Music",
   description:
-    "More music from Dabie Bomaye: every project and single from before the tape (released as Kwame Dabie), from Small Time to False Prophets, plus the Gas visuals.",
+    "More music from Dabie Bomaye: every project and single from before the tape, from Small Time to False Prophets, plus the Gas visuals.",
   alternates: { canonical: "/music" },
 }
 
