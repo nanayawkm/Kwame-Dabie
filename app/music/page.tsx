@@ -6,30 +6,29 @@ import TouchLive from "@/components/site/touch-live"
 import { Arrow } from "@/components/site/icon"
 
 export const metadata: Metadata = {
-  title: "The Kwame Dabie Era",
+  title: "More Music",
   description:
-    "Before Bomaye: every project and single Dabie Bomaye released as Kwame Dabie, from Small Time to False Prophets, plus the Gas visuals.",
-  alternates: { canonical: "/archive" },
+    "More music from Dabie Bomaye: every project and single from before the tape (released as Kwame Dabie), from Small Time to False Prophets, plus the Gas visuals.",
+  alternates: { canonical: "/music" },
 }
 
-export default function ArchivePage() {
+export default function MusicPage() {
   return (
-    <section className="archive page-top" id="archive" data-tone="light" aria-labelledby="ar-h">
+    <section className="archive page-top" id="music" data-tone="light" aria-labelledby="ar-h">
       <div className="wrap">
         <Link className="back lbl" href="/"><Arrow dir="left" /> Back to the tape</Link>
         <div className="arc-head">
           <div>
-            <p className="lbl" style={{ margin: 0, color: "var(--blood-ink)" }}>Before Bomaye</p>
-            <h1 id="ar-h">The Kwame<br />Dabie era</h1>
+            <p className="lbl" style={{ margin: 0, color: "var(--blood-ink)" }}>Keep listening</p>
+            <h1 id="ar-h">More<br />music</h1>
           </div>
-          <span className="stamp" aria-hidden="true">Archived</span>
         </div>
-        <p className="arc-intro">Five projects and five singles released under the old name. Filed here, still on record.</p>
+        <p className="arc-intro">Five projects and five singles from before the tape, and the Gas visuals.</p>
 
         <GasFeature />
 
         <div className="arc-file-h">
-          <span className="arc-tab">File A</span>
+          <span className="arc-tab">01</span>
           <h2>Albums &amp; EPs</h2>
           <span className="lbl cnt">{String(PROJECTS.length).padStart(2, "0")} projects</span>
         </div>
@@ -68,7 +67,7 @@ export default function ArchivePage() {
         </ul>
 
         <div className="arc-file-h">
-          <span className="arc-tab">File B</span>
+          <span className="arc-tab">02</span>
           <h2>Singles</h2>
           <span className="lbl cnt">{String(SINGLES.length).padStart(2, "0")} singles<span className="swipe"> &nbsp;·&nbsp; swipe <Arrow /></span></span>
         </div>

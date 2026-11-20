@@ -120,19 +120,18 @@ html.seen #loader{display:none}
 
 /* ---------- rename: the evolution loop. KWAME burns away, DABIE survives, a red blade cuts the plain type into the logo ---------- */
 .rename{overflow:hidden;padding-block:clamp(72px,16vw,160px) clamp(56px,12vw,120px)}
-.rn-lbl{margin:0;color:var(--blood-ink)}
+.rn-lbl{margin:0;color:var(--blood)}
 .rn{position:relative;display:grid;align-items:center;margin:18px 0 0;font-family:var(--display);font-weight:800;text-transform:uppercase;
   font-size:clamp(84px,29vw,300px);line-height:.8;letter-spacing:-.015em}
 .rn > *{grid-area:1/1}
 .rn-type{position:relative;height:1.6em;visibility:hidden}
-.rn-w{position:absolute;left:0;right:0;top:0;text-align:center;white-space:nowrap}
+.rn-w{position:absolute;left:0;right:0;top:0;text-align:center;white-space:nowrap;color:var(--bone)}
 .rn-dabie,.rn-bomaye{top:.8em}
-.rn-bomaye{color:var(--blood)}
-.rn-ember{opacity:0;color:#FF4A1C;text-shadow:0 0 .03em #FF8A3D}
+.rn-w.rn-bomaye{color:var(--blood)}
+.rn-w.rn-ember{opacity:0;color:#FF4A1C;text-shadow:0 0 .03em #FF8A3D}
 .rn-stamp{display:flex;justify-content:center}
 .rn-stamp img{width:min(88%,620px);height:auto;transform:rotate(-4deg)}
 .rn-blade{align-self:stretch;background:var(--blood);opacity:0;pointer-events:none}
-.rn-caption{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:28px}
 
 /* The loop, 5.6s, everything in reading order:
    0-0.6s KWAME, then DABIE, build in / to 1.2s hold / 1.2-2.0 KWAME burns away left to right behind an ember edge /

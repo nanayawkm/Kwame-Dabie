@@ -80,7 +80,6 @@ export default function Hero() {
             {cd.out ? "Stream the tape" : "Pre-save the tape"}
           </a>
           <div className="hero-sub lbl">
-            <a href={LINKS.roadman2} target="_blank" rel="noopener" onClick={() => event("stream_click", { from: "hero_roadman2" })}>Roadman 2 &nbsp;/&nbsp; out now</a>
             <Link href="/#tracklist">See the tracklist</Link>
           </div>
         </div>

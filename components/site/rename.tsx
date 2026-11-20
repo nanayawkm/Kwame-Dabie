@@ -26,7 +26,7 @@ export default function Rename() {
   }, [])
 
   return (
-    <section className="rename" id="name" data-tone="light" aria-labelledby="rn-h" ref={ref}>
+    <section className="rename dark" id="name" data-tone="dark" aria-labelledby="rn-h" ref={ref}>
       <div className="wrap">
         <p className="lbl rn-lbl">Evolved. Same fight.</p>
         <h2 className="rn" id="rn-h">
@@ -39,14 +39,10 @@ export default function Rename() {
           </span>
           <span className="rn-stamp">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/media/logo.webp" alt="" width={1100} height={999} loading="lazy" decoding="async" />
+            <img src="/media/logo-keyline.webp" alt="" width={1100} height={1007} loading="lazy" decoding="async" />
           </span>
           <span className="rn-blade" aria-hidden="true" />
         </h2>
-        <div className="rn-caption lbl">
-          <span>Evolved from Kwame Dabie</span>
-          <span>Tema, Ghana</span>
-        </div>
       </div>
     </section>
   )

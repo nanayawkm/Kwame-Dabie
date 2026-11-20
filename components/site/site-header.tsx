@@ -12,7 +12,7 @@ const MENU = [
   { href: "/#tracklist", label: "Tracklist" },
   { href: "/#trailer", label: "Trailer" },
   { href: "/#gallery", label: "Gallery" },
-  { href: "/archive", label: "Archive" },
+  { href: "/music", label: "More music" },
   { href: "/press", label: "Press" },
   { href: "#contact", label: "Contact" },
 ]

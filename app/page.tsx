@@ -55,15 +55,15 @@ export default function Home() {
       <Trailer />
       <Gallery />
 
-      {/* The archive is its own page; the homepage gets one strip. */}
+      {/* More music is its own page; the homepage gets one strip. */}
       <section className="vault dark" data-tone="dark" aria-labelledby="vt-h">
-        <Link className="vault-link" href="/archive">
+        <Link className="vault-link" href="/music">
           <span className="vault-media"><LoopVideo /></span>
           <span className="vault-copy wrap">
-            <span className="lbl red">Before Bomaye</span>
-            <span className="vault-h" id="vt-h">The Kwame<br />Dabie era</span>
-            <span className="vault-d">The Gas visuals, five projects and five singles from the old name.</span>
-            <span className="vault-go">Enter the archive <Arrow /></span>
+            <span className="lbl red">Keep listening</span>
+            <span className="vault-h" id="vt-h">More<br />music</span>
+            <span className="vault-d">The Gas visuals, five projects and five singles from before the tape.</span>
+            <span className="vault-go">Hear more <Arrow /></span>
           </span>
         </Link>
       </section>

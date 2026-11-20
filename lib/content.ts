@@ -1,4 +1,4 @@
-// Everything the site says lives here: links, the tape, the archive, the gallery.
+// Everything the site says lives here: links, the tape, more music, the gallery.
 // Facts come from the DABIE BOMAYE [TAPE] EPK and the release artwork. Update here, not in components.
 
 export const RELEASE_UTC = Date.UTC(2026, 10, 12, 0, 0, 0) // 12.11.2026 00:00 GMT (Ghana)
@@ -31,27 +31,27 @@ export type Track = {
 }
 
 export const TRACKS: Track[] = [
-  { n: "01", title: "Life Will Show U", prod: "JoeyOnTheTrack",
+  { n: "01", title: "Life Will Show U", prod: "JoeyOnTheTrack", preview: "/media/previews/01-life-will-show-u.mp3",
     story: "The intro. It sets you into the tape. You think you have everybody, but when life shows you the truth, you realise you have no one. It is just you and your God." },
-  { n: "02", title: "Not the Time to Cry", prod: "JoeyOnTheTrack",
+  { n: "02", title: "Not the Time to Cry", prod: "JoeyOnTheTrack", preview: "/media/previews/02-not-the-time-to-cry.mp3",
     story: "This is the time to fight. Get up and move on. It is not the time to complain and it is not the time to cry. It is the time to get up and fight for whatever you want." },
-  { n: "03", title: "Mission 01", prod: "JoeyOnTheTrack",
+  { n: "03", title: "Mission 01", prod: "JoeyOnTheTrack", preview: "/media/previews/03-mission-01.mp3",
     story: "The mission is one. Not the time to cry, not the time to stall: just get up, move and get done what you have to do." },
-  { n: "04", title: "Sani Abacha", ft: "Funky319", prod: "MJayDidThis",
+  { n: "04", title: "Sani Abacha", ft: "Funky319", prod: "MJayDidThis", preview: "/media/previews/04-sani-abacha.mp3",
     story: "Named after the late Nigerian head of state known for amassing vast wealth illegally. A record about getting money, plenty of money, by any route necessary. Features Funky319, a rapper from Côte d'Ivoire." },
   { n: "05", title: "O&O", prod: "KBTheAlchemist",
     story: "Over and over. An earlier single. Doing whatever you have to do again and again, and never stopping." },
-  { n: "06", title: "Addict", prod: "JoeyOnTheTrack", tags: [{ label: "Out now", hot: true }],
+  { n: "06", title: "Addict", prod: "JoeyOnTheTrack", preview: "/media/previews/06-addict.mp3",
     story: "Lead single, released October 2026. The more you do something, the more addicted and dangerous you become at it. Repetition as perfection." },
-  { n: "07", title: "Times I Stared", prod: "JoeyOnTheTrack",
+  { n: "07", title: "Times I Stared", prod: "JoeyOnTheTrack", preview: "/media/previews/07-times-i-stared.mp3",
     story: "A look back at the times I stared and did not focus on my own. Reflection on lost focus and lessons learned." },
-  { n: "08", title: "20 Mins to the Capital", prod: "420Tenney & JoeyOnTheTrack",
+  { n: "08", title: "20 Mins to the Capital", prod: "420Tenney & JoeyOnTheTrack", preview: "/media/previews/08-20-mins-to-the-capital.mp3",
     story: "The journey on the road. Twenty minutes from Tema to the capital, going to look for money, going to look for capital." },
   { n: "09", title: "Roadman 2", ft: "AraTheJay", prod: "Mr Kwamz",
-    tags: [{ label: "Out now", hot: true }, { label: "Lead single" }],
-    preview: "/media/roadman2-preview.mp3", link: "https://tiememusicdistro.lnk.to/ROADMAN2",
+    tags: [{ label: "Lead single" }],
+    preview: "/media/previews/09-roadman-2.mp3", link: "https://tiememusicdistro.lnk.to/ROADMAN2",
     story: "The lead single off the tape, a collaboration with AraTheJay from Tema, Ghana. The sequel to \"Roadman\" (2022): the road and what we go through on it." },
-  { n: "10", title: "Asylum", ft: "Nsogbu Malaika", prod: "NinoxaFlame",
+  { n: "10", title: "Asylum", ft: "Nsogbu Malaika", prod: "NinoxaFlame", preview: "/media/previews/10-asylum.mp3",
     story: "The stuff we have seen, heard and witnessed on the road, told from where we stand, with Nsogbu Malaika from Tema, Ghana. It is madness over here, and it will send you mad." },
 ]
 
@@ -69,7 +69,7 @@ export const GALLERY = [
 ]
 
 export const PROJECTS = [
-  { id: "KD / P-05", note: "Latest project", title: "False Prophets", kind: "Project", meta: ["2025", "7 tracks", "© GVO"], cover: "/media/a-false-prophets.jpg",
+  { id: "P-05", title: "False Prophets", kind: "Project", meta: ["2025", "7 tracks", "© GVO"], cover: "/media/a-false-prophets.jpg",
     link: "https://tiememusicdistro.lnk.to/FALSEPROPHETS",
     credits: "Featuring Genna. Produced by JoeyOnTheTrack, 420Tenney, Mr Kwamz, Khxnbeats and Ilir808. Home of the singles Gas, WWW and Troubles.",
     tracklist: [
@@ -82,19 +82,19 @@ export const PROJECTS = [
       { n: "07", t: "Now or Never", with: "Genna", p: "Mr Kwamz" },
     ],
     mix: "Track 1 mixed & mastered by Da Pluggg. Tracks 2 to 7 by JoeyOnTheTrack." },
-  { id: "KD / P-04", title: "3:33 am", kind: "EP", meta: ["Fanlink"], cover: "/media/a-333.jpg", link: "https://fanlink.tv/333AMkwamedabie" },
-  { id: "KD / P-03", title: "The Purgatory Saga 2", kind: "EP", meta: ["Part two", "Fanlink"], cover: "/media/a-purgatory2.jpg", link: "https://fanlink.tv/thepurgatorysaga2" },
+  { id: "P-04", title: "3:33 am", kind: "EP", meta: ["Fanlink"], cover: "/media/a-333.jpg", link: "https://fanlink.tv/333AMkwamedabie" },
+  { id: "P-03", title: "The Purgatory Saga 2", kind: "EP", meta: ["Part two", "Fanlink"], cover: "/media/a-purgatory2.jpg", link: "https://fanlink.tv/thepurgatorysaga2" },
   // TODO: the old site linked part one to part two's Audiomack page. Swap in part one's link when it arrives.
-  { id: "KD / P-02", title: "The Purgatory Saga", kind: "EP", meta: ["Part one", "Audiomack"], cover: "/media/a-purgatory.jpg", link: "https://audiomack.com/kwamedabie/album/the-purgatory-saga-2?share-user-id=2493638" },
-  { id: "KD / P-01", title: "Small Time", kind: "EP", meta: ["SoundCloud"], cover: "/media/a-small-time.jpg", link: "https://soundcloud.com/kwame-dabie/sets/small-time-ep" },
+  { id: "P-02", title: "The Purgatory Saga", kind: "EP", meta: ["Part one", "Audiomack"], cover: "/media/a-purgatory.jpg", link: "https://audiomack.com/kwamedabie/album/the-purgatory-saga-2?share-user-id=2493638" },
+  { id: "P-01", title: "Small Time", kind: "EP", meta: ["SoundCloud"], cover: "/media/a-small-time.jpg", link: "https://soundcloud.com/kwame-dabie/sets/small-time-ep" },
 ] as const
 
 export const SINGLES = [
-  { id: "KD / S-05", year: "2026", title: "Guantanamo Bay Freestyle", detail: "Freestyle", cover: "/media/a-guantanamo.jpg", link: "https://fanlink.tv/guantanamobayfreestyle" },
-  { id: "KD / S-04", year: "2026", title: "TƐ!", detail: "Prod. MJayDidThis", cover: "/media/a-te.jpg", link: "https://tiememusicdistro.lnk.to/tkV7gI" },
-  { id: "KD / S-03", year: "2025", title: "WWW", detail: "Prod. JoeyOnTheTrack", onFP: true, cover: "/media/a-www.jpg", link: "https://fanlink.tv/WWW-KwameDabie" },
-  { id: "KD / S-02", year: "Feb 2025", title: "Troubles", detail: "Prod. JoeyOnTheTrack", onFP: true, cover: "/media/a-troubles.jpg", link: "https://fanlink.tv/kwamedabie-troubles" },
-  { id: "KD / S-01", year: "2024", title: "Gas", detail: "Prod. JoeyOnTheTrack", onFP: true, cover: "/media/a-gas.jpg", link: "https://fanlink.tv/gas-kwamedabie-joey" },
+  { id: "S-05", year: "2026", title: "Guantanamo Bay Freestyle", detail: "Freestyle", cover: "/media/a-guantanamo.jpg", link: "https://fanlink.tv/guantanamobayfreestyle" },
+  { id: "S-04", year: "2026", title: "TƐ!", detail: "Prod. MJayDidThis", cover: "/media/a-te.jpg", link: "https://tiememusicdistro.lnk.to/tkV7gI" },
+  { id: "S-03", year: "2025", title: "WWW", detail: "Prod. JoeyOnTheTrack", onFP: true, cover: "/media/a-www.jpg", link: "https://fanlink.tv/WWW-KwameDabie" },
+  { id: "S-02", year: "Feb 2025", title: "Troubles", detail: "Prod. JoeyOnTheTrack", onFP: true, cover: "/media/a-troubles.jpg", link: "https://fanlink.tv/kwamedabie-troubles" },
+  { id: "S-01", year: "2024", title: "Gas", detail: "Prod. JoeyOnTheTrack", onFP: true, cover: "/media/a-gas.jpg", link: "https://fanlink.tv/gas-kwamedabie-joey" },
 ] as const
 
 export const STREAM_PLATFORMS = [

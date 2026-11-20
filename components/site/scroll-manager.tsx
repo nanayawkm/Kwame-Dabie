@@ -14,7 +14,7 @@ export default function ScrollManager() {
 
   useEffect(() => {
     const onPop = () => { popped.current = true }
-    // A link to the page you're already on (e.g. Archive while on the archive) changes nothing for the router,
+    // A link to the page you're already on (e.g. More music while on that page) changes nothing for the router,
     // so nothing would scroll. Take it back to the top.
     const onClick = (e: MouseEvent) => {
       const a = (e.target as Element | null)?.closest?.("a")

@@ -27,7 +27,7 @@ export default function GasFeature() {
         ) : (
           <>
             <LoopVideo className="gas-vid" />
-            <span className="gas-tag lbl"><span className="red">●</span> Featured file</span>
+            <span className="gas-tag lbl"><span className="red">●</span> Featured video</span>
             <button className="gas-play" type="button" aria-label="Play the Gas visuals" onClick={() => { setPlaying(true); event("gas_play") }}>
               <i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l16 9-16 9z" /></svg></i>
               <b>Watch the<br />full video</b>

@@ -51,7 +51,7 @@ export default function Tracklist() {
             <StoryIcon /> Share on social media
           </button>
         </div>
-        <p className="tl-hint lbl">Tap any track for its story and to share it. Press <svg className="i-tri" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l16 9-16 9z" /></svg> on Roadman 2 for a preview.</p>
+        <p className="tl-hint lbl">Tap any track for its story and to share it. Press <svg className="i-tri" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l16 9-16 9z" /></svg> for a 20-second preview.</p>
         <ol className="tracks">
           {TRACKS.map((t) => {
             const isOpen = openN === t.n
@@ -63,11 +63,10 @@ export default function Tracklist() {
                   <span className="trk-n">{t.n}</span>
                   <span>
                     <span className="trk-t">{t.title}</span>
-                    {(t.ft || t.tags || t.preview) && (
+                    {(t.ft || t.tags) && (
                       <span className="trk-meta">
                         {t.ft && <span className="ft">Ft {t.ft}</span>}
                         {t.tags?.map((g) => <span key={g.label} className={`tag${g.hot ? " hot" : ""}`}>{g.label}</span>)}
-                        {t.preview && <span className="tag pv-tag">Preview</span>}
                       </span>
                     )}
                   </span>

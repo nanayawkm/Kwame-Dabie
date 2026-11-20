@@ -17,7 +17,7 @@ export default function Footer() {
           <div>
             <p className="lbl red" style={{ margin: 0 }}>The label. The crew. The flag.</p>
             <h2>Gargantuan<br />Vibes Only</h2>
-            <p>GVO is the label and the crew behind Dabie Bomaye, out of Tema, Ghana.</p>
+            <p>GVO is the force behind Dabie Bomaye.</p>
           </div>
         </div>
         <div className="foot-grid">
