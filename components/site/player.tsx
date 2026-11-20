@@ -233,8 +233,19 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
         <span className="opener-dash" aria-hidden="true" />
         <p className="nudge-h">Heard enough to know?</p>
         <p className="nudge-d">Stream {nudge?.title ?? "it"} in full, with the rest of the tape.</p>
-        <span className="nudge-icons" aria-label="On Spotify, Apple Music, Audiomack, Boomplay, YouTube Music, Deezer and Tidal">
-          {STREAM_PLATFORMS.map((pl) => <Icon key={pl.icon} name={pl.icon} />)}
+        <span className="nudge-icons">
+          {STREAM_PLATFORMS.map((pl) => (
+            <a
+              key={pl.icon}
+              href={LINKS.tape}
+              target="_blank"
+              rel="noopener"
+              aria-label={`Stream on ${pl.name}`}
+              onClick={() => { event("stream_nudge", { action: "clicked", via: pl.name, track: nudge?.title ?? "" }); event("stream_click", { from: "nudge", platform: pl.name }); setNudge(null) }}
+            >
+              <Icon name={pl.icon} />
+            </a>
+          ))}
         </span>
         <a
           className="btn"

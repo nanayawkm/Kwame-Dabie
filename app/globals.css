@@ -770,8 +770,11 @@ html.fx .descent blockquote.in .e2{opacity:.1;transform:translate(.07em,-.14em);
 html .nudge .opener-dash{margin:0 0 4px;transform:none}
 .nudge-h{margin:0;font-family:var(--display);font-weight:800;font-stretch:var(--w-head);text-transform:uppercase;font-size:24px;line-height:.95;padding-right:36px}
 .nudge-d{margin:0;color:rgba(244,244,242,.78);font-size:15px;line-height:1.45}
-.nudge-icons{display:flex;gap:12px;margin:4px 0 6px}
-.nudge-icons .ico{width:20px;height:20px;color:rgba(244,244,242,.85)}
+.nudge-icons{display:flex;flex-wrap:wrap;gap:2px;margin:0 -10px 2px}
+.nudge-icons a{width:44px;height:44px;display:grid;place-items:center}
+.nudge-icons .ico{width:22px;height:22px;color:rgba(244,244,242,.85);transition:color .2s,transform .2s}
+.nudge-icons a:active .ico{color:var(--blood);transform:scale(1.12)}
+@media (hover:hover){.nudge-icons a:hover .ico{color:var(--blood)}}
 .nudge .btn{min-height:52px}
 .nudge-x{position:absolute;top:8px;right:8px;width:40px;height:40px;display:grid;place-items:center;font-size:24px;line-height:1;color:var(--ash)}
 @media (prefers-reduced-motion:reduce){.nudge{transition:opacity .2s ease;transform:none}}
