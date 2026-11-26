@@ -122,7 +122,7 @@ html.seen #loader{display:none}
   .logo-btn{margin:0 0 18px;width:min(32vw,460px)}
 }
 
-/* ---------- forged: the plain name burns away and the logo is revealed underneath; one blade cut, it lands ---------- */
+/* ---------- forged: the plain name burns away and the logo is revealed underneath, then settles ---------- */
 .rename{overflow:hidden;padding-block:clamp(72px,16vw,160px) clamp(56px,12vw,120px)}
 .rn{position:relative;display:grid;align-items:center;justify-items:center;margin:0;font-family:var(--display);font-weight:800;font-stretch:var(--w-head);
   text-transform:uppercase;font-size:clamp(46px,16.6vw,206px);line-height:.8;letter-spacing:-.01em}
@@ -133,7 +133,6 @@ html.seen #loader{display:none}
 .rn-ember .rn-w{color:#FF4A1C;text-shadow:0 0 .03em #FF8A3D}
 .rn-stamp{display:flex;justify-content:center;width:100%}
 .rn-stamp img{width:min(88%,620px);height:auto;transform:rotate(-4deg)}
-.rn-blade{align-self:stretch;justify-self:stretch;background:var(--blood);opacity:0;pointer-events:none}
 
 /* The burn: three masks 2.2x the element's width slide across it in step. The name keeps what is ahead of
    the ember edge (a charred edge), the ember layer shows the hot line, the logo shows what is behind it. */
@@ -143,10 +142,9 @@ html.seen #loader{display:none}
   .rename.play .rn-type,.rename.play .rn-stamp{-webkit-mask-size:220% 100%;mask-size:220% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
   .rename.play .rn-type{-webkit-mask-image:url("/media/burn-ink.png");mask-image:url("/media/burn-ink.png");animation:fg-type 5.6s linear infinite both}
   .rename.play .rn-ember{-webkit-mask-image:url("/media/burn-ember.png");mask-image:url("/media/burn-ember.png");animation:fg-ember 5.6s linear infinite both}
-  .rename.play .rn-stamp{-webkit-mask-image:linear-gradient(90deg,#000 44%,transparent 48%);mask-image:linear-gradient(90deg,#000 44%,transparent 48%);animation:fg-logo 5.6s linear infinite both}
+  .rename.play .rn-stamp{-webkit-mask-image:linear-gradient(90deg,#000 47%,transparent 53%);mask-image:linear-gradient(90deg,#000 47%,transparent 53%);animation:fg-logo 5.6s linear infinite both}
   .rename.play .rn-l1{animation:fg-l1 5.6s cubic-bezier(.2,.8,.2,1) infinite both}
   .rename.play .rn-l2{animation:fg-l2 5.6s cubic-bezier(.2,.8,.2,1) infinite both}
-  .rename.play .rn-blade{animation:fg-blade 5.6s cubic-bezier(.7,0,.3,1) infinite both}
   .rename.play .rn-stamp img{animation:fg-land 5.6s linear infinite both}
   .rename.play.off *{animation-play-state:paused}
 }
@@ -155,8 +153,7 @@ html.seen #loader{display:none}
 @keyframes fg-type{0%{opacity:0;-webkit-mask-position:100% 0;mask-position:100% 0}0.6%,22.32%{opacity:1;-webkit-mask-position:100% 0;mask-position:100% 0;animation-timing-function:cubic-bezier(.4,0,.75,1)}40.18%{opacity:1;-webkit-mask-position:0% 0;mask-position:0% 0}40.54%,100%{opacity:0;-webkit-mask-position:0% 0;mask-position:0% 0}}
 @keyframes fg-ember{0%,22.14%{opacity:0;-webkit-mask-position:100% 0;mask-position:100% 0}22.32%{opacity:1;-webkit-mask-position:100% 0;mask-position:100% 0;animation-timing-function:cubic-bezier(.4,0,.75,1)}40.18%{opacity:1;-webkit-mask-position:0% 0;mask-position:0% 0}40.54%,100%{opacity:0;-webkit-mask-position:0% 0;mask-position:0% 0}}
 @keyframes fg-logo{0%,22.32%{opacity:1;-webkit-mask-position:100% 0;mask-position:100% 0;animation-timing-function:cubic-bezier(.4,0,.75,1)}40.18%{opacity:1;-webkit-mask-position:0% 0;mask-position:0% 0}89.29%{opacity:1;-webkit-mask-position:0% 0;mask-position:0% 0}94.64%,100%{opacity:0;-webkit-mask-position:0% 0;mask-position:0% 0}}
-@keyframes fg-land{0%,47.32%{transform:rotate(-4deg)}48.39%{transform:scale(1.05) rotate(-4deg)}49.46%{transform:translate(-6px,3px) rotate(-4deg)}50.54%{transform:translate(5px,-2px) rotate(-4deg)}51.61%{transform:translate(-2px,1px) rotate(-4deg)}52.68%,100%{transform:rotate(-4deg)}}
-@keyframes fg-blade{0%,41.96%{opacity:1;clip-path:polygon(-1.5% 0,0% 0,-12% 100%,-13.5% 100%)}47.32%{opacity:1;clip-path:polygon(110.5% 0,112% 0,100% 100%,98.5% 100%)}47.50%,100%{opacity:0}}
+@keyframes fg-land{0%,40.18%{transform:rotate(-4deg)}41.25%{transform:scale(1.05) rotate(-4deg)}42.32%{transform:translate(-6px,3px) rotate(-4deg)}43.39%{transform:translate(5px,-2px) rotate(-4deg)}44.46%{transform:translate(-2px,1px) rotate(-4deg)}45.54%,100%{transform:rotate(-4deg)}}
 
 /* ---------- the project ---------- */
 .project{padding-block:clamp(40px,10vw,110px)}

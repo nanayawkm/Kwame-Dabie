@@ -6,7 +6,7 @@ import { reducedMotion } from "@/lib/client"
 /**
  * Forged, as a short loop (pure CSS, see "forged" in globals.css): the plain name DABIE BOMAYE heats up and
  * burns away behind an ember edge, and the gothic logo is revealed underneath as the fire passes, as if it
- * was always there. One red blade cut, the logo lands, holds, then again.
+ * was always there. The logo settles as the fire finishes, holds, then again.
  * It starts from the top the first time it comes into view and pauses off screen.
  * Without JS or with reduced motion it shows the logo.
  */
@@ -42,7 +42,6 @@ export default function Rename() {
             <span className="rn-w rn-l1">Dabie</span>
             <span className="rn-w rn-l2">Bomaye</span>
           </span>
-          <span className="rn-blade" aria-hidden="true" />
         </h2>
       </div>
     </section>
