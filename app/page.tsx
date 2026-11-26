@@ -7,6 +7,7 @@ import Gallery from "@/components/site/gallery"
 import LoopVideo from "@/components/site/loop-video"
 import { Arrow } from "@/components/site/icon"
 import Opener from "@/components/site/opener"
+import { CATALOGUE } from "@/lib/content"
 
 /** The homepage has one job: get people to stream the tape. */
 export default function Home() {
@@ -72,7 +73,7 @@ export default function Home() {
             <span className="vault-h" id="vt-h">More<br />music</span>
             <span className="opener-dash" aria-hidden="true" />
             <span className="lbl opener-credit">Keep listening</span>
-            <span className="vault-d">The Gas visuals, five projects and five singles from before the tape.</span>
+            <span className="vault-d">The Gas visuals, {CATALOGUE} from before the tape.</span>
             <span className="vault-go">Hear more <Arrow /></span>
           </span>
         </Link>

@@ -39,7 +39,7 @@ export const TRACKS: Track[] = [
     story: "The mission is one. Not the time to cry, not the time to stall: just get up, move and get done what you have to do." },
   { n: "04", title: "Sani Abacha", ft: "Funky319", prod: "MJayDidThis", preview: "/media/previews/04-sani-abacha.mp3",
     story: "Named after the late Nigerian head of state known for amassing vast wealth illegally. A record about getting money, plenty of money, by any route necessary. Features Funky319, a rapper from Côte d'Ivoire." },
-  { n: "05", title: "O&O", prod: "KBTheAlchemist", preview: "/media/previews/05-o-and-o.mp3",
+  { n: "05", title: "O&O", prod: "KBTheAlchemist", preview: "/media/previews/05-o-and-o.mp3", link: "https://distrokid.com/hyperfollow/kwamedabie1/oo",
     story: "Over and over. An earlier single. Doing whatever you have to do again and again, and never stopping." },
   { n: "06", title: "Addict", prod: "JoeyOnTheTrack", preview: "/media/previews/06-addict.mp3",
     story: "Lead single, released October 2026. The more you do something, the more addicted and dangerous you become at it. Repetition as perfection." },
@@ -68,9 +68,10 @@ export const GALLERY = [
   { src: "/media/cap.jpg", w: 1000, h: 1286, caption: "Tema", alt: "Portrait of Dabie Bomaye in a GVO cap among dark leaves" },
 ]
 
+// Newest first. Links are the DistroKid pages (every platform in one place); years from those releases.
 export const PROJECTS = [
-  { id: "P-05", title: "False Prophets", kind: "Project", meta: ["2025", "7 tracks", "© GVO"], cover: "/media/a-false-prophets.jpg",
-    link: "https://tiememusicdistro.lnk.to/FALSEPROPHETS",
+  { id: "P-06", title: "False Prophets", kind: "Project", meta: ["2025", "7 tracks", "© GVO"], cover: "/media/a-false-prophets.jpg",
+    link: "https://distrokid.com/hyperfollow/kwamedabie1/false-prophets",
     credits: "Featuring Genna. Produced by JoeyOnTheTrack, 420Tenney, Mr Kwamz, Khxnbeats and Ilir808. Home of the singles Gas, WWW and Troubles.",
     tracklist: [
       { n: "01", t: "Different Level, Different Devil", p: "420Tenney" },
@@ -82,20 +83,32 @@ export const PROJECTS = [
       { n: "07", t: "Now or Never", with: "Genna", p: "Mr Kwamz" },
     ],
     mix: "Track 1 mixed & mastered by Da Pluggg. Tracks 2 to 7 by JoeyOnTheTrack." },
-  { id: "P-04", title: "3:33 am", kind: "EP", meta: ["Fanlink"], cover: "/media/a-333.jpg", link: "https://fanlink.tv/333AMkwamedabie" },
-  { id: "P-03", title: "The Purgatory Saga 2", kind: "EP", meta: ["Part two", "Fanlink"], cover: "/media/a-purgatory2.jpg", link: "https://fanlink.tv/thepurgatorysaga2" },
-  // TODO: the old site linked part one to part two's Audiomack page. Swap in part one's link when it arrives.
-  { id: "P-02", title: "The Purgatory Saga", kind: "EP", meta: ["Part one", "Audiomack"], cover: "/media/a-purgatory.jpg", link: "https://audiomack.com/kwamedabie/album/the-purgatory-saga-2?share-user-id=2493638" },
-  { id: "P-01", title: "Small Time", kind: "EP", meta: ["SoundCloud"], cover: "/media/a-small-time.jpg", link: "https://soundcloud.com/kwame-dabie/sets/small-time-ep" },
+  { id: "P-05", title: "3:33 am", kind: "EP", meta: ["2023", "4 tracks"], cover: "/media/a-333.jpg", link: "https://distrokid.com/hyperfollow/kwamedabie1/333-am-3" },
+  { id: "P-04", title: "The Purgatory Saga II", kind: "EP", meta: ["Part two", "2022", "4 tracks"], cover: "/media/a-purgatory2.jpg", link: "https://distrokid.com/hyperfollow/kwamedabie1/the-purgatory-saga-ii-2" },
+  { id: "P-03", title: "Caporegime", kind: "EP", meta: ["2021", "2 tracks"], cover: "/media/a-caporegime.jpg", link: "https://distrokid.com/hyperfollow/kwamedabie1/caporegime" },
+  // TODO: no updated link yet for part one; this still points at part two on Audiomack (as the old site did).
+  { id: "P-02", title: "The Purgatory Saga", kind: "EP", meta: ["Part one", "2020"], cover: "/media/a-purgatory.jpg", link: "https://audiomack.com/kwamedabie/album/the-purgatory-saga-2?share-user-id=2493638" },
+  { id: "P-01", title: "Small Time", kind: "EP", meta: ["2017"], cover: "/media/a-small-time.jpg", link: "https://soundcloud.com/kwame-dabie/sets/small-time-ep" },
 ] as const
 
 export const SINGLES = [
-  { id: "S-05", year: "2026", title: "Guantanamo Bay Freestyle", detail: "Freestyle", cover: "/media/a-guantanamo.jpg", link: "https://fanlink.tv/guantanamobayfreestyle" },
-  { id: "S-04", year: "2026", title: "TƐ!", detail: "Prod. MJayDidThis", cover: "/media/a-te.jpg", link: "https://tiememusicdistro.lnk.to/tkV7gI" },
-  { id: "S-03", year: "2025", title: "WWW", detail: "Prod. JoeyOnTheTrack", onFP: true, cover: "/media/a-www.jpg", link: "https://fanlink.tv/WWW-KwameDabie" },
-  { id: "S-02", year: "Feb 2025", title: "Troubles", detail: "Prod. JoeyOnTheTrack", onFP: true, cover: "/media/a-troubles.jpg", link: "https://fanlink.tv/kwamedabie-troubles" },
-  { id: "S-01", year: "2024", title: "Gas", detail: "Prod. JoeyOnTheTrack", onFP: true, cover: "/media/a-gas.jpg", link: "https://fanlink.tv/gas-kwamedabie-joey" },
+  { id: "S-11", year: "2026", title: "Guantanamo Bay Freestyle", detail: "Freestyle", cover: "/media/a-guantanamo.jpg", link: "https://distrokid.com/hyperfollow/kwamedabie1/guantanamo-bay-freestyle-2" },
+  { id: "S-10", year: "2026", title: "TƐ!", detail: "Prod. MJayDidThis", cover: "/media/a-te.jpg", link: "https://distrokid.com/hyperfollow/kwamedabie1/t-2" },
+  { id: "S-09", year: "2025", title: "WWW", detail: "Prod. JoeyOnTheTrack", onFP: true, cover: "/media/a-www.jpg", link: "https://distrokid.com/hyperfollow/kwamedabie1/www" },
+  { id: "S-08", year: "2025", title: "Troubles", detail: "Prod. JoeyOnTheTrack", onFP: true, cover: "/media/a-troubles.jpg", link: "https://distrokid.com/hyperfollow/kwamedabie1/troubles" },
+  { id: "S-07", year: "2024", title: "Gas (Live)", detail: "Live version", cover: "/media/a-gas-live.jpg", link: "https://distrokid.com/hyperfollow/kwamedabieandjoeyonthetrack/gas-live-version" },
+  { id: "S-06", year: "2024", title: "Gas", detail: "Prod. JoeyOnTheTrack", onFP: true, cover: "/media/a-gas.jpg", link: "https://distrokid.com/hyperfollow/kwamedabieandjoeyonthetrack/gas" },
+  { id: "S-05", year: "2024", title: "Fallen Dynamite Freestyle", detail: "Freestyle", cover: "/media/a-fallen-dynamite.jpg", link: "https://distrokid.com/hyperfollow/kwamedabie1/fallen-dynamite-freestyle-2" },
+  { id: "S-04", year: "2023", title: "A Lot", detail: "Feat. Bounce", cover: "/media/a-a-lot.jpg", link: "https://distrokid.com/hyperfollow/kwamedabie1/a-lot-feat-bounce-2" },
+  { id: "S-03", year: "2022", title: "Catastrophe", detail: "Single", cover: "/media/a-catastrophe.jpg", link: "https://distrokid.com/hyperfollow/kwamedabie1/catastrophe-2" },
+  { id: "S-02", year: "2022", title: "Maddop", detail: "Single", cover: "/media/a-maddop.jpg", link: "https://distrokid.com/hyperfollow/kwamedabie1/maddop-2" },
+  { id: "S-01", year: "2022", title: "Hyena Flow", detail: "Single", cover: "/media/a-hyena-flow.jpg", link: "https://distrokid.com/hyperfollow/kwamedabie1/hyena-flow-2" },
 ] as const
+
+const COUNT_WORDS = ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen"]
+const word = (n: number) => COUNT_WORDS[n] ?? String(n)
+/** e.g. "six projects and eleven singles", kept in step with the lists above */
+export const CATALOGUE = `${word(PROJECTS.length)} projects and ${word(SINGLES.length)} singles`
 
 export const STREAM_PLATFORMS = [
   { icon: "spotify", name: "Spotify" },

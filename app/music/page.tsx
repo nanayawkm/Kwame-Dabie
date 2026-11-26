@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { PROJECTS, SINGLES } from "@/lib/content"
+import { CATALOGUE, PROJECTS, SINGLES } from "@/lib/content"
 import GasFeature from "@/components/site/gas-feature"
 import TouchLive from "@/components/site/touch-live"
 import { Arrow } from "@/components/site/icon"
@@ -19,7 +19,7 @@ export default function MusicPage() {
       <div className="wrap">
         <Link className="back lbl" href="/"><Arrow dir="left" /> Back to the tape</Link>
         <Opener as="h1" id="ar-h" hClass="page-h" credit="Keep listening">More<br />music</Opener>
-        <p className="arc-intro">Five projects and five singles from before the tape, and the Gas visuals.</p>
+        <p className="arc-intro">{CATALOGUE[0].toUpperCase() + CATALOGUE.slice(1)} from before the tape, and the Gas visuals.</p>
 
         <GasFeature />
 
