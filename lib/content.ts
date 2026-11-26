@@ -110,14 +110,16 @@ const word = (n: number) => COUNT_WORDS[n] ?? String(n)
 /** e.g. "six projects and eleven singles", kept in step with the lists above */
 export const CATALOGUE = `${word(PROJECTS.length)} projects and ${word(SINGLES.length)} singles`
 
+// The tape on each platform, direct (on a phone these open the app if it's installed). From the tape's
+// link page; tracking codes removed. Boomplay isn't on that page yet, so it falls back to the link page.
 export const STREAM_PLATFORMS = [
-  { icon: "spotify", name: "Spotify" },
-  { icon: "applemusic", name: "Apple Music" },
-  { icon: "audiomack", name: "Audiomack" },
-  { icon: "boomplay", name: "Boomplay" },
-  { icon: "youtubemusic", name: "YouTube Music" },
-  { icon: "deezer", name: "Deezer" },
-  { icon: "tidal", name: "Tidal" },
+  { icon: "spotify", name: "Spotify", href: "https://open.spotify.com/album/2kRnVt2E1TRON74e5QpHGi" },
+  { icon: "applemusic", name: "Apple Music", href: "https://music.apple.com/album/6828841930" },
+  { icon: "audiomack", name: "Audiomack", href: "https://audiomack.com/dabiebomaye/album/dabie-bomaye" },
+  { icon: "boomplay", name: "Boomplay", href: LINKS.tape },
+  { icon: "youtubemusic", name: "YouTube Music", href: "https://music.youtube.com/playlist?list=OLAK5uy_mORaw70O29TgjBH8E70yyDd5Xagw6ONx0" },
+  { icon: "deezer", name: "Deezer", href: "https://www.deezer.com/album/1134837641" },
+  { icon: "tidal", name: "Tidal", href: "https://tidal.com/album/574603187" },
 ] as const
 
 export const FOLLOW = [

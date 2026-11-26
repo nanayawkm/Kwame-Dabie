@@ -25,7 +25,7 @@ export default function Footer() {
             <ul className="links">
               {STREAM_PLATFORMS.map((p) => (
                 <li key={p.icon}>
-                  <a href={LINKS.tape} target="_blank" rel="noopener"><span className="ln"><Icon name={p.icon} />{p.name}</span></a>
+                  <a href={p.href} target="_blank" rel="noopener"><span className="ln"><Icon name={p.icon} />{p.name}</span></a>
                 </li>
               ))}
             </ul>

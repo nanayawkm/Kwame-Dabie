@@ -237,7 +237,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
           {STREAM_PLATFORMS.map((pl) => (
             <a
               key={pl.icon}
-              href={LINKS.tape}
+              href={pl.href}
               target="_blank"
               rel="noopener"
               aria-label={`Stream on ${pl.name}`}
