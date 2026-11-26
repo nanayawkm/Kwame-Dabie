@@ -122,47 +122,41 @@ html.seen #loader{display:none}
   .logo-btn{margin:0 0 18px;width:min(32vw,460px)}
 }
 
-/* ---------- the chant: BO, MA, YE in three rounds, faster and louder each time, then the logo slams in ---------- */
+/* ---------- forged: the plain name burns away and the logo is revealed underneath; one blade cut, it lands ---------- */
 .rename{overflow:hidden;padding-block:clamp(72px,16vw,160px) clamp(56px,12vw,120px)}
-.rn{position:relative;display:grid;align-items:center;justify-items:center;margin:0}
+.rn{position:relative;display:grid;align-items:center;justify-items:center;margin:0;font-family:var(--display);font-weight:800;font-stretch:var(--w-head);
+  text-transform:uppercase;font-size:clamp(46px,16.6vw,206px);line-height:.8;letter-spacing:-.01em}
 .rn > *{grid-area:1/1}
-.ch{display:grid;align-items:center;justify-items:center;width:100%;visibility:hidden}
-.ch-r{grid-area:1/1;display:flex;justify-content:center;font-family:var(--display);font-weight:800;font-stretch:var(--w-head);text-transform:uppercase;line-height:.9;letter-spacing:-.01em;color:var(--ink);white-space:nowrap}
-.ch-r i{font-style:normal;display:inline-block;opacity:0}
-/* each round louder: bigger, then red */
-.ch-r1{font-size:clamp(40px,11.5vw,140px)}
-.ch-r2{font-size:clamp(48px,14vw,170px)}
-.ch-r3{font-size:clamp(54px,16.4vw,200px);color:var(--blood)}
+.rn-type{position:relative;width:100%;height:1.6em;visibility:hidden}
+.rn-w{position:absolute;left:0;right:0;top:0;text-align:center;white-space:nowrap;color:var(--ink)}
+.rn-l2{top:.8em}
+.rn-ember .rn-w{color:#FF4A1C;text-shadow:0 0 .03em #FF8A3D}
 .rn-stamp{display:flex;justify-content:center;width:100%}
 .rn-stamp img{width:min(88%,620px);height:auto;transform:rotate(-4deg)}
+.rn-blade{align-self:stretch;justify-self:stretch;background:var(--blood);opacity:0;pointer-events:none}
 
+/* The burn: three masks 2.2x the element's width slide across it in step. The name keeps what is ahead of
+   the ember edge (a charred edge), the ember layer shows the hot line, the logo shows what is behind it. */
 @media (prefers-reduced-motion:no-preference){
-  .rename.armed .ch{visibility:visible}
-  .rename.armed:not(.play) .rn-stamp{visibility:hidden}
-  .rename.play .rn-stamp{animation:ch-logo 5.6s linear infinite both}
-  .rename.play .rn-stamp img{animation:ch-shake 5.6s linear infinite both}
-  .rename.play .ch-r1 i:nth-child(1){animation:ch11 5.6s linear infinite both}
-  .rename.play .ch-r1 i:nth-child(2){animation:ch12 5.6s linear infinite both}
-  .rename.play .ch-r1 i:nth-child(3){animation:ch13 5.6s linear infinite both}
-  .rename.play .ch-r2 i:nth-child(1){animation:ch21 5.6s linear infinite both}
-  .rename.play .ch-r2 i:nth-child(2){animation:ch22 5.6s linear infinite both}
-  .rename.play .ch-r2 i:nth-child(3){animation:ch23 5.6s linear infinite both}
-  .rename.play .ch-r3 i:nth-child(1){animation:ch31 5.6s linear infinite both}
-  .rename.play .ch-r3 i:nth-child(2){animation:ch32 5.6s linear infinite both}
-  .rename.play .ch-r3 i:nth-child(3){animation:ch33 5.6s linear infinite both}
+  .rename.armed .rn-type{visibility:visible}
+  .rename.armed:not(.play) .rn-type,.rename.armed:not(.play) .rn-stamp{visibility:hidden}
+  .rename.play .rn-type,.rename.play .rn-stamp{-webkit-mask-size:220% 100%;mask-size:220% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+  .rename.play .rn-type{-webkit-mask-image:url("/media/burn-ink.png");mask-image:url("/media/burn-ink.png");animation:fg-type 5.6s linear infinite both}
+  .rename.play .rn-ember{-webkit-mask-image:url("/media/burn-ember.png");mask-image:url("/media/burn-ember.png");animation:fg-ember 5.6s linear infinite both}
+  .rename.play .rn-stamp{-webkit-mask-image:linear-gradient(90deg,#000 44%,transparent 48%);mask-image:linear-gradient(90deg,#000 44%,transparent 48%);animation:fg-logo 5.6s linear infinite both}
+  .rename.play .rn-l1{animation:fg-l1 5.6s cubic-bezier(.2,.8,.2,1) infinite both}
+  .rename.play .rn-l2{animation:fg-l2 5.6s cubic-bezier(.2,.8,.2,1) infinite both}
+  .rename.play .rn-blade{animation:fg-blade 5.6s cubic-bezier(.7,0,.3,1) infinite both}
+  .rename.play .rn-stamp img{animation:fg-land 5.6s linear infinite both}
   .rename.play.off *{animation-play-state:paused}
 }
-@keyframes ch11{0%,2.68%{opacity:0;transform:scale(1.45)}3.93%{opacity:1;transform:scale(.96)}5.00%{opacity:1;transform:none}25.89%{opacity:1;transform:none}27.32%,100%{opacity:0;transform:none}}
-@keyframes ch12{0%,10.71%{opacity:0;transform:scale(1.45)}11.96%{opacity:1;transform:scale(.96)}13.04%{opacity:1;transform:none}25.89%{opacity:1;transform:none}27.32%,100%{opacity:0;transform:none}}
-@keyframes ch13{0%,18.75%{opacity:0;transform:scale(1.45)}20.00%{opacity:1;transform:scale(.96)}21.07%{opacity:1;transform:none}25.89%{opacity:1;transform:none}27.32%,100%{opacity:0;transform:none}}
-@keyframes ch21{0%,30.36%{opacity:0;transform:scale(1.45)}31.61%{opacity:1;transform:scale(.96)}32.68%{opacity:1;transform:none}44.64%{opacity:1;transform:none}46.07%,100%{opacity:0;transform:none}}
-@keyframes ch22{0%,35.36%{opacity:0;transform:scale(1.45)}36.61%{opacity:1;transform:scale(.96)}37.68%{opacity:1;transform:none}44.64%{opacity:1;transform:none}46.07%,100%{opacity:0;transform:none}}
-@keyframes ch23{0%,40.36%{opacity:0;transform:scale(1.45)}41.61%{opacity:1;transform:scale(.96)}42.68%{opacity:1;transform:none}44.64%{opacity:1;transform:none}46.07%,100%{opacity:0;transform:none}}
-@keyframes ch31{0%,47.86%{opacity:0;transform:scale(1.45)}49.11%{opacity:1;transform:scale(.96)}50.18%{opacity:1;transform:none}56.07%{opacity:1;transform:none}56.43%,100%{opacity:0;transform:none}}
-@keyframes ch32{0%,50.71%{opacity:0;transform:scale(1.45)}51.96%{opacity:1;transform:scale(.96)}53.04%{opacity:1;transform:none}56.07%{opacity:1;transform:none}56.43%,100%{opacity:0;transform:none}}
-@keyframes ch33{0%,53.57%{opacity:0;transform:scale(1.45)}54.82%{opacity:1;transform:scale(.96)}55.89%{opacity:1;transform:none}56.07%{opacity:1;transform:none}56.43%,100%{opacity:0;transform:none}}
-@keyframes ch-logo{0%,56.07%{opacity:0;transform:scale(1.7)}57.50%{opacity:1;transform:scale(.94)}58.93%{opacity:1;transform:scale(1.02)}60.36%,90.18%{opacity:1;transform:none}95.54%,100%{opacity:0;transform:none}}
-@keyframes ch-shake{0%,57.50%{transform:rotate(-4deg)}58.39%{transform:translate(-7px,3px) rotate(-4deg)}59.46%{transform:translate(6px,-3px) rotate(-4deg)}60.54%{transform:translate(-3px,1px) rotate(-4deg)}61.79%,100%{transform:rotate(-4deg)}}
+@keyframes fg-l1{0%,0.89%{opacity:0;transform:translateY(.1em)}6.25%,100%{opacity:1;transform:none}}
+@keyframes fg-l2{0%,5.36%{opacity:0;transform:translateY(.1em)}10.71%,100%{opacity:1;transform:none}}
+@keyframes fg-type{0%{opacity:0;-webkit-mask-position:100% 0;mask-position:100% 0}0.6%,22.32%{opacity:1;-webkit-mask-position:100% 0;mask-position:100% 0;animation-timing-function:cubic-bezier(.4,0,.75,1)}40.18%{opacity:1;-webkit-mask-position:0% 0;mask-position:0% 0}40.54%,100%{opacity:0;-webkit-mask-position:0% 0;mask-position:0% 0}}
+@keyframes fg-ember{0%,22.14%{opacity:0;-webkit-mask-position:100% 0;mask-position:100% 0}22.32%{opacity:1;-webkit-mask-position:100% 0;mask-position:100% 0;animation-timing-function:cubic-bezier(.4,0,.75,1)}40.18%{opacity:1;-webkit-mask-position:0% 0;mask-position:0% 0}40.54%,100%{opacity:0;-webkit-mask-position:0% 0;mask-position:0% 0}}
+@keyframes fg-logo{0%,22.32%{opacity:1;-webkit-mask-position:100% 0;mask-position:100% 0;animation-timing-function:cubic-bezier(.4,0,.75,1)}40.18%{opacity:1;-webkit-mask-position:0% 0;mask-position:0% 0}89.29%{opacity:1;-webkit-mask-position:0% 0;mask-position:0% 0}94.64%,100%{opacity:0;-webkit-mask-position:0% 0;mask-position:0% 0}}
+@keyframes fg-land{0%,47.32%{transform:rotate(-4deg)}48.39%{transform:scale(1.05) rotate(-4deg)}49.46%{transform:translate(-6px,3px) rotate(-4deg)}50.54%{transform:translate(5px,-2px) rotate(-4deg)}51.61%{transform:translate(-2px,1px) rotate(-4deg)}52.68%,100%{transform:rotate(-4deg)}}
+@keyframes fg-blade{0%,41.96%{opacity:1;clip-path:polygon(-1.5% 0,0% 0,-12% 100%,-13.5% 100%)}47.32%{opacity:1;clip-path:polygon(110.5% 0,112% 0,100% 100%,98.5% 100%)}47.50%,100%{opacity:0}}
 
 /* ---------- the project ---------- */
 .project{padding-block:clamp(40px,10vw,110px)}
