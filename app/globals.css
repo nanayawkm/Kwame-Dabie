@@ -124,12 +124,11 @@ html.seen #loader{display:none}
 
 /* ---------- GVO window: the crew's mark with his photos flashing inside, one cut per beat (components/site/gvo-window.tsx) ---------- */
 .gvo-win{background:#fff}
-.gw{position:relative;display:grid;place-items:center;align-content:center;gap:clamp(14px,2.6vw,30px);width:100%;height:min(82svh,760px);margin:0;padding:0;border:0;
+.gw{position:relative;display:grid;place-items:center;align-content:center;gap:clamp(14px,2.6vw,30px);width:100%;height:auto;margin:0;padding:clamp(64px,18vw,96px) 0;border:0;
   background:#fff;color:var(--ink);overflow:hidden;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
-@media (min-width:700px){.gw{height:min(64svh,620px)}}
+@media (min-width:700px){.gw{height:min(64svh,620px);padding:0}}
 .gw-svg{display:block;overflow:visible}
 .gw-row{width:min(90vw,calc(min(64svh,620px) * .6 * 2.779))}
-.gw-stack{height:calc(min(82svh,760px) * .78);width:auto;max-width:86vw}
 .gw-ink{fill:#0a0a0a}
 .gw-svg image{visibility:hidden;filter:grayscale(1) contrast(1.35) brightness(.85);transform-box:fill-box;transform-origin:center}
 .gw-svg image.on{visibility:visible;animation:gw-push .5s cubic-bezier(.2,.8,.2,1) both}
