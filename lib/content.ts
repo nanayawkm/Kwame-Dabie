@@ -141,6 +141,8 @@ export const RELEASE_STREAMS: Record<string, Partial<Record<StreamIcon, string>>
   "S-04": { spotify: "https://open.spotify.com/album/1OSVndEKNAmpVMvOOpFPKZ", applemusic: "https://music.apple.com/album/6789515520" }, // A Lot
   "S-03": { spotify: "https://open.spotify.com/album/46LcVL04S4RHt7O7PL44rd", applemusic: "https://music.apple.com/album/6789498900" }, // Catastrophe
   "S-02": { spotify: "https://open.spotify.com/album/1ImHTFSQV5T2gFdXvg2hOX", applemusic: "https://music.apple.com/album/6789529238" }, // Maddop
+  // tape tracks released on their own before the tape, keyed T-<track number>
+  "T-05": { spotify: "https://open.spotify.com/album/2lZZGvrrS3r8ff67hbLy7y", applemusic: "https://music.apple.com/album/6789525788" }, // O&O
 }
 
 export type StreamRelease = {

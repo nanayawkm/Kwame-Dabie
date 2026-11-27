@@ -752,3 +752,6 @@ html .nudge .opener-dash{margin:0 0 4px;transform:none}
 .ss-list a:active .ico,.ss-list a:active .i-arrow{color:var(--blood)}
 @media (hover:hover){.ss-list a:hover .ico,.ss-list a:hover .i-arrow{color:var(--blood)}}
 .ss-more{display:inline-flex;align-items:center;gap:8px;margin-top:14px;color:var(--ash)}
+
+/* while a dialog (stream panel, share card) is open, the page behind it stays put */
+html:has(dialog[open]){overflow:hidden}

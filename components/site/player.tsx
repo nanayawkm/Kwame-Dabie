@@ -1,7 +1,7 @@
 "use client"
 
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react"
-import { LINKS, STREAM_PLATFORMS, TRACKS, type Track } from "@/lib/content"
+import { LINKS, STREAM_PLATFORMS, TRACKS, type Track, releaseStream } from "@/lib/content"
 import { buzz, event, reducedMotion, streamClick } from "@/lib/client"
 import Icon, { Arrow, PauseIcon, PlayIcon } from "./icon"
 
@@ -223,9 +223,10 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
           target="_blank"
           rel="noopener"
           onClick={(e) => {
-            // a track with its own release page goes there; the rest open the platform picker
-            if (current?.link) event("stream_click", { from: tape ? "tape_sampler" : "player", track: current.title })
-            else streamClick(tape ? "tape_sampler" : "player")(e)
+            // a track released on its own (O&O) opens its own panel; the rest open the tape's
+            const from = tape ? "tape_sampler" : "player"
+            if (current?.link) streamClick(from, releaseStream({ id: `T-${current.n}`, title: current.title, cover: "/media/cover.jpg", link: current.link, kind: "Single", detail: "On the tape" }))(e)
+            else streamClick(from)(e)
           }}
         >
           Stream <Arrow dir="out" />
