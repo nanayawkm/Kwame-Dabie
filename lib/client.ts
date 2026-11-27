@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { track } from "@vercel/analytics"
-import { RELEASE_UTC } from "@/lib/content"
+import { RELEASE_UTC, type StreamRelease } from "@/lib/content"
 
 /** A short vibration on Android; silently ignored everywhere else. */
 export function buzz(pattern: number | number[]) {
@@ -33,11 +33,11 @@ export function event(name: string, props?: Record<string, string>) {
  * "Stream the tape" opens the on-site platform picker (components/site/stream-sheet.tsx) instead of the link page.
  * Use as the onClick of a link whose href is the link page: without JS, or with a modifier key, the link still works.
  */
-export function streamClick(from: string) {
+export function streamClick(from: string, release?: StreamRelease) {
   return (e: { preventDefault(): void; metaKey?: boolean; ctrlKey?: boolean; shiftKey?: boolean }) => {
     if (e.metaKey || e.ctrlKey || e.shiftKey) return
     e.preventDefault()
-    window.dispatchEvent(new CustomEvent("db:stream", { detail: from }))
+    window.dispatchEvent(new CustomEvent("db:stream", { detail: { from, release } }))
   }
 }
 

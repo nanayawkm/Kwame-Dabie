@@ -122,6 +122,48 @@ export const STREAM_PLATFORMS = [
   { icon: "tidal", name: "Tidal", href: "https://tidal.com/album/574603187" },
 ] as const
 
+export type StreamIcon = (typeof STREAM_PLATFORMS)[number]["icon"]
+
+// Direct links for each More music release, read from its DistroKid page and checked against the platform (Nov 2026).
+// Releases without an entry (or platforms missing here) are reached through the release's own link page.
+export const RELEASE_STREAMS: Record<string, Partial<Record<StreamIcon, string>>> = {
+  "P-06": { spotify: "https://open.spotify.com/album/7FrhFRRhm1B5sdfkYrVeEC", applemusic: "https://music.apple.com/album/6789487501", audiomack: "https://audiomack.com/dabiebomaye/album/false-prophets-1", deezer: "https://www.deezer.com/album/1025680502", tidal: "https://tidal.com/album/541832392" }, // False Prophets
+  "P-05": { spotify: "https://open.spotify.com/album/0LXJBPnTA36aK2sUMjjJmh", applemusic: "https://music.apple.com/album/6789471277", audiomack: "https://audiomack.com/dabiebomaye/album/333am", youtubemusic: "https://music.youtube.com/playlist?list=OLAK5uy_nK2FKhTSv1VBAn5AczrPTQL8DH0Ne9bts", deezer: "https://www.deezer.com/album/1025645822", tidal: "https://tidal.com/album/541818860" }, // 3:33 am
+  "P-04": { spotify: "https://open.spotify.com/album/0cG8V8zUtEtepXEkoRIGrM", applemusic: "https://music.apple.com/album/6789554095", audiomack: "https://audiomack.com/dabiebomaye/album/the-purgatory-saga-2-1", youtubemusic: "https://music.youtube.com/playlist?list=OLAK5uy_m6ctM6CJf5Gb0FyvwsKoyrgyeIk_wZBgY", deezer: "https://www.deezer.com/album/1025849672", tidal: "https://tidal.com/album/541903935" }, // The Purgatory Saga II
+  "P-03": { spotify: "https://open.spotify.com/album/0KDZPuy3bGdbCWdsp1pQTy", applemusic: "https://music.apple.com/album/6789504383" }, // Caporegime
+  "S-11": { spotify: "https://open.spotify.com/album/0Jio0I7O5AkXMeY8YAgiMK", applemusic: "https://music.apple.com/album/6790319550", audiomack: "https://audiomack.com/dabiebomaye/song/guantanamo-bay-freestyle", youtubemusic: "https://music.youtube.com/watch?v=-bQuOlFDYm4", deezer: "https://www.deezer.com/album/1027780032", tidal: "https://tidal.com/album/542605364" }, // Guantanamo Bay Freestyle
+  "S-10": { spotify: "https://open.spotify.com/album/4JQcbvvtZ8OakdzIOfNc1E", applemusic: "https://music.apple.com/album/6789754976", audiomack: "https://audiomack.com/dabiebomaye/song/te-1", youtubemusic: "https://music.youtube.com/watch?v=ulm_dzhzZew" }, // TƐ!
+  "S-09": { spotify: "https://open.spotify.com/album/5iuaan5IU159enj8W9Wshc", applemusic: "https://music.apple.com/album/6789525429" }, // WWW
+  "S-08": { spotify: "https://open.spotify.com/album/2x2W1kja6BZfUOwr9SfcIq", applemusic: "https://music.apple.com/album/6789527725" }, // Troubles
+  "S-07": { spotify: "https://open.spotify.com/album/4sCtdT3BAnTIO0mgWtRwKz", applemusic: "https://music.apple.com/album/6789776915" }, // Gas (Live)
+  "S-06": { spotify: "https://open.spotify.com/album/1Li5OLGDvP6B00c1Qddz09", applemusic: "https://music.apple.com/album/6790296301" }, // Gas
+  "S-05": { spotify: "https://open.spotify.com/album/0y1jmi8so5Gnnku8mX6FXr", applemusic: "https://music.apple.com/album/6789479130" }, // Fallen Dynamite Freestyle
+  "S-04": { spotify: "https://open.spotify.com/album/1OSVndEKNAmpVMvOOpFPKZ", applemusic: "https://music.apple.com/album/6789515520" }, // A Lot
+  "S-03": { spotify: "https://open.spotify.com/album/46LcVL04S4RHt7O7PL44rd", applemusic: "https://music.apple.com/album/6789498900" }, // Catastrophe
+  "S-02": { spotify: "https://open.spotify.com/album/1ImHTFSQV5T2gFdXvg2hOX", applemusic: "https://music.apple.com/album/6789529238" }, // Maddop
+}
+
+export type StreamRelease = {
+  title: string
+  meta: string
+  cover: string
+  links: { icon: StreamIcon | null; name: string; href: string }[]
+  /** the release's own link page (every platform); shown last, or as the only row when there are no direct links */
+  more?: string
+}
+
+/** The stream panel's contents for a More music release (projects and singles). */
+export function releaseStream(r: { id: string; title: string; cover: string; link: string; kind?: string; detail?: string; meta?: readonly string[]; year?: string }): StreamRelease {
+  const direct = RELEASE_STREAMS[r.id] ?? {}
+  const links: StreamRelease["links"] = STREAM_PLATFORMS.filter((p) => direct[p.icon]).map((p) => ({ icon: p.icon, name: p.name, href: direct[p.icon]! }))
+  const hyper = r.link.includes("distrokid.com/hyperfollow")
+  if (!hyper && r.link.includes("audiomack.com")) links.push({ icon: "audiomack", name: "Audiomack", href: r.link })
+  if (!hyper && r.link.includes("soundcloud.com")) links.push({ icon: null, name: "SoundCloud", href: r.link })
+  const parts = [r.kind ?? "Single", ...(r.meta ?? []), r.year, r.detail].filter((x): x is string => !!x)
+  const meta = parts.filter((x, i) => parts.findIndex((y) => y.toLowerCase() === x.toLowerCase()) === i).slice(0, 3).join("  ·  ")
+  return { title: r.title, meta, cover: r.cover, links, more: hyper ? r.link : undefined }
+}
+
 export const FOLLOW = [
   { icon: "spotify", name: "Spotify", handle: "Dabie Bomaye", href: LINKS.spotify },
   { icon: "instagram", name: "Instagram", handle: "@dabiebomaye", href: LINKS.instagram },

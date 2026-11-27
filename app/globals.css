@@ -98,11 +98,6 @@ html.seen #loader{display:none}
 .logo-btn img{width:100%;height:auto;filter:drop-shadow(0 2px 0 rgba(0,0,0,.08))}
 .hero-bottom{display:grid;gap:18px}
 .hero-meta{color:rgba(244,244,242,.75)}
-.count{display:grid;gap:6px}
-.count-digits{display:flex;gap:clamp(10px,4vw,22px);font-family:var(--display);font-weight:700;font-size:clamp(40px,12vw,64px);line-height:.9;font-variant-numeric:tabular-nums;font-stretch:var(--w-num)}
-.count-digits span{display:flex;align-items:baseline;gap:3px}
-.count-digits i{font-style:normal;font-size:.32em;color:var(--blood);font-weight:600;letter-spacing:.1em}
-.count-digits .out{font-weight:800;text-transform:uppercase;color:var(--blood);font-size:1.2em;letter-spacing:-.01em}
 .btn{position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:58px;padding:0 20px;background:var(--blood);color:#fff;
   font-family:var(--display);font-weight:700;font-size:16.7px;letter-spacing:0.13em;text-transform:uppercase;transition:background .2s, color .2s, transform .1s;font-stretch:var(--w-ui)}
 .btn::after{content:"";width:22px;height:12px;background:currentColor;
@@ -629,10 +624,6 @@ body,#loader{background-image:url("/media/grain-paper.png");background-size:200p
 /* ---------- hero on the system: centred like the cover; Out now / dash / credit ---------- */
 .hero-bottom{justify-items:center;text-align:center}
 .hero-bottom .btn{justify-self:stretch}
-.count{justify-items:center;gap:0}
-.count-digits{justify-content:center}
-.count .opener-dash{margin:14px 0 10px}
-.count-credit{color:rgba(244,244,242,.72)}
 .hero-sub{justify-content:center;gap:10px 26px}
 
 /* ---------- list headings and small panel labels: credits under a short red dash ---------- */
@@ -661,14 +652,11 @@ body,#loader{background-image:url("/media/grain-paper.png");background-size:200p
 .tape-dur{opacity:.7}
 .pbar-skip{flex:none;width:40px;height:40px;display:grid;place-items:center;color:var(--bone)}
 .pbar-skip svg{width:16px;height:16px;fill:currentColor}
-.count-digits .out{font-stretch:var(--w-head);font-size:1.05em}
 /* a phone held sideways: the side-by-side hero, compacted so the stream button stays on screen */
 @media (orientation:landscape) and (max-height:500px) and (min-width:600px){
   .hero-content{padding-top:64px;padding-bottom:16px}
   .hero-bottom{gap:10px}
   .logo-btn{width:min(26vw,190px);margin:0 auto 4px}
-  .count-digits{font-size:34px}
-  .count .opener-dash{margin:8px 0 6px}
   .hero .btn{min-height:46px}
 }
 

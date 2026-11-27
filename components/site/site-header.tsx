@@ -4,7 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { LINKS } from "@/lib/content"
-import { buzz, streamClick, useIsOut } from "@/lib/client"
+import { buzz, streamClick } from "@/lib/client"
 import GvoFlag from "./gvo-flag"
 
 const MENU = [
@@ -29,7 +29,6 @@ function resolveTone(el: Element | null): Tone {
 
 export default function SiteHeader() {
   const pathname = usePathname()
-  const out = useIsOut()
   const [open, setOpen] = useState(false)
   const [tone, setTone] = useState<Tone>("dark")
   const [pill, setPill] = useState(false)
@@ -111,7 +110,7 @@ export default function SiteHeader() {
         </button>
         <a className={`pill${pill ? " show" : ""}`} href={LINKS.tape} target="_blank" rel="noopener" onClick={streamClick("header")}
           aria-hidden={!pill} tabIndex={pill ? undefined : -1}>
-          {out ? "Stream" : "Pre-save"}
+          Stream
         </a>
       </header>
 

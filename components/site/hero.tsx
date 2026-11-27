@@ -3,13 +3,12 @@
 import Link from "next/link"
 import { useEffect, useRef } from "react"
 import { LINKS } from "@/lib/content"
-import { buzz, event, pad2, reducedMotion, streamClick, useCountdown } from "@/lib/client"
+import { buzz, event, reducedMotion, streamClick } from "@/lib/client"
 import TapeButton from "./tape-button"
 
 export default function Hero() {
   const img = useRef<HTMLImageElement>(null)
   const taps = useRef<number[]>([])
-  const cd = useCountdown()
 
   // On a first visit the photo starts overexposed under the loader's flash, then develops.
   useEffect(() => {
@@ -59,26 +58,8 @@ export default function Hero() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/media/logo.webp" alt="Dabie Bomaye logo" width={1100} height={999} />
           </button>
-          <div className="count">
-            <div className="count-digits" aria-live="off">
-              {!cd.ready ? (
-                <span>12.11.2026</span>
-              ) : cd.out ? (
-                <span className="out">Out now</span>
-              ) : (
-                <>
-                  <span><b>{pad2(cd.d)}</b><i>D</i></span>
-                  <span><b>{pad2(cd.h)}</b><i>H</i></span>
-                  <span><b>{pad2(cd.m)}</b><i>M</i></span>
-                  <span><b>{pad2(cd.s)}</b><i>S</i></span>
-                </>
-              )}
-            </div>
-            <span className="opener-dash" aria-hidden="true" />
-            {!cd.out && <span className="lbl count-credit">Out 12.11.2026 &nbsp;·&nbsp; 00:00 GMT</span>}
-          </div>
           <a className="btn" href={LINKS.tape} target="_blank" rel="noopener" onClick={streamClick("hero")}>
-            {cd.out ? "Stream the tape" : "Pre-save the tape"}
+            Stream the tape
           </a>
           <div className="hero-sub lbl">
             <TapeButton variant="inline" />
