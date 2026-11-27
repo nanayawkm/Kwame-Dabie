@@ -32,6 +32,7 @@ export default function SiteHeader() {
   const out = useIsOut()
   const [open, setOpen] = useState(false)
   const [tone, setTone] = useState<Tone>("dark")
+  const [pill, setPill] = useState(false)
   const openRef = useRef(false)
   const menuRef = useRef<HTMLElement>(null)
   const btnRef = useRef<HTMLButtonElement>(null)
@@ -45,6 +46,26 @@ export default function SiteHeader() {
     const el = document.elementFromPoint(window.innerWidth / 2, 40)?.closest("main [data-tone], footer[data-tone]") ?? null
     if (el) applyTone(resolveTone(el))
   }, [applyTone])
+
+  // The Stream pill shows only when nothing else on screen streams: hidden while the hero's Stream button is
+  // in view (or still below), shown once it has scrolled past, hidden again when the footer's streaming links arrive.
+  useEffect(() => {
+    let pastHero = false, atFoot = false
+    const sync = () => setPill(pastHero && !atFoot)
+    const heroBtn = document.querySelector(".hero .btn")
+    const foot = document.querySelector("footer")
+    const ios: IntersectionObserver[] = []
+    if (heroBtn) {
+      const io = new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting && e.boundingClientRect.top < 0; sync() })
+      io.observe(heroBtn); ios.push(io)
+    } else { pastHero = true }
+    if (foot) {
+      const io = new IntersectionObserver(([e]) => { atFoot = e.isIntersecting; sync() })
+      io.observe(foot); ios.push(io)
+    }
+    sync()
+    return () => ios.forEach((io) => io.disconnect())
+  }, [pathname])
 
   // Watch whichever section sits under the header; re-run on every page.
   useEffect(() => {
@@ -88,8 +109,9 @@ export default function SiteHeader() {
           <GvoFlag mode="tap" />
           <span className="flag-word">{open ? "Close" : "Menu"}</span>
         </button>
-        <a className="pill" href={LINKS.tape} target="_blank" rel="noopener" onClick={streamClick("header")}>
-          {out ? "Out now" : "Out 12.11"}
+        <a className={`pill${pill ? " show" : ""}`} href={LINKS.tape} target="_blank" rel="noopener" onClick={streamClick("header")}
+          aria-hidden={!pill} tabIndex={pill ? undefined : -1}>
+          {out ? "Stream" : "Pre-save"}
         </a>
       </header>
 

@@ -65,6 +65,9 @@ html.seen #loader{display:none}
   font-family:var(--display);font-weight:600;font-size:11.4px;letter-spacing:0.18em;text-transform:uppercase;transition:background .3s,color .3s;font-stretch:var(--w-ui)}
 .pill::before{content:"";width:7px;height:7px;background:var(--blood);border-radius:50%}
 .pill:active{background:var(--blood);color:#fff}
+/* hidden until the hero's Stream button has scrolled past; hidden again at the footer (site-header.tsx) */
+.pill{opacity:0;transform:translateY(-14px);visibility:hidden;pointer-events:none;transition:opacity .3s,transform .4s var(--ease),visibility 0s .4s,background-color .3s,color .3s}
+.pill.show{opacity:1;transform:none;visibility:visible;pointer-events:auto;transition:opacity .3s,transform .4s var(--ease),visibility 0s,background-color .3s,color .3s}
 .nav[data-tone="dark"] .flag-word{color:var(--bone)}
 .nav[data-tone="dark"] .pill{background:var(--bone);color:var(--ink)}
 
