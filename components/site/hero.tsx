@@ -59,7 +59,7 @@ export default function Hero() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/media/logo.webp" alt="Dabie Bomaye logo" width={1100} height={999} />
           </button>
-          <p className="lbl hero-meta" style={{ margin: 0 }}>The new tape &nbsp;·&nbsp; 10 tracks &nbsp;·&nbsp; GVO</p>
+          <p className="lbl hero-meta" style={{ margin: 0 }}>The new tape &nbsp;·&nbsp; 10 tracks &nbsp;·&nbsp; Team GVO</p>
           <div className="count">
             <div className="count-digits" aria-live="off">
               {!cd.ready ? (

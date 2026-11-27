@@ -6,6 +6,7 @@ import { ICONS, type IconName } from "@/lib/icons"
 import { LINKS, RELEASE_UTC, TRACKS, type Track } from "@/lib/content"
 import { buzz, event } from "@/lib/client"
 import CopyButton from "./copy-button"
+import { GVO_H, GVO_PATH, GVO_W } from "@/lib/gvo-mark"
 
 type CardReq = { kind: "tape" } | { kind: "track"; track: Track }
 type CardsCtx = { open: (req: CardReq) => void }
@@ -83,7 +84,13 @@ async function drawCard(req: CardReq, bg: BgKey): Promise<HTMLCanvasElement> {
     x.fillStyle = "#F4F4F2"
     x.font = `600 30px ${F}`
     spaced(x, `THE TAPE  ·  ${outLabel}`, 80, 262, 9)
-    spaced(x, "GVO", W - 80, 262, 9, "right")
+    // the crew's GVO mark (traced from their logo), cap-height of the label beside it, right-aligned
+    const mh = 22, mw = (mh * GVO_W) / GVO_H
+    x.save()
+    x.translate(W - 80 - mw, 262 - mh)
+    x.scale(mh / GVO_H, mh / GVO_H)
+    x.fill(new Path2D(GVO_PATH), "evenodd")
+    x.restore()
   }
   const footer = (top: number) => {
     x.fillStyle = "#FC0000"

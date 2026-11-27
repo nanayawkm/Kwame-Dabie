@@ -106,7 +106,7 @@ export default function Tracklist() {
         </ol>
         <div className="credits lbl">
           <span>All songs mixed and mastered by JoeyOnTheTrack &amp; Spotless</span>
-          <span>© 2026 GVO</span>
+          <span>Team GVO</span>
         </div>
       </div>
     </section>

@@ -16,7 +16,7 @@ import ScrollFx from "@/components/site/scroll-fx"
 
 
 const DESCRIPTION =
-  "Dabie Bomaye (formerly Kwame Dabie), hip hop artist from Tema, Ghana. The self-titled tape DABIE BOMAYE: 10 tracks, out 12.11.2026 on GVO. Stream it, watch the trailer, share it to your story."
+  "Dabie Bomaye (formerly Kwame Dabie), hip hop artist from Tema, Ghana. The self-titled tape DABIE BOMAYE: 10 tracks, out 12.11.2026. Stream it, watch the trailer, share it to your story."
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
@@ -24,22 +24,22 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   applicationName: "Dabie Bomaye",
   authors: [{ name: "Dabie Bomaye" }],
-  creator: "GVO",
-  publisher: "GVO",
+  creator: "Dabie Bomaye",
+  publisher: "Dabie Bomaye",
   keywords: ["Dabie Bomaye", "Kwame Dabie", "DABIE BOMAYE tape", "GVO", "Gargantuan Vibes Only", "Ghana hip hop", "Tema rapper", "Roadman 2", "Addict", "AraTheJay"],
   alternates: { canonical: "/" },
   openGraph: {
     type: "music.album",
     siteName: "Dabie Bomaye",
     title: "Dabie Bomaye · The Tape",
-    description: "Formerly Kwame Dabie. The self-titled tape: 10 tracks, out 12.11.2026 on GVO.",
+    description: "Formerly Kwame Dabie. The self-titled tape: 10 tracks, out 12.11.2026.",
     url: "/",
     locale: "en_GB",
   },
   twitter: {
     card: "summary_large_image",
     title: "Dabie Bomaye · The Tape",
-    description: "Formerly Kwame Dabie. 10 tracks, out 12.11.2026 on GVO.",
+    description: "Formerly Kwame Dabie. 10 tracks, out 12.11.2026.",
     creator: "@dabiebomaye",
     site: "@dabiebomaye",
   },
@@ -70,7 +70,6 @@ const structuredData = {
       logo: `${SITE}/media/logo.webp`,
       foundingLocation: { "@type": "Place", name: "Tema, Ghana" },
       sameAs: [LINKS.spotify, LINKS.instagram, LINKS.x, LINKS.tiktok, LINKS.youtube],
-      recordLabel: { "@type": "Organization", name: "GVO", alternateName: "Gargantuan Vibes Only" },
       album: {
         "@type": "MusicAlbum",
         name: "DABIE BOMAYE",

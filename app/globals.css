@@ -122,38 +122,23 @@ html.seen #loader{display:none}
   .logo-btn{margin:0 0 18px;width:min(32vw,460px)}
 }
 
-/* ---------- forged: the plain name burns away and the logo is revealed underneath, then settles ---------- */
-.rename{overflow:hidden;padding-block:clamp(72px,16vw,160px) clamp(56px,12vw,120px)}
-.rn{position:relative;display:grid;align-items:center;justify-items:center;margin:0;font-family:var(--display);font-weight:800;font-stretch:var(--w-head);
-  text-transform:uppercase;font-size:clamp(46px,16.6vw,206px);line-height:.8;letter-spacing:-.01em}
-.rn > *{grid-area:1/1}
-.rn-type{position:relative;width:100%;height:1.6em;visibility:hidden}
-.rn-w{position:absolute;left:0;right:0;top:0;text-align:center;white-space:nowrap;color:var(--ink)}
-.rn-l2{top:.8em}
-.rn-ember .rn-w{color:#FF4A1C;text-shadow:0 0 .03em #FF8A3D}
-.rn-stamp{display:flex;justify-content:center;width:100%}
-.rn-stamp img{width:min(88%,620px);height:auto;transform:rotate(-4deg)}
-
-/* The burn: three masks 2.2x the element's width slide across it in step. The name keeps what is ahead of
-   the ember edge (a charred edge), the ember layer shows the hot line, the logo shows what is behind it. */
-@media (prefers-reduced-motion:no-preference){
-  .rename.armed .rn-type{visibility:visible}
-  .rename.armed:not(.play) .rn-type,.rename.armed:not(.play) .rn-stamp{visibility:hidden}
-  .rename.play .rn-type,.rename.play .rn-stamp{-webkit-mask-size:220% 100%;mask-size:220% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
-  .rename.play .rn-type{-webkit-mask-image:url("/media/burn-ink.png");mask-image:url("/media/burn-ink.png");animation:fg-type 5.6s linear infinite both}
-  .rename.play .rn-ember{-webkit-mask-image:url("/media/burn-ember.png");mask-image:url("/media/burn-ember.png");animation:fg-ember 5.6s linear infinite both}
-  .rename.play .rn-stamp{-webkit-mask-image:linear-gradient(90deg,#000 47%,transparent 53%);mask-image:linear-gradient(90deg,#000 47%,transparent 53%);animation:fg-logo 5.6s linear infinite both}
-  .rename.play .rn-l1{animation:fg-l1 5.6s cubic-bezier(.2,.8,.2,1) infinite both}
-  .rename.play .rn-l2{animation:fg-l2 5.6s cubic-bezier(.2,.8,.2,1) infinite both}
-  .rename.play .rn-stamp img{animation:fg-land 5.6s linear infinite both}
-  .rename.play.off *{animation-play-state:paused}
-}
-@keyframes fg-l1{0%,0.89%{opacity:0;transform:translateY(.1em)}6.25%,100%{opacity:1;transform:none}}
-@keyframes fg-l2{0%,5.36%{opacity:0;transform:translateY(.1em)}10.71%,100%{opacity:1;transform:none}}
-@keyframes fg-type{0%{opacity:0;-webkit-mask-position:100% 0;mask-position:100% 0}0.6%,22.32%{opacity:1;-webkit-mask-position:100% 0;mask-position:100% 0;animation-timing-function:cubic-bezier(.4,0,.75,1)}40.18%{opacity:1;-webkit-mask-position:0% 0;mask-position:0% 0}40.54%,100%{opacity:0;-webkit-mask-position:0% 0;mask-position:0% 0}}
-@keyframes fg-ember{0%,22.14%{opacity:0;-webkit-mask-position:100% 0;mask-position:100% 0}22.32%{opacity:1;-webkit-mask-position:100% 0;mask-position:100% 0;animation-timing-function:cubic-bezier(.4,0,.75,1)}40.18%{opacity:1;-webkit-mask-position:0% 0;mask-position:0% 0}40.54%,100%{opacity:0;-webkit-mask-position:0% 0;mask-position:0% 0}}
-@keyframes fg-logo{0%,22.32%{opacity:1;-webkit-mask-position:100% 0;mask-position:100% 0;animation-timing-function:cubic-bezier(.4,0,.75,1)}40.18%{opacity:1;-webkit-mask-position:0% 0;mask-position:0% 0}89.29%{opacity:1;-webkit-mask-position:0% 0;mask-position:0% 0}94.64%,100%{opacity:0;-webkit-mask-position:0% 0;mask-position:0% 0}}
-@keyframes fg-land{0%,40.18%{transform:rotate(-4deg)}41.25%{transform:scale(1.05) rotate(-4deg)}42.32%{transform:translate(-6px,3px) rotate(-4deg)}43.39%{transform:translate(5px,-2px) rotate(-4deg)}44.46%{transform:translate(-2px,1px) rotate(-4deg)}45.54%,100%{transform:rotate(-4deg)}}
+/* ---------- GVO window: the crew's mark with his photos flashing inside, one cut per beat (components/site/gvo-window.tsx) ---------- */
+.gvo-win{background:#fff}
+.gw{position:relative;display:grid;place-items:center;align-content:center;gap:clamp(14px,2.6vw,30px);width:100%;height:min(82svh,760px);margin:0;padding:0;border:0;
+  background:#fff;color:var(--ink);overflow:hidden;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
+@media (min-width:700px){.gw{height:min(64svh,620px)}}
+.gw-svg{display:block;overflow:visible}
+.gw-row{width:min(90vw,calc(min(64svh,620px) * .6 * 2.779))}
+.gw-stack{height:calc(min(82svh,760px) * .78);width:auto;max-width:86vw}
+.gw-ink{fill:#0a0a0a}
+.gw-svg image{visibility:hidden;filter:grayscale(1) contrast(1.35) brightness(.85);transform-box:fill-box;transform-origin:center}
+.gw-svg image.on{visibility:visible;animation:gw-push .5s cubic-bezier(.2,.8,.2,1) both}
+@keyframes gw-push{from{transform:scale(1.3)}to{transform:none}}
+.gw-line{fill:none;stroke:var(--ink);stroke-width:2}
+.gw-sub{display:flex;gap:1.4em;justify-content:center}
+.gw-sub span:nth-child(2){color:var(--blood)}
+.gw-paused{position:absolute;z-index:5;left:50%;bottom:16px;transform:translateX(-50%);padding:8px 12px;background:var(--ink);color:var(--bone);opacity:0;transition:opacity .2s;pointer-events:none;white-space:nowrap}
+.gw-paused.on{opacity:1}
 
 /* ---------- the project ---------- */
 .project{padding-block:clamp(40px,10vw,110px)}
@@ -406,23 +391,6 @@ html.seen #loader{display:none}
 @media (hover:hover){.vault-link:hover .vault-go{color:var(--blood)}}
 
 /* ---------- Gas: the featured file, the only colour in the archive ---------- */
-.gas{margin:clamp(36px,8vw,64px) 0 0}
-.gas-frame{position:relative;background:var(--ink);aspect-ratio:4/3;overflow:hidden;width:calc(100% + var(--gl) + var(--gr));max-width:none;margin-left:calc(-1 * var(--gl))}
-@media (min-width:700px){.gas-frame{aspect-ratio:16/9;width:100%;margin-left:0}}
-.gas-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
-.gas-frame::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(10,10,10,.8),rgba(10,10,10,0) 45%),linear-gradient(to bottom,rgba(10,10,10,.45),rgba(10,10,10,0) 22%)}
-.gas-tag{position:absolute;z-index:2;top:14px;left:max(16px,var(--gl));color:var(--bone)}
-.gas-play{position:absolute;z-index:2;left:max(16px,var(--gl));bottom:clamp(16px,3vw,28px);display:flex;align-items:center;gap:14px;color:var(--bone)}
-@media (min-width:700px){.gas-tag,.gas-play{left:clamp(18px,3vw,30px)}}
-.gas-play i{flex:none;width:64px;height:64px;display:grid;place-items:center;background:var(--blood);transition:transform .2s}
-.gas-play i svg{width:22px;height:22px;fill:#fff;margin-left:3px}
-@media (hover:hover){.gas-play:hover i{transform:scale(1.06)}}
-.gas-play:active i{transform:scale(.95)}
-.gas-play b{font-family:var(--display);font-weight:800;font-size:clamp(17.2px,3.9vw,23.4px);line-height:.9;text-transform:uppercase;font-stretch:var(--w-head)}
-.gas-cap{display:grid;gap:18px;margin-top:22px}
-@media (min-width:900px){.gas-cap{grid-template-columns:1.4fr 1fr;align-items:end;gap:48px}}
-.gas-lyric{margin:0;font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(29.6px,7.8vw,65.5px);line-height:.9;letter-spacing:-.01em;text-wrap:balance;font-stretch:var(--w-head)}
-.gas-meta{display:grid;gap:8px;justify-items:start}
 
 /* ---------- footer: GVO flag + chant ---------- */
 .foot > .ticker{margin:0 0 clamp(48px,10vw,80px);border-block-color:rgba(244,244,242,.14)}
@@ -539,10 +507,6 @@ main.shake{animation:shake .45s linear}
 
 /* ---------- real-site additions ---------- */
 .archive.page-top,.press.page-top{padding-top:calc(env(safe-area-inset-top, 0px) + 100px);border-top:0}
-.gas-frame.is-playing{aspect-ratio:16/9}
-.gas-frame.is-playing::after{display:none}
-.gas-yt{position:absolute;inset:0;width:100%;height:100%;border:0}
-.gas-play{text-align:left}
 .spec dd.spec-text{font-family:var(--body);font-weight:500;font-size:16px;text-transform:none;letter-spacing:0;line-height:1.45}
 .lost{min-height:100svh;display:flex;align-items:center;padding-block:120px 80px}
 .lost-h{margin:12px 0 16px;font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(49.9px,14vw,140px);line-height:.82;letter-spacing:-.01em;font-stretch:var(--w-head)}
@@ -621,7 +585,7 @@ body,#loader{background-image:url("/media/grain-paper.png");background-size:200p
 .gvo{--flag-cloth:var(--ink);--flag-ink:var(--bone);--fold:.26;overflow:visible}
 .gvo--light,.nav[data-tone="dark"] .gvo{--flag-cloth:var(--bone);--flag-ink:var(--ink);--fold:.14}
 .gvo-cloth{fill:var(--flag-cloth);transition:fill .3s}
-.gvo-t{fill:var(--flag-ink);stroke:var(--flag-ink);stroke-width:.55;paint-order:stroke;font-family:var(--body);font-weight:800;font-stretch:112%;font-size:23px;letter-spacing:.8px;transition:fill .3s,stroke .3s}
+.gvo-t{fill:var(--flag-ink);transition:fill .3s}
 .flag-btn .gvo{width:58px;height:34px;flex:none}
 
 /* narrow phones: the wide type needs a little less tracking, and long buttons may wrap */
@@ -754,3 +718,30 @@ html .nudge .opener-dash{margin:0 0 4px;transform:none}
 .nudge .btn{min-height:52px}
 .nudge-x{position:absolute;top:8px;right:8px;width:40px;height:40px;display:grid;place-items:center;font-size:24px;line-height:1;color:var(--ash)}
 @media (prefers-reduced-motion:reduce){.nudge{transition:opacity .2s ease;transform:none}}
+
+/* ---------- more music: the featured video (Roadman 2 live), laid out as the Gas feature was ---------- */
+.fv{margin:clamp(36px,8vw,64px) 0 0}
+.fv-frame{position:relative;background:var(--ink);aspect-ratio:4/3;overflow:hidden;width:calc(100% + var(--gl) + var(--gr));max-width:none;margin-left:calc(-1 * var(--gl))}
+@media (min-width:700px){.fv-frame{aspect-ratio:16/9;width:100%;margin-left:0}}
+.fv-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.fv-frame::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(10,10,10,.8),rgba(10,10,10,0) 45%),linear-gradient(to bottom,rgba(10,10,10,.45),rgba(10,10,10,0) 22%)}
+.fv-tag{position:absolute;z-index:2;top:14px;left:max(16px,var(--gl));color:var(--bone)}
+.fv-play{position:absolute;z-index:2;left:max(16px,var(--gl));bottom:clamp(16px,3vw,28px);display:flex;align-items:center;gap:14px;color:var(--bone);text-align:left}
+@media (min-width:700px){.fv-tag,.fv-play{left:clamp(18px,3vw,30px)}}
+.fv-play i{flex:none;width:64px;height:64px;display:grid;place-items:center;background:var(--blood);transition:transform .2s}
+.fv-play i svg{width:22px;height:22px;fill:#fff;margin-left:3px}
+@media (hover:hover){.fv-play:hover i{transform:scale(1.06)}}
+.fv-play:active i{transform:scale(.95)}
+.fv-play b{font-family:var(--display);font-weight:800;font-size:clamp(17.2px,3.9vw,23.4px);line-height:.9;text-transform:uppercase;font-stretch:var(--w-head)}
+/* playing: the full performance is vertical, so on phones the frame turns tall; on wide screens it sits centred in the 16:9 frame */
+.fv-frame.is-playing::after{display:none}
+.fv-frame.is-playing{aspect-ratio:9/16;max-height:88svh}
+@media (min-width:700px){.fv-frame.is-playing{aspect-ratio:16/9;max-height:none}}
+.fv-full{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
+.fv-cap{margin-top:22px}
+.fv-meta{display:grid;gap:8px;justify-items:center;text-align:center}
+.fv-meta .proj-meta{justify-content:center}
+
+/* ---------- press: two kits, artist then tape; covers stay beside the copy on phones ---------- */
+.kits{display:grid;gap:clamp(36px,7vw,48px)}
+@media (max-width:520px){.kits .kit{grid-template-columns:104px minmax(0,1fr);gap:14px 16px}.kits .kit-doc{width:auto;max-width:none}.kits .kit .btn{min-height:46px;font-size:14px}}

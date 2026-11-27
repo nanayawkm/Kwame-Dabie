@@ -7,7 +7,6 @@ export const LINKS = {
   tape: "https://tiememusicdistro.lnk.to/DABIEBOMAYE",
   roadman2: "https://tiememusicdistro.lnk.to/ROADMAN2",
   pressPhotos: "https://drive.google.com/drive/folders/1wGdTAfnkq_Y_y_BeVNzjPZMVaN9-hbK3",
-  gasYouTubeId: "M-cy-aFNaSg",
   instagram: "https://www.instagram.com/dabiebomaye",
   x: "https://x.com/dabiebomaye",
   tiktok: "https://www.tiktok.com/@dabiebomaye",
@@ -18,6 +17,7 @@ export const LINKS = {
 
 export const EMAIL = "connect.gvo@gmail.com"
 export const EPK_PDF = "/media/dabie-bomaye-epk.pdf"
+export const ARTIST_EPK_PDF = "/media/dabie-bomaye-artist-epk.pdf"
 
 export type Track = {
   n: string
@@ -70,7 +70,7 @@ export const GALLERY = [
 
 // Newest first. Links are the DistroKid pages (every platform in one place); years from those releases.
 export const PROJECTS = [
-  { id: "P-06", title: "False Prophets", kind: "Project", meta: ["2025", "7 tracks", "© GVO"], cover: "/media/a-false-prophets.jpg",
+  { id: "P-06", title: "False Prophets", kind: "Project", meta: ["2025", "7 tracks"], cover: "/media/a-false-prophets.jpg",
     link: "https://distrokid.com/hyperfollow/kwamedabie1/false-prophets",
     credits: "Featuring Genna. Produced by JoeyOnTheTrack, 420Tenney, Mr Kwamz, Khxnbeats and Ilir808. Home of the singles Gas, WWW and Troubles.",
     tracklist: [
@@ -131,4 +131,4 @@ export const FOLLOW = [
 ] as const
 
 export const PRESS_BIO =
-  "Dabie Bomaye, formerly known as Kwame Dabie, is a hip hop artist from Tema, Ghana. His self-titled tape, DABIE BOMAYE, is out 12 November 2026 on GVO: ten tracks about one thing, the fight. It features Funky319 from Côte d'Ivoire and AraTheJay and Nsogbu Malaika from Tema, with production led by JoeyOnTheTrack. Lead singles: Roadman 2 (ft AraTheJay) and Addict."
+  "Dabie Bomaye, formerly known as Kwame Dabie, is a hip hop artist from Tema, Ghana. His self-titled tape, DABIE BOMAYE, came out on 12 November 2026: ten tracks about one thing, the fight. It features Funky319 from Côte d'Ivoire and AraTheJay and Nsogbu Malaika from Tema, with production led by JoeyOnTheTrack. Lead singles: Roadman 2 (ft AraTheJay) and Addict."

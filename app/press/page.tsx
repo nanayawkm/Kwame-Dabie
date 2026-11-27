@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { EMAIL, EPK_PDF, LINKS, PRESS_BIO } from "@/lib/content"
+import { ARTIST_EPK_PDF, EMAIL, EPK_PDF, LINKS, PRESS_BIO } from "@/lib/content"
 import CopyButton from "@/components/site/copy-button"
 import { Arrow } from "@/components/site/icon"
 import Opener from "@/components/site/opener"
@@ -8,7 +8,7 @@ import Opener from "@/components/site/opener"
 export const metadata: Metadata = {
   title: "Press",
   description:
-    "Press kit for Dabie Bomaye (formerly Kwame Dabie): EPK download, short bio, quick facts, press photos and booking contact.",
+    "Press kit for Dabie Bomaye (formerly Kwame Dabie): the artist EPK and the tape EPK, short bio, quick facts, press photos and booking contact.",
   alternates: { canonical: "/press" },
 }
 
@@ -19,6 +19,16 @@ const PHOTOS = [
   { src: "/media/cap.jpg", label: "GVO cap", alt: "Press photo: Dabie Bomaye in a GVO cap among leaves" },
 ]
 
+/** Two kits: who he is (artist), and what the tape is (tape). */
+const KITS = [
+  { id: "kit-artist", kicker: "Artist EPK", title: "Dabie Bomaye", what: "artist press kit", pdf: ARTIST_EPK_PDF, file: "Dabie Bomaye - Artist EPK.pdf",
+    cover: "/media/epk-artist-cover.jpg", alt: "Cover page of the Dabie Bomaye artist press kit",
+    meta: ["PDF", "3 pages", "5 MB", "Nov 2026"], d: "The bio, the numbers, the live history, the new tape, where to listen and who to book." },
+  { id: "kit-tape", kicker: "Tape EPK", title: "Dabie Bomaye [Tape]", what: "tape press kit", pdf: EPK_PDF, file: "Dabie Bomaye - Tape EPK.pdf",
+    cover: "/media/epk-cover.jpg", alt: "Cover page of the Dabie Bomaye tape press kit",
+    meta: ["PDF", "5 pages", "5.8 MB", "Nov 2026"], d: "The project, all ten tracks and their stories, full credits, links and contacts." },
+]
+
 export default function PressPage() {
   return (
     <section className="press page-top" id="press" data-tone="light" aria-labelledby="pr-h">
@@ -26,23 +36,27 @@ export default function PressPage() {
         <Link className="back lbl" href="/"><Arrow dir="left" /> Back to the tape</Link>
         <div className="press-head">
           <Opener as="h1" id="pr-h" hClass="press-h" credit="For press, DJs, promoters & bookers">Press</Opener>
-          <p className="press-intro">Everything you need to write about, play or book Dabie Bomaye: the press kit, a bio you can paste, the facts, photos and who to email.</p>
+          <p className="press-intro">Everything you need to write about, play or book Dabie Bomaye: two press kits, a bio you can paste, the facts, photos and who to email.</p>
         </div>
 
         <div className="press-grid">
-          <article className="kit" aria-labelledby="kit-t">
-            <a className="kit-doc" href={EPK_PDF} download="Dabie Bomaye - EPK.pdf" aria-label="Download the press kit PDF">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/media/epk-cover.jpg" alt="Cover page of the Dabie Bomaye electronic press kit" width={910} height={1287} loading="lazy" decoding="async" />
-            </a>
-            <div style={{ minWidth: 0 }}>
-              <span className="lbl arc-file">Electronic press kit</span>
-              <h2 className="kit-t" id="kit-t">Dabie Bomaye [Tape]</h2>
-              <p className="lbl proj-meta"><span><b>PDF</b></span><span>5 pages</span><span>5.7 MB</span><span>Oct 2026</span></p>
-              <p className="kit-d">The project, all ten tracks and their stories, full credits, links and contacts.</p>
-              <a className="btn" href={EPK_PDF} download="Dabie Bomaye - EPK.pdf">Download the EPK</a>
-            </div>
-          </article>
+          <div className="kits">
+            {KITS.map((k) => (
+              <article key={k.id} className="kit" aria-labelledby={k.id}>
+                <a className="kit-doc" href={k.pdf} download={k.file} aria-label={`Download the ${k.what} PDF`}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={k.cover} alt={k.alt} width={910} height={1287} loading="lazy" decoding="async" />
+                </a>
+                <div style={{ minWidth: 0 }}>
+                  <span className="lbl arc-file">{k.kicker}</span>
+                  <h2 className="kit-t" id={k.id}>{k.title}</h2>
+                  <p className="lbl proj-meta">{k.meta.map((m, i) => <span key={m}>{i === 0 ? <b>{m}</b> : m}</span>)}</p>
+                  <p className="kit-d">{k.d}</p>
+                  <a className="btn" href={k.pdf} download={k.file}>Download</a>
+                </div>
+              </article>
+            ))}
+          </div>
 
           <article className="bio" aria-labelledby="bio-h">
             <div className="bio-top">
@@ -56,9 +70,10 @@ export default function PressPage() {
               <dt className="lbl">The name</dt>
               <dd className="spec-text">From the 1974 “Ali, bomaye” chant. To Dabie it means aggression, being out there, the traits of Ali.</dd>
               <dt className="lbl">Project</dt><dd>Dabie Bomaye, 10-track tape</dd>
-              <dt className="lbl">Release</dt><dd>12 Nov 2026 · GVO</dd>
+              <dt className="lbl">Release</dt><dd>12 Nov 2026</dd>
               <dt className="lbl">Singles</dt><dd>Roadman 2 (ft AraTheJay) · Addict</dd>
               <dt className="lbl">Features</dt><dd>Funky319, AraTheJay, Nsogbu Malaika</dd>
+              <dt className="lbl">Team</dt><dd>GVO (Gargantuan Vibes Only)</dd>
               <dt className="lbl">Production</dt><dd>JoeyOnTheTrack, 420Tenney, KBTheAlchemist, Mr Kwamz, NinoxaFlame, MJayDidThis</dd>
             </dl>
           </article>

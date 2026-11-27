@@ -49,7 +49,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="foot-base lbl">
-          <span>© 2026 GVO &nbsp;·&nbsp; Tema, Ghana</span>
+          <span>© 2026 Dabie Bomaye &nbsp;·&nbsp; Team GVO &nbsp;·&nbsp; Tema, Ghana</span>
           <a href={LINKS.quube} target="_blank" rel="noopener">Site by Quube</a>
         </div>
       </div>

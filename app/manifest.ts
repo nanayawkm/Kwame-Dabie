@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Dabie Bomaye",
     short_name: "Bomaye",
-    description: "Dabie Bomaye, formerly Kwame Dabie. The tape, out 12.11.2026 on GVO.",
+    description: "Dabie Bomaye, formerly Kwame Dabie. The tape, out 12.11.2026.",
     start_url: "/",
     display: "standalone",
     background_color: "#0A0A0A",

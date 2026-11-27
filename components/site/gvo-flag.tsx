@@ -2,9 +2,10 @@
 
 import { useEffect, useId, useRef } from "react"
 import { reducedMotion } from "@/lib/client"
+import { GVO_H, GVO_PATH, GVO_W } from "@/lib/gvo-mark"
 
 /*
- * The GVO flag from the shoot, cloth only: matte black cloth, bold white GVO.
+ * The GVO flag from the shoot, cloth only: matte black cloth, the crew's GVO mark in white (traced from their logo).
  *
  * It waves like real cloth: a wave travels from the hoist (the left edge, held still) out to the fly end,
  * growing as it goes. The outline is computed from that travelling wave at 24 moments of one cycle, so the
@@ -42,6 +43,8 @@ function motion(amp: number) {
     tilt: phases.map((p) => r2(((Math.atan((wave(cx + dx, p, amp) - wave(cx - dx, p, amp)) / (2 * dx)) * 180) / Math.PI) * 0.45)).join(";"),
   }
 }
+
+const MARK_W = 62 // the mark's width on the cloth (the cloth is 107 wide)
 
 const SWAY = motion(4.6) // footer: waves on its own
 const TAP = motion(3) // menu: a smaller wave when scrolled or tapped
@@ -119,7 +122,7 @@ export default function GvoFlag({ className, mode = "sway" }: { className?: stri
           <g transform="translate(62 41)">
             <g>
               <animateTransform data-ripple attributeName="transform" type="skewY" values={m.tilt} calcMode="linear" {...anim} />
-              <text className="gvo-t" x="0" y="4.5" textAnchor="middle">GVO</text>
+              <path className="gvo-t" fillRule="evenodd" d={GVO_PATH} transform={`translate(${-MARK_W / 2} ${-3.6 - (MARK_W * GVO_H) / GVO_W / 2}) scale(${MARK_W / GVO_W})`} />
             </g>
           </g>
         </g>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { CATALOGUE, PROJECTS, SINGLES } from "@/lib/content"
-import GasFeature from "@/components/site/gas-feature"
+import LiveFeature from "@/components/site/live-feature"
 import TouchLive from "@/components/site/touch-live"
 import { Arrow } from "@/components/site/icon"
 import Opener from "@/components/site/opener"
@@ -9,7 +9,7 @@ import Opener from "@/components/site/opener"
 export const metadata: Metadata = {
   title: "More Music",
   description:
-    "More music from Dabie Bomaye: every project and single from before the tape, from Small Time to False Prophets, plus the Gas visuals.",
+    "More music from Dabie Bomaye: every project and single from before the tape, from Small Time to False Prophets, plus Roadman 2 performed live.",
   alternates: { canonical: "/music" },
 }
 
@@ -19,9 +19,9 @@ export default function MusicPage() {
       <div className="wrap">
         <Link className="back lbl" href="/"><Arrow dir="left" /> Back to the tape</Link>
         <Opener as="h1" id="ar-h" hClass="page-h" credit="Keep listening">More<br />music</Opener>
-        <p className="arc-intro">{CATALOGUE[0].toUpperCase() + CATALOGUE.slice(1)} from before the tape, and the Gas visuals.</p>
+        <p className="arc-intro">{CATALOGUE[0].toUpperCase() + CATALOGUE.slice(1)} from before the tape, and Roadman 2 live.</p>
 
-        <GasFeature />
+        <LiveFeature />
 
         <Opener className="opener--sub" hClass="sub-h" credit={<>{String(PROJECTS.length).padStart(2, "0")} projects</>}>Albums &amp; EPs</Opener>
         <ul className="proj">

@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Hero from "@/components/site/hero"
-import Rename from "@/components/site/rename"
+import GvoWindow from "@/components/site/gvo-window"
 import Tracklist from "@/components/site/tracklist"
 import Trailer from "@/components/site/trailer"
 import Gallery from "@/components/site/gallery"
@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Rename />
+      <GvoWindow />
 
       <section className="project" id="project" data-tone="light" aria-labelledby="pj-h">
         <div className="wrap">
@@ -41,7 +41,7 @@ export default function Home() {
               <dt className="lbl">Release</dt><dd>12 Nov 2026</dd>
               <dt className="lbl">Singles</dt><dd>Roadman 2 &nbsp;·&nbsp; Addict</dd>
               <dt className="lbl">Mix &amp; master</dt><dd>JoeyOnTheTrack &amp; Spotless</dd>
-              <dt className="lbl">Label</dt><dd>© 2026 GVO</dd>
+              <dt className="lbl">Team</dt><dd>GVO</dd>
             </dl>
           </div>
         </div>
@@ -73,7 +73,7 @@ export default function Home() {
             <span className="vault-h" id="vt-h">More<br />music</span>
             <span className="opener-dash" aria-hidden="true" />
             <span className="lbl opener-credit">Keep listening</span>
-            <span className="vault-d">The Gas visuals, {CATALOGUE} from before the tape.</span>
+            <span className="vault-d">Roadman 2 live, and {CATALOGUE} from before the tape.</span>
             <span className="vault-go">Hear more <Arrow /></span>
           </span>
         </Link>
