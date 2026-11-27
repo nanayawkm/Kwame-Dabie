@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { useEffect, useRef } from "react"
 import { LINKS } from "@/lib/content"
-import { buzz, event, pad2, reducedMotion, useCountdown } from "@/lib/client"
+import { buzz, event, pad2, reducedMotion, streamClick, useCountdown } from "@/lib/client"
 import TapeButton from "./tape-button"
 
 export default function Hero() {
@@ -77,7 +77,7 @@ export default function Hero() {
             <span className="opener-dash" aria-hidden="true" />
             {!cd.out && <span className="lbl count-credit">Out 12.11.2026 &nbsp;·&nbsp; 00:00 GMT</span>}
           </div>
-          <a className="btn" href={LINKS.tape} target="_blank" rel="noopener" onClick={() => event("stream_click", { from: "hero" })}>
+          <a className="btn" href={LINKS.tape} target="_blank" rel="noopener" onClick={streamClick("hero")}>
             {cd.out ? "Stream the tape" : "Pre-save the tape"}
           </a>
           <div className="hero-sub lbl">

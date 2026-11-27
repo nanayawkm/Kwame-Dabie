@@ -4,7 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { LINKS } from "@/lib/content"
-import { buzz, event, useIsOut } from "@/lib/client"
+import { buzz, streamClick, useIsOut } from "@/lib/client"
 import GvoFlag from "./gvo-flag"
 
 const MENU = [
@@ -88,7 +88,7 @@ export default function SiteHeader() {
           <GvoFlag mode="tap" />
           <span className="flag-word">{open ? "Close" : "Menu"}</span>
         </button>
-        <a className="pill" href={LINKS.tape} target="_blank" rel="noopener" onClick={() => event("stream_click", { from: "header" })}>
+        <a className="pill" href={LINKS.tape} target="_blank" rel="noopener" onClick={streamClick("header")}>
           {out ? "Out now" : "Out 12.11"}
         </a>
       </header>

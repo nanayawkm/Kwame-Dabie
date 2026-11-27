@@ -2,7 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react"
 import { LINKS, STREAM_PLATFORMS, TRACKS, type Track } from "@/lib/content"
-import { buzz, event, reducedMotion } from "@/lib/client"
+import { buzz, event, reducedMotion, streamClick } from "@/lib/client"
 import Icon, { Arrow, PauseIcon, PlayIcon } from "./icon"
 
 /** Beat and levels for each preview, measured ahead of time (12.5 per second, one base-36 digit each).
@@ -222,7 +222,11 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
           href={current?.link || LINKS.tape}
           target="_blank"
           rel="noopener"
-          onClick={() => event("stream_click", { from: tape ? "tape_sampler" : "player", track: current?.title ?? "" })}
+          onClick={(e) => {
+            // a track with its own release page goes there; the rest open the platform picker
+            if (current?.link) event("stream_click", { from: tape ? "tape_sampler" : "player", track: current.title })
+            else streamClick(tape ? "tape_sampler" : "player")(e)
+          }}
         >
           Stream <Arrow dir="out" />
         </a>
@@ -252,7 +256,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
           href={LINKS.tape}
           target="_blank"
           rel="noopener"
-          onClick={() => { event("stream_nudge", { action: "clicked", track: nudge?.title ?? "" }); event("stream_click", { from: "nudge" }); setNudge(null) }}
+          onClick={(e) => { event("stream_nudge", { action: "clicked", track: nudge?.title ?? "" }); setNudge(null); streamClick("nudge")(e) }}
         >
           Stream the tape
         </a>

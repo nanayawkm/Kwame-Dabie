@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef } from "react"
 import { LINKS } from "@/lib/content"
-import { event, reducedMotion } from "@/lib/client"
+import { reducedMotion, streamClick } from "@/lib/client"
 import VideoPlayer from "./video-player"
 import Opener from "./opener"
 
@@ -51,7 +51,7 @@ export default function Trailer() {
         <VideoPlayer src="/media/trailer.mp4" poster="/media/trailer-poster.jpg" label="the Dabie Bomaye tape trailer" tag="Trailer" seconds={53} name="trailer" onPlayState={onPlayState} />
         <div className="vis-side">
           <p className="lbl vis-specs" style={{ margin: 0 }}><span>Runtime 0:53</span><span>Vertical</span><span>Sound on</span></p>
-          <a className="btn" href={LINKS.tape} target="_blank" rel="noopener" onClick={() => event("stream_click", { from: "trailer" })}>Stream the tape</a>
+          <a className="btn" href={LINKS.tape} target="_blank" rel="noopener" onClick={streamClick("trailer")}>Stream the tape</a>
         </div>
       </div>
     </section>

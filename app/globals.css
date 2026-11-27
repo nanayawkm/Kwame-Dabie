@@ -744,3 +744,20 @@ html .nudge .opener-dash{margin:0 0 4px;transform:none}
 /* ---------- press: two kits, artist then tape; covers stay beside the copy on phones ---------- */
 .kits{display:grid;gap:clamp(36px,7vw,48px)}
 @media (max-width:520px){.kits .kit{grid-template-columns:104px minmax(0,1fr);gap:14px 16px}.kits .kit-doc{width:auto;max-width:none}.kits .kit .btn{min-height:46px;font-size:14px}}
+
+/* ---------- the stream picker: "Stream the tape" opens this instead of the link page (components/site/stream-sheet.tsx) ---------- */
+.ss{width:min(92vw,400px)}
+.ss:focus{outline:none}
+.ss-tape{display:flex;align-items:center;gap:14px;margin:4px 0 14px}
+.ss-tape img{width:72px;height:72px;object-fit:cover;flex:none}
+.ss-t{margin:0;font-family:var(--display);font-weight:800;font-size:22px;line-height:.95;text-transform:uppercase;font-stretch:var(--w-head)}
+.ss-m{margin:6px 0 0;color:var(--ash)}
+.ss-list{list-style:none;margin:0;padding:0;border-top:1px solid rgba(244,244,242,.16)}
+.ss-list a{display:flex;align-items:center;gap:14px;min-height:54px;padding:0 4px;border-bottom:1px solid rgba(244,244,242,.16);
+  font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.08em;text-transform:uppercase;font-stretch:var(--w-ui)}
+.ss-list a span{flex:1}
+.ss-list a .i-arrow{color:var(--ash);transition:color .2s,transform .2s}
+.ss-list a:active{background:rgba(244,244,242,.06)}
+.ss-list a:active .ico,.ss-list a:active .i-arrow{color:var(--blood)}
+@media (hover:hover){.ss-list a:hover .ico,.ss-list a:hover .i-arrow{color:var(--blood)}}
+.ss-more{display:inline-flex;align-items:center;gap:8px;margin-top:14px;color:var(--ash)}

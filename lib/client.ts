@@ -29,6 +29,18 @@ export function event(name: string, props?: Record<string, string>) {
   } catch {}
 }
 
+/**
+ * "Stream the tape" opens the on-site platform picker (components/site/stream-sheet.tsx) instead of the link page.
+ * Use as the onClick of a link whose href is the link page: without JS, or with a modifier key, the link still works.
+ */
+export function streamClick(from: string) {
+  return (e: { preventDefault(): void; metaKey?: boolean; ctrlKey?: boolean; shiftKey?: boolean }) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey) return
+    e.preventDefault()
+    window.dispatchEvent(new CustomEvent("db:stream", { detail: from }))
+  }
+}
+
 /** Flips to true at release time without polling every second. */
 export function useIsOut() {
   const [out, setOut] = useState(false)

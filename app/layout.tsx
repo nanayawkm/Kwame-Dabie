@@ -13,6 +13,7 @@ import { PlayerProvider } from "@/components/site/player"
 import { CardProvider } from "@/components/site/story-cards"
 import { SITE } from "@/lib/site"
 import ScrollFx from "@/components/site/scroll-fx"
+import StreamSheet from "@/components/site/stream-sheet"
 
 
 const DESCRIPTION =
@@ -101,6 +102,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <SiteHeader />
             <main id="site">{children}</main>
             <Footer />
+            <StreamSheet />
           </CardProvider>
         </PlayerProvider>
         <div id="chant" aria-hidden="true">Bomaye!</div>
